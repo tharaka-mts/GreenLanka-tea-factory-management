@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GiThreeLeaves } from "react-icons/gi";
-import { links } from "@data/dummy";
+import { managerLinks } from "@data/dummy";
 
-const SidebarAdmin = ({ navLink }) => {
+const SidebarManager = ({ navLink }) => {
   const pathname = usePathname();
   const activeLink =
     "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg  text-white  text-xl m-2 bg-gradient-to-r from-green-400 to-green-500";
@@ -22,7 +22,7 @@ const SidebarAdmin = ({ navLink }) => {
         </Link>
       </div>
       <div className=" mt-16 ">
-        {links.map((item) => (
+        {managerLinks.map((item) => (
           <div key={item.title}>
             {item.links.map((link) => {
               const isActive = pathname.startsWith(`/${link.url}`);
@@ -44,4 +44,4 @@ const SidebarAdmin = ({ navLink }) => {
   );
 };
 
-export default SidebarAdmin;
+export default SidebarManager;
