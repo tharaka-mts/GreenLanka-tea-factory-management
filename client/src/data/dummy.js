@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft, BsListCheck } from 'react-icons/bs';
 import { BiColorFill } from 'react-icons/bi';
 import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
@@ -30,8 +30,8 @@ import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
 
-// New Links
-
+// Sidebar Links
+// Admin //
 export const adminLinks = [
   {
     title: "Home",
@@ -69,7 +69,7 @@ export const adminLinks = [
     links: [
       {
         name: "Attendance",
-        icon: <PiUsers />,
+        icon: <BsListCheck />,
         url: "admin/attendance",
       },
     ],
@@ -81,6 +81,72 @@ export const adminLinks = [
         name: "Manage",
         icon: <RiFolderSettingsLine />,
         url: "admin/manage",
+      },
+    ],
+  },
+  {
+    title: "Settings",
+    links: [
+      {
+        name: "Settings",
+        icon: <AiOutlineSetting />,
+        url: "admin/settings",
+      },
+    ],
+  },
+];
+
+// Supervisor //
+
+export const supervisorLinks = [
+  {
+    title: "Home",
+    links: [
+      {
+        name: "Home",
+        icon: <BiHomeAlt />,
+        url: "admin/home",
+      },
+    ],
+  },
+
+  {
+    title: "Reports",
+    links: [
+      {
+        name: "Reports",
+        icon: <TbReport />,
+        url: "admin/reports",
+      },
+    ],
+  },
+  {
+    title: "Production",
+    links: [
+      {
+        name: "Production",
+        icon: <HiOutlinePresentationChartLine />,
+        url: "admin/production",
+      },
+    ],
+  },
+  {
+    title: "Attendance",
+    links: [
+      {
+        name: "Attendance",
+        icon: <BsListCheck />,
+        url: "admin/attendance",
+      },
+    ],
+  },
+  {
+    title: "MyTeam",
+    links: [
+      {
+        name: "MyTeam",
+        icon: <PiUsers />,
+        url: "admin/attendance",
       },
     ],
   },

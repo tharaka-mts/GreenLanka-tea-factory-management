@@ -1,5 +1,3 @@
-// import 'bootstrap/dist/css/bootstrap.css';
-
 import React, { useState } from 'react'
 import icon from '../data/login.png'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
