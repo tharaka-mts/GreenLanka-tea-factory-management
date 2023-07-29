@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import icon from '../data/login.png'
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import img from '../Assets/3.jpg'
-import login from '../Assets/login.png'
-import hero from '../Assets/hero.png'
+import img from '../data/Assets/3.jpg'
+import login from '../data/Assets/login.png'
+import hero from '../data/Assets/hero.png'
 
 const Login = () => {
     // const [values,setValues] = useState({
