@@ -17,7 +17,7 @@ const Sidebar = () => {
     }
   };
 
-  const admin = false;
+  const admin = true;
 
   const adminSidebar = () => {
     return adminLinks.map((item) => (
