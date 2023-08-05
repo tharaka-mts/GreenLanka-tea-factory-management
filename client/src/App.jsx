@@ -53,6 +53,7 @@ const App = () => {
           path: "/settings",
           element: <Settings />,
         },
+        
       ],
     },
     {
