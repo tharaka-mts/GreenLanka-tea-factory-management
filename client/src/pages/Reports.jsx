@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Reports = () => {
   return (
@@ -28,7 +29,10 @@ const Reports = () => {
               </div>
 
             </div>
-            <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">See More</button>
+
+            <Link to='/greenLankaReport'>
+              <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">See More</button>
+            </Link>
           </div>
 
           <div class="md:max-w-[5%] sm:w-full bg-gray-200"></div>
@@ -56,7 +60,9 @@ const Reports = () => {
 
 
             </div>
-            <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-white">See More</button>
+            <Link to='/fullReport'>
+              <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-white">See More</button>
+            </Link>
           </div>
 
           <div class="md:max-w-[5%] sm:w-full bg-gray-200"></div>
@@ -82,7 +88,9 @@ const Reports = () => {
               </div>
 
             </div>
-            <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">See More</button>
+            <Link to='/outsideReport'>
+              <button class="w-full mt-8 mb-3 py-2 text-emerald-400 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">See More</button>
+            </Link>
           </div>
 
         </div>

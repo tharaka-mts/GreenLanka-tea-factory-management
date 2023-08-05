@@ -13,6 +13,9 @@ import {
   MyTeam,
   Settings,
   Login,
+  GreenLankaReport,
+  OutsideReport,
+  FullReport,
 } from "./pages";
 
 const App = () => {
@@ -52,6 +55,18 @@ const App = () => {
         {
           path: "/settings",
           element: <Settings />,
+        },
+        {
+          path: "/greenLankaReport",
+          element: <GreenLankaReport />,
+        },
+        {
+          path: "/outsideReport",
+          element: <OutsideReport />,
+        },
+        {
+          path: "/fullReport",
+          element: <FullReport />,
         },
         
       ],
