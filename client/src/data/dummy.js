@@ -1,13 +1,9 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
-import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
-import { BiColorFill } from 'react-icons/bi';
-import { IoMdContacts } from 'react-icons/io';
-import { RiContactsLine, RiStockLine } from 'react-icons/ri';
+import { SiKonva, SiUptimekuma } from 'react-icons/si'
+import { FiBarChart } from 'react-icons/fi';
+import { BsBoxSeam, BsListCheck } from 'react-icons/bs';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
 import { HiOutlineRefresh, HiOutlinePresentationChartLine } from 'react-icons/hi';
-import { TiTick } from 'react-icons/ti';
 
 import { BiHomeAlt } from "react-icons/bi";
 import { TbReport } from "react-icons/tb";
@@ -15,7 +11,7 @@ import { PiUsers } from "react-icons/pi";
 import { RiFolderSettingsLine } from "react-icons/ri";
 import { AiOutlineSetting } from "react-icons/ai";
 
-import { GiLouvrePyramid } from 'react-icons/gi';
+import { GiSummits, GiThreeLeaves, GiAbstract034 } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
 import avatar from './avatar.jpg';
 import avatar2 from './avatar2.jpg';
@@ -28,10 +24,9 @@ import product4 from './product4.jpg';
 import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
-import product8 from './product8.jpg';
 
-// New Links
-
+// Sidebar Links
+// Admin //
 export const adminLinks = [
   {
     title: "Home",
@@ -69,7 +64,7 @@ export const adminLinks = [
     links: [
       {
         name: "Attendance",
-        icon: <PiUsers />,
+        icon: <BsListCheck />,
         url: "admin/attendance",
       },
     ],
@@ -81,6 +76,72 @@ export const adminLinks = [
         name: "Manage",
         icon: <RiFolderSettingsLine />,
         url: "admin/manage",
+      },
+    ],
+  },
+  {
+    title: "Settings",
+    links: [
+      {
+        name: "Settings",
+        icon: <AiOutlineSetting />,
+        url: "admin/settings",
+      },
+    ],
+  },
+];
+
+// Supervisor //
+
+export const supervisorLinks = [
+  {
+    title: "Home",
+    links: [
+      {
+        name: "Home",
+        icon: <BiHomeAlt />,
+        url: "admin/home",
+      },
+    ],
+  },
+
+  {
+    title: "Reports",
+    links: [
+      {
+        name: "Reports",
+        icon: <TbReport />,
+        url: "admin/reports",
+      },
+    ],
+  },
+  {
+    title: "Production",
+    links: [
+      {
+        name: "Production",
+        icon: <HiOutlinePresentationChartLine />,
+        url: "admin/production",
+      },
+    ],
+  },
+  {
+    title: "Attendance",
+    links: [
+      {
+        name: "Attendance",
+        icon: <BsListCheck />,
+        url: "admin/attendance",
+      },
+    ],
+  },
+  {
+    title: "MyTeam",
+    links: [
+      {
+        name: "MyTeam",
+        icon: <PiUsers />,
+        url: "admin/attendance",
       },
     ],
   },
@@ -605,95 +666,6 @@ export const employeesGrid = [
     textAlign: 'Center' },
 ];
 
-export const links = [
-  {
-    title: 'Dashboard',
-    links: [
-      {
-        name: 'ecommerce',
-        icon: <FiShoppingBag />,
-      },
-    ],
-  },
-
-  {
-    title: 'Pages',
-    links: [
-      {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
-      },
-      {
-        name: 'employees',
-        icon: <IoMdContacts />,
-      },
-      {
-        name: 'customers',
-        icon: <RiContactsLine />,
-      },
-    ],
-  },
-  {
-    title: 'Apps',
-    links: [
-      {
-        name: 'calendar',
-        icon: <AiOutlineCalendar />,
-      },
-      {
-        name: 'kanban',
-        icon: <BsKanban />,
-      },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    links: [
-      {
-        name: 'line',
-        icon: <AiOutlineStock />,
-      },
-      {
-        name: 'area',
-        icon: <AiOutlineAreaChart />,
-      },
-
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: 'pie',
-        icon: <FiPieChart />,
-      },
-      {
-        name: 'financial',
-        icon: <RiStockLine />,
-      },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
-      },
-    ],
-  },
-];
-
 export const cartData = [
   {
     image:
@@ -722,57 +694,43 @@ export const chatData = [
   {
     image:
       avatar2,
-    message: 'Roman Joined the Team!',
-    desc: 'Congratulate him',
+    message: 'Tea board value changed',
+    desc: 'See more',
     time: '9:08 AM',
   },
   {
     image:
       avatar3,
-    message: 'New message received',
-    desc: 'Salma sent you new message',
+    message: 'Tea quality rate 65%',
+    desc: 'See more',
     time: '11:56 AM',
-  },
-  {
-    image:
-      avatar4,
-    message: 'New Payment received',
-    desc: 'Check your earnings',
-    time: '4:39 AM',
-  },
-  {
-    image:
-      avatar,
-    message: 'Jolly completed tasks',
-    desc: 'Assign her new tasks',
-    time: '1:12 AM',
   },
 ];
 
 export const earningData = [
   {
     icon: <MdOutlineSupervisorAccount />,
-    amount: '39,354',
-    percentage: '-4%',
-    title: 'Customers',
+    total: '5',
+    present: '5',
+    title: 'Managers',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
     pcColor: 'red-600',
   },
   {
     icon: <BsBoxSeam />,
-    amount: '4,396',
-    percentage: '+23%',
-    title: 'Products',
+    total: '10',
+    present: '9',
+    title: 'Supervisors',
     iconColor: 'rgb(255, 244, 229)',
     iconBg: 'rgb(254, 201, 15)',
     pcColor: 'green-600',
   },
   {
     icon: <FiBarChart />,
-    amount: '423,39',
-    percentage: '+38%',
-    title: 'Sales',
+    total: '20',
+    present: '18',
+    title: 'Employees',
     iconColor: 'rgb(228, 106, 118)',
     iconBg: 'rgb(255, 244, 229)',
 
@@ -780,90 +738,55 @@ export const earningData = [
   },
   {
     icon: <HiOutlineRefresh />,
-    amount: '39,354',
-    percentage: '-12%',
-    title: 'Refunds',
+    total: '100',
+    present: '90',
+    title: 'Tea Pluckers',
     iconColor: 'rgb(0, 194, 146)',
     iconBg: 'rgb(235, 250, 242)',
     pcColor: 'red-600',
   },
 ];
 
-export const recentTransactions = [
+export const recentTea = [
   {
-    icon: <BsCurrencyDollar />,
-    amount: '+$350',
-    title: 'Paypal Transfer',
-    desc: 'Money Added',
-    iconColor: '#03C9D7',
-    iconBg: '#E5FAFB',
+    icon: <GiThreeLeaves />,
+    amount: '350KG',
+    title: 'Our Estate',
+    iconColor: 'rgb(0, 194, 146)',
+    iconBg: 'rgb(235, 250, 242)',
     pcColor: 'green-600',
   },
   {
-    icon: <BsShield />,
-    amount: '-$560',
-    desc: 'Bill Payment',
-    title: 'Wallet',
-    iconColor: 'rgb(0, 194, 146)',
-    iconBg: 'rgb(235, 250, 242)',
+    icon: <SiUptimekuma />,
+    amount: '120KG',
+    title: 'Kumara Estate',
+    iconColor: '#03C9D7',
+    iconBg: '#E5FAFB',
     pcColor: 'red-600',
   },
   {
-    icon: <FiCreditCard />,
-    amount: '+$350',
-    title: 'Credit Card',
-    desc: 'Money reversed',
+    icon: <GiSummits />,
+    amount: '150KG',
+    title: 'Sumudu Estate',
     iconColor: 'rgb(255, 244, 229)',
     iconBg: 'rgb(254, 201, 15)',
-
     pcColor: 'green-600',
   },
   {
-    icon: <TiTick />,
-    amount: '+$350',
-    title: 'Bank Transfer',
-    desc: 'Money Added',
-
+    icon: <GiAbstract034 />,
+    amount: '140KG',
+    title: 'Gamage Tea',
     iconColor: 'rgb(228, 106, 118)',
     iconBg: 'rgb(255, 244, 229)',
     pcColor: 'green-600',
   },
   {
-    icon: <BsCurrencyDollar />,
-    amount: '-$50',
-    percentage: '+38%',
-    title: 'Refund',
-    desc: 'Payment Sent',
+    icon: <SiKonva />,
+    amount: '107KG',
+    title: 'Konara Tea',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
     pcColor: 'red-600',
-  },
-];
-
-export const weeklyStats = [
-  {
-    icon: <FiShoppingCart />,
-    amount: '-$560',
-    title: 'Top Sales',
-    desc: 'Johnathan Doe',
-    iconBg: '#FB9678',
-    pcColor: 'red-600',
-  },
-  {
-    icon: <FiStar />,
-    amount: '-$560',
-    title: 'Best Seller',
-    desc: 'MaterialPro Admin',
-    iconBg: 'rgb(254, 201, 15)',
-    pcColor: 'red-600',
-  },
-  {
-    icon: <BsChatLeft />,
-    amount: '+$560',
-    title: 'Most Commented',
-    desc: 'Ample Admin',
-    iconBg: '#00C292',
-    pcColor: 'green-600',
   },
 ];
 
@@ -906,105 +829,25 @@ export const productsPerformance = [
   },
 ];
 
-export const medicalproBranding = {
-  data: [
-    {
-      title: 'Due Date',
-      desc: 'Oct 23, 2021',
-    },
-    {
-      title: 'Budget',
-      desc: '$98,500',
-    },
-    {
-      title: 'Expense',
-      desc: '$63,000',
-    },
-  ],
-  teams: [
-    {
-      name: 'Bootstrap',
-      color: 'orange',
-    },
-    {
-      name: 'Angular',
-      color: '#FB9678',
-    },
-  ],
-  leaders: [
-    {
-      image:
-        avatar2,
-    },
-    {
-      image:
-        avatar3,
-    },
-    {
-      image:
-        avatar2,
-    },
-    {
-      image:
-        avatar4,
-    },
-    {
-      image:
-        avatar,
-    },
-  ],
-};
-
 export const themeColors = [
   {
-    name: 'blue-theme',
-    color: '#1A97F5',
+    name: 'theme-1',
+    color: '#068964',
   },
   {
-    name: 'green-theme',
+    name: 'theme-2',
     color: '#34d399',
   },
   {
-    name: 'purple-theme',
-    color: '#7352FF',
+    name: 'theme-3',
+    color: '#75DDDD',
   },
   {
-    name: 'red-theme',
-    color: '#FF5C8E',
-  },
-  {
-    name: 'indigo-theme',
-    color: '#1E4DB7',
-  },
-  {
-    color: '#FB9678',
-    name: 'orange-theme',
+    name: 'theme-4',
+    color: '#00747A',
   },
 ];
 
-export const userProfileData = [
-  {
-    icon: <BsCurrencyDollar />,
-    title: 'My Profile',
-    desc: 'Account Settings',
-    iconColor: '#03C9D7',
-    iconBg: '#E5FAFB',
-  },
-  {
-    icon: <BsShield />,
-    title: 'My Inbox',
-    desc: 'Messages & Emails',
-    iconColor: 'rgb(0, 194, 146)',
-    iconBg: 'rgb(235, 250, 242)',
-  },
-  {
-    icon: <FiCreditCard />,
-    title: 'My Tasks',
-    desc: 'To-do and Daily Tasks',
-    iconColor: 'rgb(255, 244, 229)',
-    iconBg: 'rgb(254, 201, 15)',
-  },
-];
 
 export const ordersGrid = [
   {
@@ -3284,30 +3127,30 @@ export const contextMenuItems = [
 ];
 
 export const ecomPieChartData = [
-  { x: '2018', y: 18, text: '35%' },
-  { x: '2019', y: 18, text: '15%' },
-  { x: '2020', y: 18, text: '25%' },
-  { x: '2021', y: 18, text: '25%' },
+  { x: 'Week 1', y: 18, text: '35%' },
+  { x: 'Week 2', y: 18, text: '15%' },
+  { x: 'Week 3', y: 18, text: '25%' },
+  { x: 'Week 4', y: 18, text: '25%' },
 ];
 
 export const stackedChartData = [
   [
-    { x: 'Jan', y: 111.1 },
-    { x: 'Feb', y: 127.3 },
-    { x: 'Mar', y: 143.4 },
-    { x: 'Apr', y: 159.9 },
-    { x: 'May', y: 159.9 },
-    { x: 'Jun', y: 159.9 },
-    { x: 'July', y: 159.9 },
+    { x: 'Mon', y: 111.1 },
+    { x: 'Tue', y: 127.3 },
+    { x: 'Wed', y: 143.4 },
+    { x: 'Thur', y: 159.9 },
+    { x: 'Fri', y: 159.9 },
+    { x: 'Sat', y: 159.9 },
+    { x: 'Sun', y: 159.9 },
   ],
   [
-    { x: 'Jan', y: 111.1 },
-    { x: 'Feb', y: 127.3 },
-    { x: 'Mar', y: 143.4 },
-    { x: 'Apr', y: 159.9 },
-    { x: 'May', y: 159.9 },
-    { x: 'Jun', y: 159.9 },
-    { x: 'July', y: 159.9 },
+    { x: 'Mon', y: 111.1 },
+    { x: 'Tue', y: 127.3 },
+    { x: 'Wed', y: 143.4 },
+    { x: 'Thur', y: 159.9 },
+    { x: 'Fri', y: 159.9 },
+    { x: 'Sat', y: 159.9 },
+    { x: 'Sun', y: 159.9 },
   ],
 ];
 

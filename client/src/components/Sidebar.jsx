@@ -4,7 +4,7 @@ import { GiThreeLeaves } from "react-icons/gi";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { adminLinks } from "../data/dummy";
+import { adminLinks, supervisorLinks } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
@@ -43,12 +43,12 @@ const Sidebar = () => {
     ));
   };
 
-  const managerSidebar = () => {
+  const supervisorSidebar = () => {
     return (
-      adminLinks.map((item) => (
+      supervisorLinks.map((item) => (
         <div key={item.title} className='text-xl'>
           <p className="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
-            {item.title}
+            {/* {item.title} */}
           </p>
           {item.links.map((link) => (
             <NavLink
@@ -100,7 +100,7 @@ const Sidebar = () => {
           </div>
           <div className="mt-10 ">
             {/* Admin */}
-            {admin ? adminSidebar() : managerSidebar()}
+            {admin ? adminSidebar() : supervisorSidebar()}
             {/* Manager */}
 
             {/* Supervisor */}
