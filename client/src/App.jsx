@@ -16,6 +16,8 @@ import {
   GreenLankaReport,
   OutsideReport,
   FullReport,
+  ViewAttendance,
+  AttendanceHistory,
 } from "./pages";
 
 const App = () => {
@@ -67,6 +69,14 @@ const App = () => {
         {
           path: "/fullReport",
           element: <FullReport />,
+        },
+        {
+          path: "/ViewAttendance",
+          element: <ViewAttendance />,
+        },
+        {
+          path: "/AttendanceHistory",
+          element: <AttendanceHistory />,
         },
         
       ],

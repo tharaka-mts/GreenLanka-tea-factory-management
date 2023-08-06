@@ -10,5 +10,7 @@ export { default as GreenLankaReport } from './GreenLankaReport';
 export { default as OutsideReport } from './OutsideReport';
 export { default as FullReport } from './FullReport';
 export { default as Area } from './Charts/Area';
+export { default as ViewAttendance } from './ViewAttendance';
+export { default as AttendanceHistory } from './AttendanceHistory';
 
 
