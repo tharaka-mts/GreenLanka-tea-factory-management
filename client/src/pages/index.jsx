@@ -6,5 +6,9 @@ export { default as Attendance } from './Attendance';
 export { default as Manage } from './Manage';
 export { default as MyTeam } from './MyTeam';
 export { default as Settings } from './Settings';
+export { default as GreenLankaReport } from './GreenLankaReport';
+export { default as OutsideReport } from './OutsideReport';
+export { default as FullReport } from './FullReport';
 export { default as Area } from './Charts/Area';
+
 
