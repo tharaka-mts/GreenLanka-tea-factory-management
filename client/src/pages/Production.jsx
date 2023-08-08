@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider';
 import { ecomPieChartDataProduction1, ecomPieChartDataProduction2, ecomPieChartDataProduction3 } from '../data/dummy';
-import { Pie, ThreeBarChart } from '../components';
+import { Pie, FourBarChart } from '../components';
 import '../index.css';
 
 const Production = () => {
@@ -40,7 +40,7 @@ const Production = () => {
               
             </div>
             <div className="mt-12 w-full">
-            <ThreeBarChart width="1000px" height="400px" />
+            <FourBarChart width="1000px" height="400px" />
             </div>
           </div>
 
@@ -61,21 +61,6 @@ const Production = () => {
               </spam>
             </div>
           </div>
-
-          {/* <div className="w-2/5 flex flex-wrap gap-4 m-2 justify-left">
-            <div className="w-full">
-              <h2 className="text-xl font-semibold text-center">Pie Chart 1</h2>
-              <Pie class="pie-chart" id="pie-chart1" data={ecomPieChartDataNew} legendVisiblity={false} />
-            </div>
-            <div className="w-full">
-              <h2 className="text-xl font-semibold text-center">Pie Chart 2</h2>
-              <Pie class="pie-chart" id="pie-chart2" data={ecomPieChartDataNew} legendVisiblity={false} />
-            </div>
-            <div className="w-full">
-              <h2 className="text-xl font-semibold text-center">Pie Chart 3</h2>
-              <Pie class="pie-chart" id="pie-chart3" data={ecomPieChartDataNew} legendVisiblity={false} />
-            </div>
-          </div> */}
 
         </div>
       </div>
