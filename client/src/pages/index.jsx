@@ -12,5 +12,6 @@ export { default as FullReport } from './FullReport';
 export { default as Area } from './Charts/Area';
 export { default as ViewAttendance } from './ViewAttendance';
 export { default as AttendanceHistory } from './AttendanceHistory';
+export { default as ViewProduction } from './ViewProduction';
 
 

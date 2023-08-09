@@ -9,24 +9,46 @@ const Production = () => {
   const { currentColor } = useStateContext();
   return (
     <div className=" md:m-10">
-      <Link to='/..' className="m-4">
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-2xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Green Lanka</button>
+      {/* Production of Estates */}
+      <Link to='/ViewProduction' className="m-4">
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Green Lanka</button>
       </Link>
 
-      <Link to='/..'>
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-2xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Kumara Estate</button>
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Kumara Estate</button>
       </Link>
 
-      <Link to='/..'>
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-2xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Sumudu Estate</button>
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Sumudu Estate</button>
       </Link>
 
-      <Link to='/..'>
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-2xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Gamage Tea</button>
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Gamage Tea</button>
       </Link>
 
-      <Link to='/..'>
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-2xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Konara Tea</button>
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Konara Tea</button>
+      </Link>
+
+     {/* Production of Supervisor's Teams */}
+      <Link to='/ViewProduction' className="m-4">
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Saman's Team</button>
+      </Link>
+
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Anthony's Team</button>
+      </Link>
+
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Ruwan's Team</button>
+      </Link>
+
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Kumara's Team</button>
+      </Link>
+
+      <Link to='/ViewProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Asanka's Team</button>
       </Link>
 
 

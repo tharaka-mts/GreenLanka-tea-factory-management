@@ -18,6 +18,7 @@ import {
   FullReport,
   ViewAttendance,
   AttendanceHistory,
+  ViewProduction,
 } from "./pages";
 
 const App = () => {
@@ -77,6 +78,10 @@ const App = () => {
         {
           path: "/AttendanceHistory",
           element: <AttendanceHistory />,
+        },
+        {
+          path: "/ViewProduction",
+          element: <ViewProduction />,
         },
         
       ],

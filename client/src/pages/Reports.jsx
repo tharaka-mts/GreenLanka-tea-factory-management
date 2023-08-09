@@ -7,7 +7,7 @@ const Reports = () => {
   return (
     <div>
 
-      <div class="min-h-screen  bg-gray-200  flex flex-wrap items-center  justify-center  ">
+      <div class="min-h-screen  flex flex-wrap items-center  justify-center  ">
 
         <div class="flex flex-col sm:flex-col lg:flex-row xl:flex-row md:flex-row justify-center items center  container   ">
           <div class="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full md:max-w-[28%] sm:w-full bg-white z-30">
@@ -19,7 +19,7 @@ const Reports = () => {
             <div class="h-px bg-gray-300"></div>
             <div class="text-center mt-3">
 
-              <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl ">
+              <div className="bg-white  m-3 p-4 rounded-2xl ">
 
                 <p className="text-center font-semibold text-2xl">LKR 2,987,234</p>
                 <p className="text-center text-gray-500 mt-1 text-lg">Income</p>
@@ -37,7 +37,7 @@ const Reports = () => {
             </Link>
           </div>
 
-          <div class="md:max-w-[5%] sm:w-full bg-gray-200"></div>
+          <div class="md:max-w-[5%] sm:w-full"></div>
 
           <div style={{ backgroundColor: currentColor }} class="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full md:max-w-[28%] sm:w-full transform scale-1 sm:scale-1 md:scale-105 lg:scale-105 xl:scale-105 z-40  shadow-none sm:shadow-none md:shadow-xl lg:shadow-xl xl:shadow-xl">
             <h1 class="text-gray-800  font-semibold text-4xl text-center">Total</h1>
@@ -48,7 +48,7 @@ const Reports = () => {
             <div class="h-px bg-white"></div>
             <div class="text-center mt-3">
 
-              <div className="dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl ">
+              <div className="dark:text-gray-200  m-3 p-4 rounded-2xl ">
 
 
                 <p className="text-center font-semibold text-2xl text-gray-200">LKR 5,261,571</p>
@@ -67,7 +67,7 @@ const Reports = () => {
             </Link>
           </div>
 
-          <div class="md:max-w-[5%] sm:w-full bg-gray-200"></div>
+          <div class="md:max-w-[5%] sm:w-full"></div>
 
           <div class="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full md:max-w-[28%] sm:w-full bg-white z-30">
             <h1  style={{ color: currentColor }} class="font-semibold text-4xl text-center">Outside Tea Estates</h1>
@@ -78,7 +78,7 @@ const Reports = () => {
             <div class="h-px bg-gray-300"></div>
             <div class="text-center mt-3">
 
-              <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl ">
+              <div className="bg-white  m-3 p-4 rounded-2xl ">
 
                 <p className="text-center font-semibold text-2xl">LKR 2,274,337</p>
                 <p className="text-center text-gray-500 mt-1 text-lg">Income</p>
