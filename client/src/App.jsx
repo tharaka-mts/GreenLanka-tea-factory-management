@@ -19,6 +19,10 @@ import {
   ViewAttendance,
   AttendanceHistory,
   ViewProduction,
+  UserProfilePage,
+  AddUser,
+  AddSalaryDetails,
+  SalaryReport,
 } from "./pages";
 
 const App = () => {
@@ -84,17 +88,33 @@ const App = () => {
           element: <ViewProduction />,
         },
         
+          path: "/salary",
+          element: <SalaryReport />,
+        },
+        {
+          path: "/UserProfilePage",
+          element: <UserProfilePage />,
+        },
+        {
+          path: "/AddUser",
+          element: <AddUser />,
+        }
       ],
     },
     {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/AddSalaryDetails",
+      element: <AddSalaryDetails />,
+    },
   ]);
 
   return (
     <div>
       <RouterProvider router={routes} />
+
     </div>
   );
 };
