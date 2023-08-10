@@ -13,6 +13,10 @@ import {
   MyTeam,
   Settings,
   Login,
+  UserProfilePage,
+  AddUser,
+  AddSalaryDetails,
+  SalaryReport,
 } from "./pages";
 
 const App = () => {
@@ -53,17 +57,34 @@ const App = () => {
           path: "/settings",
           element: <Settings />,
         },
+        {
+          path: "/salary",
+          element: <SalaryReport />,
+        },
+        {
+          path: "/UserProfilePage",
+          element: <UserProfilePage />,
+        },
+        {
+          path: "/AddUser",
+          element: <AddUser />,
+        }
       ],
     },
     {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/AddSalaryDetails",
+      element: <AddSalaryDetails />,
+    },
   ]);
 
   return (
     <div>
       <RouterProvider router={routes} />
+
     </div>
   );
 };
