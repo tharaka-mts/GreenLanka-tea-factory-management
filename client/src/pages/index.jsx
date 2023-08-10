@@ -14,4 +14,9 @@ export { default as ViewAttendance } from './ViewAttendance';
 export { default as AttendanceHistory } from './AttendanceHistory';
 export { default as ViewProduction } from './ViewProduction';
 
+export { default as UserProfilePage } from './UserProfilePage';
+export { default as AddUser } from './AddUser';
+export { default as AddSalaryDetails } from './AddSalaryDetails';
+export { default as SalaryReport } from './SalaryReport';
+ 
 
