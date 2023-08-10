@@ -10,6 +10,7 @@ import { TbReport } from "react-icons/tb";
 import { PiUsers } from "react-icons/pi";
 import { RiFolderSettingsLine } from "react-icons/ri";
 import { AiOutlineSetting } from "react-icons/ai";
+import { GiTakeMyMoney } from 'react-icons/gi';
 
 import { GiSummits, GiThreeLeaves, GiAbstract034 } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
@@ -24,6 +25,7 @@ import product4 from './product4.jpg';
 import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
+import SalaryReport from '../pages/SalaryReport';
 
 // Sidebar Links
 // Admin //
@@ -80,6 +82,16 @@ export const adminLinks = [
     ],
   },
   {
+    title: "Salary",
+    links: [
+      {
+        name: "Salary",
+        icon: <GiTakeMyMoney />,
+        url: "admin/salary",
+      },
+    ],
+  },
+  {
     title: "Settings",
     links: [
       {
@@ -89,6 +101,8 @@ export const adminLinks = [
       },
     ],
   },
+
+
 ];
 
 // Supervisor //
