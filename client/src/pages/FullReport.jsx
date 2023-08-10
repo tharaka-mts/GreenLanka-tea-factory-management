@@ -64,7 +64,7 @@ const FullReport = () => {
       <p style={{ color: currentColor }} class="text-center mt-3 text-5xl font-black">Monthly Total Income and Expenses Report</p>
       <p style={{ color: currentColor }} class="text-center mt-3 text-xl font-black">Reporting Period: 01 July 2023 - 31 July 2023</p>
 
-      <p class="text-gray-900 mt-8 text-xl font-black">Income</p>
+      <p class="text-gray-900 mt-12 text-xl font-black">Income</p>
       <p class="text-gray-900 m-4 mt-1 text-min font-black">Total Quantity Produced</p>
 
       <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
@@ -72,18 +72,16 @@ const FullReport = () => {
           <tbody>
             {dataIncome.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.value}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-2">{item.Title}</td>
+                <td class="text-right">{item.value}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <div class="flex justify-end">
-        <div class="border-b-2 border-gray-400 w-full"></div>
-      </div>
+
 
       <p class="text-gray-900 mt-10 text-xl font-black">Expences</p>
       <p class="text-gray-900 m-4 mt-1 text-min font-black">Equipment & Machinery Utilization</p>
@@ -93,9 +91,9 @@ const FullReport = () => {
           <tbody>
             {dataEquipment.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.value}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-2">{item.Title}</td>
+                <td class="text-right">{item.value}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
@@ -109,9 +107,9 @@ const FullReport = () => {
           <tbody>
             {dataEnergy.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.value}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-2 ">{item.Title}</td>
+                <td class="text-right">{item.value}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
@@ -125,9 +123,9 @@ const FullReport = () => {
           <tbody>
             {dataTransportation.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.value}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-2">{item.Title}</td>
+                <td class="text-right">{item.value}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
@@ -141,8 +139,8 @@ const FullReport = () => {
           <tbody>
             {dataSalary.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-3 ">{item.Title}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
@@ -156,25 +154,22 @@ const FullReport = () => {
           <tbody>
             {dataPayment.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.Title}</td>
-                <td class="text-right px-24 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{item.amount}</td>
+                <td class="py-3 ">{item.Title}</td>
+                <td class="text-right">{item.amount}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <div class="flex justify-end">
-        <div class="border-b-2 border-gray-400 w-full"></div>
-      </div>
 
-      <div class=" mt-20 flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
+      <div class=" py-16">
         <table class="min-w-full">
           <tbody>
             {dataTotal.map((item, index) => (
               <tr key={index} className=' border-t'>
-                <td class="font-black px-24 py-2 whitespace-nowrap text-lg text-gray-900">{item.Title}</td>
-                <td class="text-right font-black px-24 py-2 whitespace-nowrap text-lg text-gray-900">{item.amount}</td>
+                <td style={{ fontWeight: 'bold' }} class="py-3">{item.Title}</td>
+                <td style={{ fontWeight: 'bold' }} class="text-right ">{item.amount}</td>
               </tr>
             ))}
           </tbody>
