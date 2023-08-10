@@ -9,11 +9,11 @@ const Reports = () => {
 
       <div class="min-h-screen  flex flex-wrap items-center  justify-center  ">
 
-        <div class="p-16 flex flex-col sm:flex-col lg:flex-row xl:flex-row md:flex-row justify-center items center  container   ">
+        <div class="p-16 flex flex-col sm:flex-col lg:flex-row xl:flex-row md:flex-row justify-center items center  container ">
           <div class="py-12 sm:py-12 md:py-6 lg:py-6 xl:py-6 px-8 w-full sm:w-full bg-gray-200 z-30 max-w-sm overflow-hidden shadow-lg mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl">
             <h1 style={{ color: currentColor, fontWeight: 'bold' }} class="font-semibold xl:text-4xl lg:text-3xl md:text-2xl sm:text-2xl text-2xl text-center">Green Lanka Tea Estate</h1>
             <div class="text-center py-4 px-7">
-              <h1 style={{ fontWeight: 'bold' }} class="text-gray-700 mt-4  xl:text-4xl lg:text-2xl md:text-xl sm:text-xl text-xl ">LKR 1,295,059</h1>
+              <h1 style={{ fontWeight: 'bold' }} class="text-gray-700 mt-4 xl:text-4xl lg:text-2xl md:text-xl sm:text-xl text-xl ">LKR 1,295,059</h1>
               <p class="text-gray-500  mt-2">Net Profit</p>
             </div>
             <div class="h-px bg-gray-300"></div>

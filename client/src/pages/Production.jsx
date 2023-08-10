@@ -62,7 +62,7 @@ const Production = () => {
               
             </div>
             <div className="mt-12 w-full">
-            <FourBarChart width="1000px" height="400px" />
+            <FourBarChart width="full" height="400px" />
             </div>
           </div>
 
