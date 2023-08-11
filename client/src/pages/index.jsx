@@ -6,4 +6,5 @@ export { default as Attendance } from './Attendance';
 export { default as Manage } from './Manage';
 export { default as MyTeam } from './MyTeam';
 export { default as Settings } from './Settings';
+export { default as Area } from './Charts/Area';
 
