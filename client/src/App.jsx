@@ -13,6 +13,16 @@ import {
   MyTeam,
   Settings,
   Login,
+  GreenLankaReport,
+  OutsideReport,
+  FullReport,
+  ViewAttendance,
+  AttendanceHistory,
+  ViewProduction,
+  UserProfilePage,
+  AddUser,
+  AddSalaryDetails,
+  SalaryReport,
 } from "./pages";
 
 const App = () => {
@@ -53,17 +63,58 @@ const App = () => {
           path: "/settings",
           element: <Settings />,
         },
+        {
+          path: "/greenLankaReport",
+          element: <GreenLankaReport />,
+        },
+        {
+          path: "/outsideReport",
+          element: <OutsideReport />,
+        },
+        {
+          path: "/fullReport",
+          element: <FullReport />,
+        },
+        {
+          path: "/ViewAttendance",
+          element: <ViewAttendance />,
+        },
+        {
+          path: "/AttendanceHistory",
+          element: <AttendanceHistory />,
+        },
+        {
+          path: "/ViewProduction",
+          element: <ViewProduction />,
+        },
+        
+          path: "/salary",
+          element: <SalaryReport />,
+        },
+        {
+          path: "/UserProfilePage",
+          element: <UserProfilePage />,
+        },
+        {
+          path: "/AddUser",
+          element: <AddUser />,
+        }
       ],
     },
     {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/AddSalaryDetails",
+      element: <AddSalaryDetails />,
+    },
   ]);
 
   return (
     <div>
       <RouterProvider router={routes} />
+
     </div>
   );
 };
