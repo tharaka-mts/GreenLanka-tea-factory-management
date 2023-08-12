@@ -41,8 +41,8 @@ const AddSalaryDetails = () => {
   };
 
   return (
-    <div className='w-full'>
-      <div className='w-20% flex justify-center items-center'
+    <div className='w-full '>
+      <div className='flex justify-center items-center'
        style={{ backgroundColor: currentColor }}>
         <h1 className='flex items-center justify-center mb-5 mt-5 text-xl font-bold text-white py-3'>
           ADD SALARY DETAILS
@@ -50,11 +50,11 @@ const AddSalaryDetails = () => {
        
       </div>
 
-      <div className='w-80%'>
-        <div className='flex justify-center w-full h-screen'>
+      <div className=''>
+        <div className='flex justify-center w-full '>
           <div className='bg-white mt-10 flex'>
             <form
-              className='bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-[500px] '
+              className='bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full '
               onSubmit={handleSubmit}
             >
               <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>

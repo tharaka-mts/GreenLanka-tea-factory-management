@@ -87,7 +87,7 @@ const App = () => {
           path: "/ViewProduction",
           element: <ViewProduction />,
         },
-        
+        {
           path: "/salary",
           element: <SalaryReport />,
         },
@@ -98,23 +98,22 @@ const App = () => {
         {
           path: "/AddUser",
           element: <AddUser />,
-        }
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
       ],
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/AddSalaryDetails",
-      element: <AddSalaryDetails />,
-    },
+    }, 
   ]);
 
   return (
     <div>
       <RouterProvider router={routes} />
-
     </div>
   );
 };
