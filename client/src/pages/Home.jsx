@@ -17,13 +17,13 @@ const Home = () => {
         <div  className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center">
           <div className="flex justify-between items-center">
             <div>
-              <p className="font-bold text-gray-400">Today's Income</p>
-              <p className="text-3xl">LKR 63,448.78</p>
+              <p className="font-bold text-gray-400">Today's Production</p>
+              <p className="text-3xl">1,027 KG</p>
             </div>
           </div>
           <div className="mt-6">
             <Link
-              to='/reports'
+              to='/production'
               style={{ backgroundColor: currentColor }}
               className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
             >

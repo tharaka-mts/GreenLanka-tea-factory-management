@@ -13,6 +13,12 @@ import {
   MyTeam,
   Settings,
   Login,
+  GreenLankaReport,
+  OutsideReport,
+  FullReport,
+  ViewAttendance,
+  AttendanceHistory,
+  ViewProduction,
   UserProfilePage,
   AddUser,
   AddSalaryDetails,
@@ -61,6 +67,30 @@ const App = () => {
           element: <Settings />,
         },
         {
+          path: "/greenLankaReport",
+          element: <GreenLankaReport />,
+        },
+        {
+          path: "/outsideReport",
+          element: <OutsideReport />,
+        },
+        {
+          path: "/fullReport",
+          element: <FullReport />,
+        },
+        {
+          path: "/ViewAttendance",
+          element: <ViewAttendance />,
+        },
+        {
+          path: "/AttendanceHistory",
+          element: <AttendanceHistory />,
+        },
+        {
+          path: "/ViewProduction",
+          element: <ViewProduction />,
+        },
+        
           path: "/salary",
           element: <SalaryReport />,
         },
