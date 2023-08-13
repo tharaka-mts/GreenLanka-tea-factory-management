@@ -17,6 +17,9 @@ import {
   AddUser,
   AddSalaryDetails,
   SalaryReport,
+  ViewWeight,
+  ChangePassword,
+  ChangeProfilePicture,
 } from "./pages";
 
 const App = () => {
@@ -68,7 +71,19 @@ const App = () => {
         {
           path: "/AddUser",
           element: <AddUser />,
-        }
+        },
+        {
+        path: "/ChangePassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/ChangeProfilePicture",
+        element: <  ChangeProfilePicture />,
+      },
+
+    
+       
+      
       ],
     },
     {
@@ -78,6 +93,10 @@ const App = () => {
     {
       path: "/AddSalaryDetails",
       element: <AddSalaryDetails />,
+    },
+    {
+      path: "/ViewWeight",
+      element: <ViewWeight />,
     },
   ]);
 
