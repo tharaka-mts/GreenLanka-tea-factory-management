@@ -90,7 +90,7 @@ const App = () => {
           path: "/ViewProduction",
           element: <ViewProduction />,
         },
-        
+        {
           path: "/salary",
           element: <SalaryReport />,
         },
@@ -110,8 +110,10 @@ const App = () => {
         path: "/ChangeProfilePicture",
         element: <  ChangeProfilePicture />,
       },
-
-    
+      {
+        path: "/AddSalaryDetails",
+        element: <AddSalaryDetails />,
+      },  
        
       
       ],
@@ -119,10 +121,6 @@ const App = () => {
     {
       path: "/login",
       element: <Login />,
-    },
-    {
-      path: "/AddSalaryDetails",
-      element: <AddSalaryDetails />,
     },
     {
       path: "/ViewWeight",
