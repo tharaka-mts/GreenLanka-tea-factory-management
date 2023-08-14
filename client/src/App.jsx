@@ -114,6 +114,10 @@ const App = () => {
         path: "/AddSalaryDetails",
         element: <AddSalaryDetails />,
       },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },  
        
       
       ],
