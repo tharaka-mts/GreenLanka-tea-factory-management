@@ -37,6 +37,7 @@ const UserProfile = () => {
       desc: 'Edit Profile',
       iconColor: '#03C9D7',
       iconBg: '#E5FAFB',
+      link:'/UserProfilePage'
     },
     {
       icon: <PiGearSixBold />,
@@ -44,6 +45,7 @@ const UserProfile = () => {
       desc: 'Change Settings',
       iconColor: 'rgb(0, 194, 146)',
       iconBg: 'rgb(235, 250, 242)',
+      link:'/settings'
     },
   ];
 
@@ -82,7 +84,7 @@ const UserProfile = () => {
       </div>
       <div>
         {userProfileData.map((item, index) => (
-          <div key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">
+          <Link to={item.link} key={index} className="flex gap-5 border-b-1 border-color p-4 hover:bg-light-gray cursor-pointer  dark:hover:bg-[#42464D]">         
             <button
               type="button"
               style={{ color: item.iconColor, backgroundColor: item.iconBg }}
@@ -92,10 +94,10 @@ const UserProfile = () => {
             </button>
 
             <div>
-              <Link to='/UserProfilePage'  className="font-semibold dark:text-gray-200 ">{item.title}</Link>
+              <p className="font-semibold dark:text-gray-200 ">{item.title}</p>
               <p className="text-gray-500 text-sm dark:text-gray-400"> {item.desc} </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="mt-5">
