@@ -8,7 +8,12 @@ import { getUserDetails } from '../api/getDetails';
 import avatar from '../data/avatar.jpg';
 
 const UserProfilePage = () => {
+ 
+
   const [activeTab, setActiveTab] = useState('attendance');
+  const [isEditingPhoto, setIsEditingPhoto] = useState(false);
+
+   
 
   const [userDetails, setUserDetails] = useState({});
 
@@ -41,6 +46,7 @@ const UserProfilePage = () => {
 
   const handleEditPhoto = () => {
     // Placeholder function for editing the photo
+    setIsEditingPhoto(!isEditingPhoto);
     console.log('Edit photo clicked');
   };
 

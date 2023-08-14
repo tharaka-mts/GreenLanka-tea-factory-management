@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'react-router-dom';
 
 import MSalary from './Salary/MSalary';
 import SSalary from './Salary/SSalary';
@@ -30,6 +31,15 @@ const SalaryReport = () => {
   return (
     <div className="p-4">
     <div className="bg-white shadow-md rounded-lg p-4">
+
+    <div className="mb-4">
+          <Link to="/addsalarydetails">
+            <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
+             Add Salary Details
+            </button>
+          </Link>
+        </div>
+
       
       <div className="border-b border-gray-300 pb-4 color-green-900 text-white text-center items-center justify-center"
        style={{ backgroundColor: currentColor }}>

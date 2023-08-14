@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Stacked, Pie, LineChart, SparkLine } from '../components';
 import { earningData, SparklineAreaData, ecomPieChartData, recentTea } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
+import viewWeight from './ViewWeight.jsx';
 
 
 
@@ -23,7 +24,7 @@ const Home = () => {
           </div>
           <div className="mt-6">
             <Link
-              to='/production'
+              to='/viewWeight'
               style={{ backgroundColor: currentColor }}
               className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
             >
