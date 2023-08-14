@@ -13,8 +13,6 @@ const UserProfilePage = () => {
   const [activeTab, setActiveTab] = useState('attendance');
   const [isEditingPhoto, setIsEditingPhoto] = useState(false);
 
-   
-
   const [userDetails, setUserDetails] = useState({});
 
   const userId = window.localStorage.getItem('userID');
