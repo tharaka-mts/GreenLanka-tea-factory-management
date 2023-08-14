@@ -1,16 +1,32 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { getUserDetails } from '../api/getDetails';
+
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsPersonCircle } from 'react-icons/bs';
 import { PiGearSixBold } from 'react-icons/pi';
 import { Link, useNavigate } from 'react-router-dom';
-import { UserProfilePage } from '../pages/UserProfilePage';
-
 
 import { Button } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
+
+  const [userDetails, setUserDetails] = useState({});
+
+  const userId = window.localStorage.getItem('userID');
+
+  useEffect(() => {
+    async function fetchUserDetails() {
+      const userDetailsData = await getUserDetails(userId);
+
+      if (userDetailsData) {
+        setUserDetails(userDetailsData);
+      }
+    }
+
+    fetchUserDetails();
+  }, [userId]);
 
   const navigate = useNavigate();
 
@@ -59,9 +75,9 @@ const UserProfile = () => {
         />
         <div>
 
-          <p className="font-semibold text-xl dark:text-gray-200"> Thosindu Gamage </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@greenlanka.com </p>
+          <p className="font-semibold text-xl dark:text-gray-200"> {userDetails.firstname} {userDetails.lastname} </p>
+          <p className="text-gray-500 text-sm dark:text-gray-400"> {userDetails.type}  </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {userDetails.email} </p>
         </div>
       </div>
       <div>
