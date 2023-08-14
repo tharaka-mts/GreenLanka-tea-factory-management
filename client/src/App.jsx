@@ -87,7 +87,7 @@ const App = () => {
           path: "/ViewProduction",
           element: <ViewProduction />,
         },
-        
+        {
           path: "/salary",
           element: <SalaryReport />,
         },
