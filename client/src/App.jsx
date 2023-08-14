@@ -29,6 +29,10 @@ import {
   ChangeProfilePicture,
 } from "./pages";
 
+import TeaRate from "./pages/Manager/TeaRate";
+import AddExpenses from "./pages/Manager/AddExpenses";
+import QualityCheck from "./pages/Manager/QualityCheck";
+
 const App = () => {
 
   const routes = createBrowserRouter([
@@ -105,23 +109,43 @@ const App = () => {
           element: <AddUser />,
         },
         {
-        path: "/ChangePassword",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/ChangeProfilePicture",
-        element: <  ChangeProfilePicture />,
-      },
-      {
-        path: "/AddSalaryDetails",
-        element: <AddSalaryDetails />,
-      },  
-      {
-        path: "/ViewWeight",
-        element: <ViewWeight />,
-      },  
-       
-      
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/Manager/TeaRate",
+          element: <TeaRate />,
+        },
+        {
+          path: "/Manager/AddExpenses",
+          element: <AddExpenses />,
+        },
+        {
+          path: "/Manager/QualityCheck",
+          element: <QualityCheck />,
+        },
+        {
+          path: "/ChangePassword",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/ChangeProfilePicture",
+          element: <  ChangeProfilePicture />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/ViewWeight",
+          element: <ViewWeight />,
+        },
+
+
       ],
     },
     {
@@ -136,7 +160,7 @@ const App = () => {
 
   return (
     <div>
-       <RouterProvider router={routes} />
+      <RouterProvider router={routes} />
     </div>
   );
 };
