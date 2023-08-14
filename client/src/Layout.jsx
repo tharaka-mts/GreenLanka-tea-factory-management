@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
@@ -9,6 +9,10 @@ import "./App.css";
 import { useStateContext } from "./contexts/ContextProvider";
 
 const Layout = () => {
+
+  const navigate = useNavigate();
+  const { cookies } = useStateContext();
+
   const {
     setCurrentColor,
     setCurrentMode,
@@ -67,7 +71,7 @@ const Layout = () => {
             <div>
               {themeSettings && <ThemeSettings />}
 
-              <Outlet />
+              { (cookies.access_token) ? <Outlet /> : navigate('/login')}
             </div>
             {/*  */}
           </div>

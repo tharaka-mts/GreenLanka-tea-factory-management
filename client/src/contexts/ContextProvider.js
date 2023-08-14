@@ -1,12 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useCookies } from "react-cookie";
 
 const StateContext = createContext();
-
-const updateProfilePic = (image) => {
-  // Implement the logic to update the profile picture here
-  // This could involve making API calls or updating state
-  // based on your application's requirements.
-};
 
 const initialState = {
   chat: false,
@@ -20,11 +15,12 @@ const initialState = {
 
 export const ContextProvider = ({ children }) => {
   const [screenSize, setScreenSize] = useState(undefined);
-  const [currentColor, setCurrentColor] = useState('#03C9D7');
+  const [currentColor, setCurrentColor] = useState('#34d399');
   const [currentMode, setCurrentMode] = useState('Light');
   const [themeSettings, setThemeSettings] = useState(false);
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
+  const [cookies, setCookies] = useCookies(['access_token']);
 
   const setMode = (e) => {
     setCurrentMode(e.target.value);
@@ -39,7 +35,7 @@ export const ContextProvider = ({ children }) => {
   const handleClick = (clicked) => setIsClicked({ ...initialState, [clicked]: true });
 
   return (
-    <StateContext.Provider value={{ currentColor, currentMode, activeMenu, screenSize, setScreenSize, handleClick, isClicked, initialState, setIsClicked, setActiveMenu, setCurrentColor, setCurrentMode, setMode, setColor, themeSettings, setThemeSettings, updateProfilePic }}>
+    <StateContext.Provider value={{ cookies, setCookies, currentColor, currentMode, activeMenu, screenSize, setScreenSize, handleClick, isClicked, initialState, setIsClicked, setActiveMenu, setCurrentColor, setCurrentMode, setMode, setColor, themeSettings, setThemeSettings }}>
       {children}
     </StateContext.Provider>
   );
