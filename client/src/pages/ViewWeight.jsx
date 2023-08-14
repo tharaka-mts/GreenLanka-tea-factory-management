@@ -24,8 +24,8 @@ const ViewWeight = () => {
 
   return (
     <div className="container mx-auto mt-5">
-      <h1 className="text-2xl font-semibold mb-3" 
-       style={{ color: currentColor }}>Today Tea Weight</h1>
+      <h1 className=" text-2xl font-semibold mb-3 text-center" 
+       style={{ color: currentColor }} >Today Tea Weight</h1>
       <div className="bg-white p-4 shadow-md rounded-md">
         <div className="flex items-center justify-between mb-3">
           <button
@@ -38,10 +38,14 @@ const ViewWeight = () => {
             {formatDate(selectedDate)}
           </h2>
         </div>
+        <div className="mt-4 pl-6 text-center"> {/* Added left padding */}
+          <p className="text-xl font-semibold text-gray-800">Total Tea Leaves Weight Today:</p>
+          <p className="text-3xl text-currentColor">{totalTeaWeight.toFixed(2)} kg</p>
+        </div>
         <table className="w-full">
           <thead>
             <tr>
-              <th className="text-left py-2 text-gray-700">ID</th>
+            
               <th className="text-left py-2 text-gray-700">Name</th>
               <th className="text-left py-2 text-gray-700">Tea Leaves Weight</th>
             </tr>
@@ -57,10 +61,7 @@ const ViewWeight = () => {
           </tbody>
         </table>
 
-        <div className="mt-4 pl-6 text-center"> {/* Added left padding */}
-          <p className="text-xl font-semibold text-gray-800">Total Tea Leaves Weight Today:</p>
-          <p className="text-3xl text-currentColor">{totalTeaWeight.toFixed(2)} kg</p>
-        </div>
+        
       </div>
     </div>
   );
