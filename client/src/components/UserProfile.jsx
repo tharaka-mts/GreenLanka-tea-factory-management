@@ -2,7 +2,7 @@ import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsPersonCircle } from 'react-icons/bs';
 import { PiGearSixBold } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserProfilePage } from '../pages/UserProfilePage';
 
 
@@ -11,6 +11,8 @@ import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
+
+  const navigate = useNavigate();
 
   const userProfileData = [
     {
@@ -29,7 +31,13 @@ const UserProfile = () => {
     },
   ];
 
-  const { currentColor } = useStateContext();
+  const { currentColor, setCookies } = useStateContext();
+
+  const logout = () => {
+    setCookies('access_token', '');
+    window.localStorage.removeItem('userID');
+    navigate('/login');
+  };
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -75,13 +83,9 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="mt-5">
-        <Button
-          color="white"
-          bgColor={currentColor}
-          text="Logout"
-          borderRadius="10px"
-          width="full"
-        />
+        <button onClick={logout} style={ { backgroundColor:currentColor} } className=' text-white rounded-md text-xl p-3 w-full hover:drop-shadow-xl hover:bg-gray'>
+          Logout
+        </button>
       </div>
     </div>
 
