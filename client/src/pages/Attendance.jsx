@@ -26,7 +26,7 @@ const Attendance = () => {
               </div>
             </div>
 
-            <Link to='/ViewAttendance'>
+            <Link to='/ViewMoreDetails'>
               <button style={{ color: currentColor }} class="w-full mt-6 mb-3 py-2 font-semibold text-xl bg-gray-100 hover:shadow-xl duration-200 hover:bg-gray-100">More Details</button>
             </Link>
             <Link to='/AttendanceHistory'>
@@ -51,7 +51,7 @@ const Attendance = () => {
               </div>
             </div>
 
-            <Link to='/ViewAttendance'>
+            <Link to='/ViewMoreDetails'>
               <button style={{ color: currentColor }} class="w-full mt-6 mb-3 py-2 font-semibold text-xl bg-gray-100 hover:shadow-xl duration-200 hover:bg-gray-100">More Details</button>
             </Link>
             <Link to='/AttendanceHistory'>
@@ -76,7 +76,7 @@ const Attendance = () => {
               </div>
             </div>
 
-            <Link to='/ViewAttendance'>
+            <Link to='/ViewMoreDetails'>
               <button style={{ color: currentColor }} class="w-full mt-6 mb-3 py-2 font-semibold text-xl bg-gray-100 hover:shadow-xl duration-200 hover:bg-gray-100">More Details</button>
             </Link>
             <Link to='/AttendanceHistory'>

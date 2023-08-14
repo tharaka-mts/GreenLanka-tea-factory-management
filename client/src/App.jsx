@@ -18,6 +18,7 @@ import {
   OutsideReport,
   FullReport,
   ViewAttendance,
+  ViewMoreDetails,
   AttendanceHistory,
   ViewProduction,
   UserProfilePage,
@@ -28,10 +29,6 @@ import {
   ChangePassword,
   ChangeProfilePicture,
 } from "./pages";
-
-import TeaRate from "./pages/Manager/TeaRate";
-import AddExpenses from "./pages/Manager/AddExpenses";
-import QualityCheck from "./pages/Manager/QualityCheck";
 
 const App = () => {
 
@@ -89,6 +86,10 @@ const App = () => {
           element: <ViewAttendance />,
         },
         {
+          path: "/ViewMoreDetails",
+          element: <ViewMoreDetails />,
+        },
+        {
           path: "/AttendanceHistory",
           element: <AttendanceHistory />,
         },
@@ -109,43 +110,23 @@ const App = () => {
           element: <AddUser />,
         },
         {
-          path: "/login",
-          element: <Login />,
-        },
-        {
-          path: "/AddSalaryDetails",
-          element: <AddSalaryDetails />,
-        },
-        {
-          path: "/Manager/TeaRate",
-          element: <TeaRate />,
-        },
-        {
-          path: "/Manager/AddExpenses",
-          element: <AddExpenses />,
-        },
-        {
-          path: "/Manager/QualityCheck",
-          element: <QualityCheck />,
-        },
-        {
-          path: "/ChangePassword",
-          element: <ChangePassword />,
-        },
-        {
-          path: "/ChangeProfilePicture",
-          element: <  ChangeProfilePicture />,
-        },
-        {
-          path: "/AddSalaryDetails",
-          element: <AddSalaryDetails />,
-        },
-        {
-          path: "/ViewWeight",
-          element: <ViewWeight />,
-        },
-
-
+        path: "/ChangePassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/ChangeProfilePicture",
+        element: <  ChangeProfilePicture />,
+      },
+      {
+        path: "/AddSalaryDetails",
+        element: <AddSalaryDetails />,
+      },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },  
+       
+      
       ],
     },
     {
@@ -160,7 +141,7 @@ const App = () => {
 
   return (
     <div>
-      <RouterProvider router={routes} />
+       <RouterProvider router={routes} />
     </div>
   );
 };

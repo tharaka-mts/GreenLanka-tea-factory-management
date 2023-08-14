@@ -41,8 +41,8 @@ const AddSalaryDetails = () => {
   };
 
   return (
-    <div className='w-full '>
-      <div className='flex justify-center items-center'
+    <div className='w-full'>
+      <div className='w-20% flex justify-center items-center'
        style={{ backgroundColor: currentColor }}>
         <h1 className='flex items-center justify-center mb-5 mt-5 text-xl font-bold text-white py-3'>
           ADD SALARY DETAILS
