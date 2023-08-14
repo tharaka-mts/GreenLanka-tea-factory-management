@@ -3,6 +3,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 import Layout from "./Layout";
 import {
   Home,
@@ -23,9 +24,13 @@ import {
   AddUser,
   AddSalaryDetails,
   SalaryReport,
+  ViewWeight,
+  ChangePassword,
+  ChangeProfilePicture,
 } from "./pages";
 
 const App = () => {
+
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -98,7 +103,25 @@ const App = () => {
         {
           path: "/AddUser",
           element: <AddUser />,
-        }
+        },
+        {
+        path: "/ChangePassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/ChangeProfilePicture",
+        element: <  ChangeProfilePicture />,
+      },
+      {
+        path: "/AddSalaryDetails",
+        element: <AddSalaryDetails />,
+      },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },  
+       
+      
       ],
     },
     {
@@ -106,15 +129,14 @@ const App = () => {
       element: <Login />,
     },
     {
-      path: "/AddSalaryDetails",
-      element: <AddSalaryDetails />,
+      path: "/ViewWeight",
+      element: <ViewWeight />,
     },
   ]);
 
   return (
     <div>
-      <RouterProvider router={routes} />
-
+       <RouterProvider router={routes} />
     </div>
   );
 };

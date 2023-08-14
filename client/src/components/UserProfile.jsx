@@ -1,16 +1,34 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { getUserDetails } from '../api/getDetails';
+
 import { MdOutlineCancel } from 'react-icons/md';
 import { BsPersonCircle } from 'react-icons/bs';
 import { PiGearSixBold } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
-import { UserProfilePage } from '../pages/UserProfilePage';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
+
+  const [userDetails, setUserDetails] = useState({});
+
+  const userId = window.localStorage.getItem('userID');
+
+  useEffect(() => {
+    async function fetchUserDetails() {
+      const userDetailsData = await getUserDetails(userId);
+
+      if (userDetailsData) {
+        setUserDetails(userDetailsData);
+      }
+    }
+
+    fetchUserDetails();
+  }, [userId]);
+
+  const navigate = useNavigate();
 
   const userProfileData = [
     {
@@ -29,7 +47,13 @@ const UserProfile = () => {
     },
   ];
 
-  const { currentColor } = useStateContext();
+  const { currentColor, setCookies } = useStateContext();
+
+  const logout = () => {
+    setCookies('access_token', '');
+    window.localStorage.removeItem('userID');
+    navigate('/login');
+  };
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -51,9 +75,9 @@ const UserProfile = () => {
         />
         <div>
 
-          <p className="font-semibold text-xl dark:text-gray-200"> Thosindu Gamage </p>
-          <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@greenlanka.com </p>
+          <p className="font-semibold text-xl dark:text-gray-200"> {userDetails.firstname} {userDetails.lastname} </p>
+          <p className="text-gray-500 text-sm dark:text-gray-400"> {userDetails.type}  </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {userDetails.email} </p>
         </div>
       </div>
       <div>
@@ -75,13 +99,9 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="mt-5">
-        <Button
-          color="white"
-          bgColor={currentColor}
-          text="Logout"
-          borderRadius="10px"
-          width="full"
-        />
+        <button onClick={logout} style={ { backgroundColor:currentColor} } className=' text-white rounded-md text-xl p-3 w-full hover:drop-shadow-xl hover:bg-gray'>
+          Logout
+        </button>
       </div>
     </div>
 
