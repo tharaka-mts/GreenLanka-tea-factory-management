@@ -1,92 +1,125 @@
-import React, { useState } from 'react'
-import icon from '../data/login.png'
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai'
-import img from '../data/Assets/3.jpg'
-import login from '../data/Assets/login.png'
-import hero from '../data/Assets/hero.png'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import login from "../data/Assets/login.png";
+import hero from "../data/Assets/hero.png";
+
+import { useStateContext } from "../contexts/ContextProvider";
 
 const Login = () => {
-    // const [values,setValues] = useState({
-    //     username:'',
-    //     password:'';
-    // })
+
+    const { setCookies } = useStateContext();
+
+    const navigate = useNavigate();
+
+    const [loginField, setLoginField] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3005/auth/login', {
+                loginField,
+                password,
+            });
+
+            if (response.status === 200) {
+                setMessage(response.data.message);
+                setCookies('access_token', response.data.token);
+                window.localStorage.setItem('userID', response.data.userID);
+                window.localStorage.setItem('type', response.data.type);
+                navigate('/');
+            } else {
+                setMessage(response.data.message);
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            setMessage('An error occurred while logging in.');
+        }
+    };
 
     const [show, setShow] = useState(false);
     const handleShow = () => {
-        setShow(!show)
-    }
+        setShow(!show);
+    };
     return (
-
         <>
-
             <section class="h-screen w-full bg-gradient-to-r from-green-500 from-10% via-green-700 via-30% to-emerald-500 to-90% ...">
-                <div className='z-10'>
+                <div className="z-10">
+                    <h1 className=" text-center text-4xl pt-5 text-white font-bold uppercase  ">
+                        Welcome to Green Lanka Tea Factory
+                    </h1>
 
-                    <h1 className=' text-center text-4xl pt-5 text-white font-bold uppercase  '>Welcome to Green Lanka Tea Factory</h1>
-
-
-                    <div class=" flex justify-center content-center items-center m-auto " >
-
-                        <div className='
-                     flex justify-center content-center items-center w-[1000px]  h-[500px] mt-5 '>
-
-                            <div
-                                class="g-6 flex flex-wrap content-center items-center justify-center lg:justify-between bg-gray-200 rounded-2xl shadow-md">
-                                <div
-                                    class="  shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12 justify-center items-center">
-
+                    <div class=" flex justify-center content-center items-center m-auto ">
+                        <div
+                            className="
+                     flex justify-center content-center items-center w-[1000px]  h-[500px] mt-5 "
+                        >
+                            <div class="g-6 flex flex-wrap content-center items-center justify-center lg:justify-between bg-gray-200 rounded-2xl shadow-md">
+                                <div class="  shrink-1 mb-12 grow-0 basis-auto md:mb-0 md:w-9/12 md:shrink-0 lg:w-6/12 xl:w-6/12 justify-center items-center">
                                     <img
                                         src={login}
                                         class=" h-[500px] w-[700px] opacity-70 "
-                                        alt="Sample image" />
-
+                                        alt="Sample image"
+                                    />
                                 </div>
 
-
                                 <div class="mt-3 md:mb-0 md:w-8/12 lg:w-5/12 xl:w-5/12 items-center px-8">
-                                    <form className='pr-5'>
-                                    <img
-                                        src={hero}
-                                        class=" w-[50px] h-[50px] items-center "
-                                        alt="Sample image" />
+                                    <form className="pr-5">
+                                        <img
+                                            src={hero}
+                                            class=" w-[50px] h-[50px] items-center "
+                                            alt="Sample image"
+                                        />
 
-                                        <div
-                                            class="flex flex-row items-center justify-center lg:justify-start">
-                                            <h3 class="mb-0 mr-4 text-xl
-                                         font-weight-700 uppercase  pt-5 text-green-500">Login</h3>
-
-
-
+                                        <div class="flex flex-row items-center justify-center lg:justify-start">
+                                            <h3
+                                                class="mb-0 mr-4 text-xl
+                                         font-weight-700 uppercase  pt-5 text-green-500"
+                                            >
+                                                Login
+                                            </h3>
                                         </div>
 
-
-                                        <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                        <div
+                                            class="bg-white shadow-md rounded relative mb-6 mt-6"
+                                            data-te-input-wrapper-init
+                                        >
                                             <input
                                                 type="text"
                                                 class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                id="exampleFormControlInput2"
-                                                placeholder="User Name" required />
-
-
+                                                placeholder="Mobile or Username"
+                                                value={loginField}
+                                                onChange={(event) => setLoginField(event.target.value)}
+                                                required
+                                            />
 
                                             <label
-                                                for="exampleFormControlInput2"
+                                                for="Username or password"
                                                 class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                            >User Name
+                                            >
+                                                User Name
                                             </label>
                                         </div>
 
-
-                                        <div class="bg-white shadow-md rounded relative mb-6" data-te-input-wrapper-init>
+                                        <div
+                                            class="bg-white shadow-md rounded relative mb-6"
+                                            data-te-input-wrapper-init
+                                        >
                                             <input
                                                 type={show ? "text" : "password"}
                                                 class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                id="exampleFormControlInput22"
-                                                placeholder="Password" required />
+                                                placeholder="Password"
+                                                value={password}
+                                                onChange={(event) => setPassword(event.target.value)}
+                                                required
+                                            />
                                             <label
                                                 for="exampleFormControlInput22"
                                                 class="block  pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                            >Password
+                                            >
+                                                Password
                                             </label>
                                         </div>
                                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem] mt-0">
@@ -95,52 +128,45 @@ const Login = () => {
                                                 type="checkbox"
                                                 value=""
                                                 id="exampleCheck2"
-                                                onClick={handleShow} />
+                                                onClick={handleShow}
+                                            />
                                             <label
                                                 class="inline-block pl-[0.15rem] hover:cursor-pointer"
-                                                for="exampleCheck2">
+                                                for="exampleCheck2"
+                                            >
                                                 show password
-
                                             </label>
-
                                         </div>
 
                                         <div class="mb-6 flex items-centr justify-between mt-5">
-
                                             <div class="text-center ">
-
                                                 <button
                                                     type="submit"
+                                                    onClick={handleLogin}
                                                     class="inline-block rounded bg-green-500 px-6 py-3 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] lg:text-left"
                                                     data-te-ripple-init
-                                                    data-te-ripple-color="light">
+                                                    data-te-ripple-color="light"
+                                                >
                                                     Login
                                                 </button>
 
-
-                                                <a class=" ml-20 inline-block  font-bold text-sm text-green-500 hover:text-green-800" href="#">
+                                                <a
+                                                    class=" ml-20 inline-block  font-bold text-sm text-green-500 hover:text-green-800"
+                                                    href="#"
+                                                >
                                                     Forgot Password?
                                                 </a>
                                             </div>
-
-
-
-
-
-
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                 </div>
             </section>
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
