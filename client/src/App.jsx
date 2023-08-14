@@ -25,6 +25,9 @@ import {
   SalaryReport,
 } from "./pages";
 
+import TeaRate from "./pages/Manager/TeaRate";
+import AddExpenses from "./pages/Manager/AddExpenses";
+
 const App = () => {
   const routes = createBrowserRouter([
     {
@@ -106,6 +109,14 @@ const App = () => {
         {
           path: "/AddSalaryDetails",
           element: <AddSalaryDetails />,
+        },
+        {
+          path: "/Manager/TeaRate",
+          element: <TeaRate/>,
+        },
+        {
+          path: "/Manager/AddExpenses",
+          element: <AddExpenses/>,
         },
       ],
     }, 
