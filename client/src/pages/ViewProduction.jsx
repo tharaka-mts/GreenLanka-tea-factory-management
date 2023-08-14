@@ -23,7 +23,7 @@ const ViewProduction = () => {
 
 
     axios
-      .post('http://localhost:3001/createUser', formData)
+      .post('', formData)
       .then((result) => {
         console.log(result);
         navigate('/');
@@ -37,18 +37,7 @@ const ViewProduction = () => {
 
 
       <div style={{ backgroundColor: currentColor }} className="md:m-4 md:p-8 rounded-3xl">
-
-        <h1 style={{ fontWeight: 'bold' }} className="mt-8 text-white font-semibold text-3xl text-center">Comparison of Total Production with Last Three Months</h1>
-
         <div className="flex-wrap gap-10 m-4 justify-left">
-          <div className="w-full md:w-full bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
-            <div className="flex justify-between items-center gap-2">
-
-            </div>
-            <div className="mt-12 w-full">
-              <FourBarChart width="full" height="400px" />
-            </div>
-          </div>
 
           <h1 style={{ fontWeight: 'bold' }} className="mt-12 text-white font-semibold text-3xl text-center">Comparison Accepted and Rejected Tea Leaves Weight</h1>
           <div className="mt-4 w-full md:w-full bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">

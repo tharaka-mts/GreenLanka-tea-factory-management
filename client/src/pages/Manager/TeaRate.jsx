@@ -19,7 +19,7 @@ const TeaRate = () => {
 
 
         axios
-            .post('http://localhost:3001/createUser', formData)
+            .post('', formData)
             .then((result) => {
                 console.log(result);
                 navigate('/');

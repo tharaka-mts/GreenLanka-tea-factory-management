@@ -118,35 +118,34 @@ const App = () => {
         },
         {
           path: "/Manager/TeaRate",
-          element: <TeaRate/>,
+          element: <TeaRate />,
         },
         {
           path: "/Manager/AddExpenses",
-          element: <AddExpenses/>,
+          element: <AddExpenses />,
         },
         {
           path: "/Manager/QualityCheck",
-          element: <QualityCheck/>,
+          element: <QualityCheck />,
         },
-      ],
-    }, 
-        path: "/ChangePassword",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/ChangeProfilePicture",
-        element: <  ChangeProfilePicture />,
-      },
-      {
-        path: "/AddSalaryDetails",
-        element: <AddSalaryDetails />,
-      },  
-      {
-        path: "/ViewWeight",
-        element: <ViewWeight />,
-      },  
-       
-      
+        {
+          path: "/ChangePassword",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/ChangeProfilePicture",
+          element: <  ChangeProfilePicture />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/ViewWeight",
+          element: <ViewWeight />,
+        },
+
+
       ],
     },
     {
@@ -161,7 +160,7 @@ const App = () => {
 
   return (
     <div>
-       <RouterProvider router={routes} />
+      <RouterProvider router={routes} />
     </div>
   );
 };
