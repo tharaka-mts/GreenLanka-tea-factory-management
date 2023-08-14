@@ -3,6 +3,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 import Layout from "./Layout";
 import {
   Home,
@@ -23,6 +24,9 @@ import {
   AddUser,
   AddSalaryDetails,
   SalaryReport,
+  ViewWeight,
+  ChangePassword,
+  ChangeProfilePicture,
 } from "./pages";
 
 import TeaRate from "./pages/Manager/TeaRate";
@@ -30,6 +34,7 @@ import AddExpenses from "./pages/Manager/AddExpenses";
 import QualityCheck from "./pages/Manager/QualityCheck";
 
 const App = () => {
+
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -125,11 +130,38 @@ const App = () => {
         },
       ],
     }, 
+        path: "/ChangePassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/ChangeProfilePicture",
+        element: <  ChangeProfilePicture />,
+      },
+      {
+        path: "/AddSalaryDetails",
+        element: <AddSalaryDetails />,
+      },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },  
+       
+      
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/ViewWeight",
+      element: <ViewWeight />,
+    },
   ]);
 
   return (
     <div>
-      <RouterProvider router={routes} />
+       <RouterProvider router={routes} />
     </div>
   );
 };

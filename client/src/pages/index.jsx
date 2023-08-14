@@ -18,6 +18,9 @@ export { default as UserProfilePage } from './UserProfilePage';
 export { default as AddUser } from './AddUser';
 export { default as AddSalaryDetails } from './AddSalaryDetails';
 export { default as SalaryReport } from './SalaryReport';
+export { default as ViewWeight  } from './ViewWeight';
+export { default as ChangePassword  } from './ChangePassword';
+export { default as ChangeProfilePicture } from './ChangeProfilePicture';
 
 export { default as TeaRate } from './Manager/TeaRate';
 export { default as AddExpenses } from './Manager/AddExpenses';
