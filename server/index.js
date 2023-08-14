@@ -13,10 +13,19 @@ const port = 3005;
 app.use(express.json());
 app.use(cors());
 
-app.use('/auth', userRouter);
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGODB_CLOUD_URI);
+        console.log("Connected to MongoDB");
 
-mongoose.connect(process.env.MONGODB_URI);
+        app.use('/auth', userRouter);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-})
+        app.listen(port, () => {
+            console.log(`Listening on port ${port}`);
+        });
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error.message);
+    }
+}
+
+startServer();
