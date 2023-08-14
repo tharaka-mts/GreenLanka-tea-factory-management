@@ -27,6 +27,7 @@ import {
 
 import TeaRate from "./pages/Manager/TeaRate";
 import AddExpenses from "./pages/Manager/AddExpenses";
+import QualityCheck from "./pages/Manager/QualityCheck";
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -117,6 +118,10 @@ const App = () => {
         {
           path: "/Manager/AddExpenses",
           element: <AddExpenses/>,
+        },
+        {
+          path: "/Manager/QualityCheck",
+          element: <QualityCheck/>,
         },
       ],
     }, 

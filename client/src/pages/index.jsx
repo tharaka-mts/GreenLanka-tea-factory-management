@@ -21,3 +21,4 @@ export { default as SalaryReport } from './SalaryReport';
 
 export { default as TeaRate } from './Manager/TeaRate';
 export { default as AddExpenses } from './Manager/AddExpenses';
+export { default as QualityCheck } from './Manager/QualityCheck';

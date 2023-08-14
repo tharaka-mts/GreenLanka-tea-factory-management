@@ -32,7 +32,7 @@ const TeaRate = () => {
             <div className='w-20% flex justify-center items-center '
                 style={{ backgroundColor: currentColor }}>
                 <h1 className='flex items-center justify-center mb-5 mt-5 text-xl font-bold text-white py-3'>
-                    CHANGE TEA RATE
+                    CHANGE TEA RATES
                 </h1>
             </div>
 
@@ -50,7 +50,63 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="New Tea Rate" required />
+                                    placeholder="Rate for Raw Tea Leaves (for 1KG)" required />
+
+                                <label
+                                    for="exampleFormControlInput2"
+                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >
+                                </label>
+                            </div>
+
+                            <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                <input
+                                    type="number"
+                                    class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
+                                    id="exampleFormControlInput2"
+                                    placeholder="Rate for Grade A Production (for 1KG)" required />
+
+                                <label
+                                    for="exampleFormControlInput2"
+                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >
+                                </label>
+                            </div>
+
+                            <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                <input
+                                    type="number"
+                                    class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
+                                    id="exampleFormControlInput2"
+                                    placeholder="Rate for Grade B Production (for 1KG)" required />
+
+                                <label
+                                    for="exampleFormControlInput2"
+                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >
+                                </label>
+                            </div>
+
+                            <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                <input
+                                    type="number"
+                                    class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
+                                    id="exampleFormControlInput2"
+                                    placeholder="Rate for Grade C Production (for 1KG)" required />
+
+                                <label
+                                    for="exampleFormControlInput2"
+                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                >
+                                </label>
+                            </div>
+
+                            <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                <input
+                                    type="number"
+                                    class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
+                                    id="exampleFormControlInput2"
+                                    placeholder="Rate for Grade D Production (for 1KG)" required />
 
                                 <label
                                     for="exampleFormControlInput2"
