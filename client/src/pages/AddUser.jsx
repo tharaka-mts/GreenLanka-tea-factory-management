@@ -33,12 +33,10 @@ const AddUser = () => {
     formData.append('age', age);
     formData.append('number', number);
     formData.append('address', address);
-    formData.append('image', selectedImage);
 
     axios
       .post('http://localhost:3001/createUser', formData)
       .then((result) => {
-        console.log(result);
         navigate('/');
       })
       .catch((err) => console.log('Error msg ' + err));

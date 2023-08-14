@@ -14,19 +14,23 @@ const Manage = () => {
   const { currentColor } = useStateContext();
   const [editingUser, setEditingUser] = useState(null);
 
+  const fetchUsers = async () => {};
+
   useEffect(() => {
+    async function fetchUsers() {
+      try {
+        const response = await axios.get('http://localhost:3005/get/users');
+
+        if (response.status === 200) {
+          setUsers(response.data);
+        }
+      } catch (error) {
+        console.error('Fetch users error:', error);
+      }
+    }
+
     fetchUsers();
   }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/users`);
-      setUsers(response.data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-      setUsers([]);
-    }
-  };
 
   const handleSearch = async () => {
     try {
@@ -52,7 +56,7 @@ const Manage = () => {
   };
 
   const handleUpdate = async () => {
-    await fetchUsers();
+    // await fetchUsers();
     setEditingUser(null);
   };
 
@@ -60,10 +64,12 @@ const Manage = () => {
     setEditingUser(null);
   };
 
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedPosition === '' || user.position === selectedPosition)
-  );
+  // const filteredUsers = users.filter((user) =>
+  //   user.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  //   (selectedPosition === '' || user.position === selectedPosition)
+  // );
+
+  const filteredUsers = users.filter((user) => {});
 
   const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
 
@@ -120,13 +126,13 @@ const Manage = () => {
           <thead>
             <tr>
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                ID
+                Username
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                 Name
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                Age
+                Email
               </th>
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                 Address
@@ -141,18 +147,18 @@ const Manage = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 text-center justify-center">
-            {filteredUsers.map((user) => (
+            {users.map((user) => (
               <tr key={user.id}>
                 {/* Render user data */}
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.age}</td>
+                <td>{user.username}</td>
+                <td>{user.firstname}</td>
+                <td>{user.email}</td>
                 <td>{user.address}</td>
-                <td>{user.number}</td>
-                <td>{user.position}</td>
+                <td>{user.mobile}</td>
+                <td>{user.type}</td>
                 <td>
                   <div className="flex">
-                    
+
                     <button
                       className="bg-blue-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]"
                     >
