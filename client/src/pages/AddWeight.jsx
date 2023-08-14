@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
+import QrScanner from 'react-qr-scanner';
 
 const AddWeight = () => {
-    const scanQR = () => { };
 
     const [weight, setWeight] = useState('');
     const [teaWeight, setTeaWeight] = useState('');
+    const [scannedData, setScannedData] = useState('');
 
     const getWeight = async (e) => {
         e.preventDefault();
@@ -19,7 +20,19 @@ const AddWeight = () => {
         }
     };
 
-    console.log(weight);
+    const handleScan = (data) => {
+        if (data) {
+            setScannedData(data.text); // Update the scanned data state
+            document.getElementsByName('username')[0].value = data.text; // Populate the input field
+        }
+    };
+
+    console.log(scannedData);
+
+    const handleError = (error) => {
+        console.error('QR Scanner Error:', error);
+    };
+
 
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
@@ -35,7 +48,7 @@ const AddWeight = () => {
                                 placeholder="Enter username"
                                 name="username"
                             />
-                            <button onClick={scanQR} className="bg-green-500 text-white h-10 rounded-md ml-2 w-[150px]">
+                            <button className="bg-green-500 text-white h-10 rounded-md ml-2 w-[150px]">
                                 Scan QR
                             </button>
                         </div>
@@ -73,6 +86,11 @@ const AddWeight = () => {
                             Confirm
                         </button>
                     </div>
+                    <QrScanner
+                        delay={300}
+                        onError={handleError}
+                        onScan={handleScan}
+                    />
                 </form>
             </div>
         </div>
