@@ -1,11 +1,12 @@
 import express from "express";
 import cors from 'cors';
-import mongoose from "mongoose";
+import mongoose, { get } from "mongoose";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 import { userRouter } from "./src/routes/userRouter.js";
+import { getDetailsRouter } from "./src/routes/getDetails.js";
 
 const app = express();
 const port = 3005;
@@ -19,6 +20,7 @@ async function startServer() {
         console.log("Connected to MongoDB");
 
         app.use('/auth', userRouter);
+        app.use('/get', getDetailsRouter);
 
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);
