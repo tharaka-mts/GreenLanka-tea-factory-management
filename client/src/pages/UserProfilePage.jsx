@@ -7,7 +7,12 @@ import ViewSalaryReport from './ViewSalaryReport';
 import avatar from '../data/avatar.jpg';
 
 const UserProfilePage = () => {
+ 
+
   const [activeTab, setActiveTab] = useState('attendance');
+  const [isEditingPhoto, setIsEditingPhoto] = useState(false);
+
+   
 
   const TabContent = () => {
     switch (activeTab) {
@@ -24,6 +29,7 @@ const UserProfilePage = () => {
 
   const handleEditPhoto = () => {
     // Placeholder function for editing the photo
+    setIsEditingPhoto(!isEditingPhoto);
     console.log('Edit photo clicked');
   };
 
@@ -32,17 +38,23 @@ const UserProfilePage = () => {
       <div className="bg-white shadow-md rounded-lg p-4">
         <div className="flex items-center mb-4">
           <div className=" rounded-full overflow-hidden relative">
-            <img
-             className="rounded-full h-36 w-36"
-              src={avatar} // Provide the path to the avatar image
-              alt="User's avatar"
-            />
-            <button
-              onClick={handleEditPhoto}
-              className="absolute bottom-0 right-0 left-16 bg-green-500 p-2 rounded-full shadow-md"
-            >
-              <FaCamera className="text-white" />
-            </button>
+          <img
+      className="rounded-full h-36 w-36"
+      src={avatar}
+      alt="User's avatar"
+    />
+    {isEditingPhoto ? (
+      <div className="absolute bottom-0 right-0 left-16 bg-green-500 p-2 rounded-full shadow-md">
+        {/* Add your profile picture upload input here */}
+      </div>
+    ) : (
+      <button
+        onClick={handleEditPhoto}
+        className="absolute bottom-0 right-0 left-16 bg-green-500 p-2 rounded-full shadow-md"
+      >
+        <FaCamera className="text-white" />
+      </button>
+    )}
           </div>
           <div className="ml-4">
            
