@@ -1,18 +1,33 @@
 import express from "express";
+import cors from 'cors';
+import mongoose, { get } from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+import { userRouter } from "./src/routes/userRouter.js";
+import { getDetailsRouter } from "./src/routes/getDetails.js";
 
 const app = express();
 const port = 3005;
 
+app.use(express.json());
+app.use(cors());
 
+async function startServer() {
+    try {
+        await mongoose.connect(process.env.MONGODB_CLOUD_URI);
+        console.log("Connected to MongoDB");
 
-app.get("/hello", (req, res) => {
-  res.send("Hello World!");
-});
+        app.use('/auth', userRouter);
+        app.use('/get', getDetailsRouter);
 
-app.get("/register", (req, res) => {
-  res.send("Reg request!");
-});
+        app.listen(port, () => {
+            console.log(`Listening on port ${port}`);
+        });
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error.message);
+    }
+}
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-})
+startServer();

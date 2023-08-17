@@ -3,6 +3,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
 import Layout from "./Layout";
 import {
   Home,
@@ -13,14 +14,33 @@ import {
   MyTeam,
   Settings,
   Login,
+  GreenLankaReport,
+  OutsideReport,
+  FullReport,
+  ViewAttendance,
+  AttendanceHistory,
+  ViewProduction,
+  UserProfilePage,
+  AddUser,
+  AddSalaryDetails,
+  SalaryReport,
+  ViewWeight,
+  ChangePassword,
+  ChangeProfilePicture,
+  AddWeight,
 } from "./pages";
 
 const App = () => {
+
   const routes = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
       children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
         {
           path: "/home",
           element: <Home />,
@@ -49,17 +69,77 @@ const App = () => {
           path: "/settings",
           element: <Settings />,
         },
+        {
+          path: "/greenLankaReport",
+          element: <GreenLankaReport />,
+        },
+        {
+          path: "/outsideReport",
+          element: <OutsideReport />,
+        },
+        {
+          path: "/fullReport",
+          element: <FullReport />,
+        },
+        {
+          path: "/ViewAttendance",
+          element: <ViewAttendance />,
+        },
+        {
+          path: "/AttendanceHistory",
+          element: <AttendanceHistory />,
+        },
+        {
+          path: "/ViewProduction",
+          element: <ViewProduction />,
+        },
+        {
+          path: "/salary",
+          element: <SalaryReport />,
+        },
+        {
+          path: "/UserProfilePage",
+          element: <UserProfilePage />,
+        },
+        {
+          path: "/AddUser",
+          element: <AddUser />,
+        },
+        {
+        path: "/ChangePassword",
+        element: <ChangePassword />,
+      },
+      {
+        path: "/ChangeProfilePicture",
+        element: <  ChangeProfilePicture />,
+      },
+      {
+        path: "/AddSalaryDetails",
+        element: <AddSalaryDetails />,
+      },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },  
+      {
+        path: "/addweight",
+        element: <AddWeight />,
+      },
       ],
     },
     {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/ViewWeight",
+      element: <ViewWeight />,
+    },
   ]);
 
   return (
     <div>
-      <RouterProvider router={routes} />
+       <RouterProvider router={routes} />
     </div>
   );
 };
