@@ -109,10 +109,6 @@ const App = () => {
           element: <AddUser />,
         },
         {
-          path: "/login",
-          element: <Login />,
-        },
-        {
           path: "/AddSalaryDetails",
           element: <AddSalaryDetails />,
         },
@@ -144,8 +140,6 @@ const App = () => {
           path: "/ViewWeight",
           element: <ViewWeight />,
         },
-
-
       ],
     },
     {
