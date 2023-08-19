@@ -7,11 +7,12 @@ const AddWeight = () => {
     const [weight, setWeight] = useState('');
     const [teaWeight, setTeaWeight] = useState('');
     const [scannedData, setScannedData] = useState('');
+    const [scanQR, setScanQR] = useState('');
 
     const getWeight = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://192.168.8.105:5000/get_weights');
+            const response = await axios.get('http://192.168.8.101:5000/get_weights'); // weight scaler server url
             const weights = response.data.weight;
             setWeight(`${weights} KG`);
             setTeaWeight(weights);
@@ -23,15 +24,18 @@ const AddWeight = () => {
     const handleScan = (data) => {
         if (data) {
             setScannedData(data.text); // Update the scanned data state
-            document.getElementsByName('username')[0].value = data.text; // Populate the input field
+            //document.getElementsByName('username')[0].value = data.text;
         }
     };
-
-    console.log(scannedData);
 
     const handleError = (error) => {
         console.error('QR Scanner Error:', error);
     };
+
+    const handleScanQR = (e) => {
+        e.preventDefault();
+        setScanQR(!scanQR);
+    }
 
 
     return (
@@ -47,8 +51,9 @@ const AddWeight = () => {
                                 className="border p-2 w-full"
                                 placeholder="Enter username"
                                 name="username"
+                                value={scannedData}
                             />
-                            <button className="bg-green-500 text-white h-10 rounded-md ml-2 w-[150px]">
+                            <button onClick={(e) => handleScanQR(e)} className="bg-green-500 text-white h-10 rounded-md ml-2 w-[150px]">
                                 Scan QR
                             </button>
                         </div>
@@ -86,11 +91,13 @@ const AddWeight = () => {
                             Confirm
                         </button>
                     </div>
-                    <QrScanner
-                        delay={300}
+                    <div className='mt-3'>
+                    { (scanQR) ? <QrScanner
+                        delay={200}
                         onError={handleError}
                         onScan={handleScan}
-                    />
+                    /> : <div></div> }
+                    </div>
                 </form>
             </div>
         </div>
