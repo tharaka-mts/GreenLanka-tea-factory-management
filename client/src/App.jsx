@@ -106,25 +106,25 @@ const App = () => {
           element: <AddUser />,
         },
         {
-        path: "/ChangePassword",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/ChangeProfilePicture",
-        element: <  ChangeProfilePicture />,
-      },
-      {
-        path: "/AddSalaryDetails",
-        element: <AddSalaryDetails />,
-      },  
-      {
-        path: "/ViewWeight",
-        element: <ViewWeight />,
-      },  
-      {
-        path: "/addweight",
-        element: <AddWeight />,
-      },
+          path: "/ChangePassword",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/ChangeProfilePicture",
+          element: <  ChangeProfilePicture />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/ViewWeight",
+          element: <ViewWeight />,
+        },
+        {
+          path: "/addweight",
+          element: <AddWeight />,
+        },
       ],
     },
     {
@@ -139,7 +139,7 @@ const App = () => {
 
   return (
     <div>
-       <RouterProvider router={routes} />
+      <RouterProvider router={routes} />
     </div>
   );
 };
