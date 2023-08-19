@@ -11,7 +11,7 @@ const AddWeight = () => {
     const getWeight = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://192.168.8.105:5000/get_weights');
+            const response = await axios.get('http://192.168.8.101:5000/get_weights'); // weight scaler server url
             const weights = response.data.weight;
             setWeight(`${weights} KG`);
             setTeaWeight(weights);
@@ -26,8 +26,6 @@ const AddWeight = () => {
             document.getElementsByName('username')[0].value = data.text; // Populate the input field
         }
     };
-
-    console.log(scannedData);
 
     const handleError = (error) => {
         console.error('QR Scanner Error:', error);
