@@ -22,6 +22,10 @@ export { default as ViewWeight  } from './ViewWeight';
 export { default as ChangePassword  } from './ChangePassword';
 export { default as ChangeProfilePicture } from './ChangeProfilePicture';
 
+
 export { default as TeaRate } from './Manager/TeaRate';
 export { default as AddExpenses } from './Manager/AddExpenses';
 export { default as QualityCheck } from './Manager/QualityCheck';
+
+export { default as AddWeight } from './AddWeight';
+

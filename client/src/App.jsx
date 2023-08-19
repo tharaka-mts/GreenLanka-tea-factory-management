@@ -27,6 +27,7 @@ import {
   ViewWeight,
   ChangePassword,
   ChangeProfilePicture,
+  AddWeight,
 } from "./pages";
 
 import TeaRate from "./pages/Manager/TeaRate";
@@ -139,7 +140,11 @@ const App = () => {
         {
           path: "/ViewWeight",
           element: <ViewWeight />,
-        },
+        }, 
+      {
+        path: "/addweight",
+        element: <AddWeight />,
+      },
       ],
     },
     {
