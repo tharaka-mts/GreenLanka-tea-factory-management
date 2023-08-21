@@ -39,11 +39,11 @@ const ViewMoreDetails = () => {
     };
 
     const AttendanceList = [
-        { date: '2023-05-03', firstName: 'Ovindu', lastName: 'Hathnapitiya', in: '08:30 AM', out: '05:00 PM', ot: '2 hours' },
-        { date: '2023-05-02', firstName: 'Yasmi', lastName: 'Navodya', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
-        { date: '2023-05-01', firstName: 'Yureni', lastName: 'Ranathunga', in: '09:00 AM', out: '05:30 PM', ot: '--' },
-        { date: '2023-06-02', firstName: 'Tharaka', lastName: 'Samarasinghe', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
-        { date: '2023-07-02', firstName: 'Hasanka', lastName: 'Udawattha', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+        { date: '2023-05-03 17:00:10', firstName: 'Ovindu', lastName: 'Hathnapitiya', in: '08:30 AM', out: '05:00 PM', ot: '2 hours' },
+        { date: '2023-05-02 18:30:29', firstName: 'Yasmi', lastName: 'Navodya', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+        { date: '2023-05-01 17:30:10', firstName: 'Yureni', lastName: 'Ranathunga', in: '09:00 AM', out: '05:30 PM', ot: '--' },
+        { date: '2023-06-02 18:30:50', firstName: 'Tharaka', lastName: 'Samarasinghe', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+        { date: '2023-07-02 18:30:10', firstName: 'Hasanka', lastName: 'Udawattha', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
         // Add more data entries as needed
     ];
 
@@ -56,7 +56,8 @@ const ViewMoreDetails = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen">
-          <div className="container mx-auto p-4">    
+          <div className="container mx-auto p-4">
+            <div className="flex mb-4 text-lg justify-center">Daily Report</div>
             <div className="flex mb-4">
               <input
                 type="text"
@@ -93,7 +94,7 @@ const ViewMoreDetails = () => {
               <thead>
                 <tr>
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Date
+                    Date and Time
                   </th>
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     First Name

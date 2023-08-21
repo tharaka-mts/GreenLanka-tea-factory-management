@@ -28,8 +28,11 @@ import {
   ViewWeight,
   ChangePassword,
   ChangeProfilePicture,
-  AddWeight,
 } from "./pages";
+
+import TeaRate from "./pages/Manager/TeaRate";
+import AddExpenses from "./pages/Manager/AddExpenses";
+import QualityCheck from "./pages/Manager/QualityCheck";
 
 const App = () => {
 
@@ -158,9 +161,9 @@ const App = () => {
 
   return (
     <div>
-       <RouterProvider router={routes} />
+      <RouterProvider router={routes} />
     </div>
   );
 };
 
-export default App;
+export default App;
