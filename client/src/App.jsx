@@ -109,10 +109,6 @@ const App = () => {
           element: <AddUser />,
         },
         {
-          path: "/login",
-          element: <Login />,
-        },
-        {
           path: "/AddSalaryDetails",
           element: <AddSalaryDetails />,
         },
