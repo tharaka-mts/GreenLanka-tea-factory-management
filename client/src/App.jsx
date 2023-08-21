@@ -145,8 +145,10 @@ const App = () => {
           path: "/ViewWeight",
           element: <ViewWeight />,
         },
-
-
+        {
+          path: "/addweight",
+          element: <AddWeight />,
+        },
       ],
     },
     {
