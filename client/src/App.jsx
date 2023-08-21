@@ -28,6 +28,7 @@ import {
   ViewWeight,
   ChangePassword,
   ChangeProfilePicture,
+  AddWeight,
 } from "./pages";
 
 import TeaRate from "./pages/Manager/TeaRate";
