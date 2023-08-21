@@ -33,4 +33,16 @@ router.get('/user/:userId', async (req, res) => {
   }
 });
 
+// Fetch all user details without password
+router.get('/users', async (req, res) => {
+  try {
+    const usersWithoutPassword = await userModel.find({}, '-password');
+
+    res.json(usersWithoutPassword);
+  } catch (error) {
+    console.error('Error getting user details:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 export { router as getDetailsRouter };

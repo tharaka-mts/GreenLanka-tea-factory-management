@@ -28,6 +28,7 @@ import {
   ViewWeight,
   ChangePassword,
   ChangeProfilePicture,
+  AddWeight,
 } from "./pages";
 
 const App = () => {
@@ -110,23 +111,39 @@ const App = () => {
           element: <AddUser />,
         },
         {
-        path: "/ChangePassword",
-        element: <ChangePassword />,
-      },
-      {
-        path: "/ChangeProfilePicture",
-        element: <  ChangeProfilePicture />,
-      },
-      {
-        path: "/AddSalaryDetails",
-        element: <AddSalaryDetails />,
-      },  
-      {
-        path: "/ViewWeight",
-        element: <ViewWeight />,
-      },  
-       
-      
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/Manager/TeaRate",
+          element: <TeaRate />,
+        },
+        {
+          path: "/Manager/AddExpenses",
+          element: <AddExpenses />,
+        },
+        {
+          path: "/Manager/QualityCheck",
+          element: <QualityCheck />,
+        },
+        {
+          path: "/ChangePassword",
+          element: <ChangePassword />,
+        },
+        {
+          path: "/ChangeProfilePicture",
+          element: <  ChangeProfilePicture />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/ViewWeight",
+          element: <ViewWeight />,
+        },
+
+
       ],
     },
     {

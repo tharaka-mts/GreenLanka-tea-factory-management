@@ -10,7 +10,7 @@ import { TbReport } from "react-icons/tb";
 import { PiUsers } from "react-icons/pi";
 import { RiFolderSettingsLine } from "react-icons/ri";
 import { AiOutlineSetting } from "react-icons/ai";
-import { GiTakeMyMoney } from 'react-icons/gi';
+import { GiTakeMyMoney, GiWeightScale } from 'react-icons/gi';
 
 import { GiSummits, GiThreeLeaves, GiAbstract034 } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
@@ -145,6 +145,16 @@ export const supervisorLinks = [
       {
         name: "Attendance",
         icon: <BsListCheck />,
+        url: "admin/attendance",
+      },
+    ],
+  },
+  {
+    title: "AddWeight",
+    links: [
+      {
+        name: "addWeight",
+        icon: <GiWeightScale />,
         url: "admin/attendance",
       },
     ],

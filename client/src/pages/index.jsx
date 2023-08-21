@@ -23,3 +23,7 @@ export { default as ViewWeight  } from './ViewWeight';
 export { default as ChangePassword  } from './ChangePassword';
 export { default as ChangeProfilePicture } from './ChangeProfilePicture';
 
+
+
+export { default as AddWeight } from './AddWeight';
+
