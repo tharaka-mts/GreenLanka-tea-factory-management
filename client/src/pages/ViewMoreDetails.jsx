@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useStateContext } from '../contexts/ContextProvider';
 
-const API_URL = '/api';
+const API_URL = 'http://localhost:3005/api';
 
 const ViewMoreDetails = () => {
     
@@ -18,17 +18,17 @@ const ViewMoreDetails = () => {
 
     const fetchAttendances = async () => {
         try {
-        const response = await axios.get(`${API_URL}/Attendances`);
-        setAttendances(response.data);
+          const response = await axios.get(`${API_URL}/getAttendance`);
+          setAttendances(response.data);
         } catch (error) {
-        console.error('Error fetching Attendances:', error);
-        setAttendances([]);
+          console.error('Error fetching Attendances:', error);
+          setAttendances([]);
         }
     };
 
     const handleSearch = async () => {
         try {
-        const response = await axios.get(`${API_URL}/Attendances/search`, {
+        const response = await axios.get(`${API_URL}/getAttendance/search`, {
             params: { searchTerm, selectedPosition },
         });
         setAttendances(response.data);
@@ -38,19 +38,25 @@ const ViewMoreDetails = () => {
         }
     };
 
-    const AttendanceList = [
-        { date: '2023-05-03 17:00:10', firstName: 'Ovindu', lastName: 'Hathnapitiya', in: '08:30 AM', out: '05:00 PM', ot: '2 hours' },
-        { date: '2023-05-02 18:30:29', firstName: 'Yasmi', lastName: 'Navodya', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
-        { date: '2023-05-01 17:30:10', firstName: 'Yureni', lastName: 'Ranathunga', in: '09:00 AM', out: '05:30 PM', ot: '--' },
-        { date: '2023-06-02 18:30:50', firstName: 'Tharaka', lastName: 'Samarasinghe', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
-        { date: '2023-07-02 18:30:10', firstName: 'Hasanka', lastName: 'Udawattha', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
-        // Add more data entries as needed
-    ];
+    const calOTHours = (outTime, date) => {
+      const diff = Date.parse(outTime) - Date.parse(date + " 16:30:00");
+      const result = new Date(diff).toISOString().slice(11, 19);
+      return result;
+    };
 
-    const filteredAttendances = Attendances.filter((Attendance) =>
-        Attendance.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-        (selectedPosition === '' || Attendance.position === selectedPosition)
-    );
+    // const Attendances = [
+    //     { date: '2023-05-03 17:00:10', username: 'Ovindu', in: '08:30 AM', out: '05:00 PM', ot: '2 hours' },
+    //     { date: '2023-05-02 18:30:29', username: 'Yasmi', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+    //     { date: '2023-05-01 17:30:10', username: 'Yureni', in: '09:00 AM', out: '05:30 PM', ot: '--' },
+    //     { date: '2023-06-02 18:30:50', username: 'Tharaka', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+    //     { date: '2023-07-02 18:30:10', username: 'Hasanka', in: '09:00 AM', out: '06:30 PM', ot: '1 hours' },
+    //     // Add more data entries as needed
+    // ];
+
+    // const filteredAttendances = Attendances.filter((Attendance) =>
+    //     Attendance.name.includes(searchTerm) &&
+    //     (selectedPosition === '' || Attendance.position === selectedPosition)
+    // );
 
     const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
 
@@ -94,13 +100,10 @@ const ViewMoreDetails = () => {
               <thead>
                 <tr>
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Date and Time
+                    Date
                   </th>
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    First Name
-                  </th>
-                  <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    Last Name
+                    Username
                   </th>
                   <th className="px-6 py-3 bg-gray-50 text-center text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                     In time
@@ -114,15 +117,14 @@ const ViewMoreDetails = () => {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center justify-center">
-                {AttendanceList.map((AttendanceList) => (
+                {Attendances.map((Attendances) => (
                     <tr>
                     {/* Render Attendance data */}
-                    <td className='py-3'>{AttendanceList.date}</td>
-                    <td>{AttendanceList.firstName}</td>
-                    <td>{AttendanceList.lastName}</td>
-                    <td>{AttendanceList.in}</td>
-                    <td>{AttendanceList.out}</td>
-                    <td>{AttendanceList.ot}</td>
+                    <td className='py-3'>{Attendances.date}</td>
+                    <td>{Attendances.username}</td>
+                    <td>{Attendances.inTime}</td>
+                    <td>{Attendances.outTime}</td>
+                    <td>{calOTHours(Attendances.outTime, Attendances.date)}</td>
                   </tr>
                 ))}
               </tbody>
