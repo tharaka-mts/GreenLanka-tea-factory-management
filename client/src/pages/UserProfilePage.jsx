@@ -5,7 +5,7 @@ import ViewAttendance from './ViewAttendance';
 import ViewSalaryHistory from './ViewSalaryHistory';
 import ViewSalaryReport from './ViewSalaryReport';
 import { getUserDetails } from '../api/getDetails';
-import avatar from '../data/avatar.jpg';
+
 
 const UserProfilePage = () => {
  
@@ -48,6 +48,7 @@ const UserProfilePage = () => {
     console.log('Edit photo clicked');
   };
 
+
   return (
     <div className="p-4">
       <div className="bg-white shadow-md rounded-lg p-4">
@@ -55,7 +56,7 @@ const UserProfilePage = () => {
           <div className=" rounded-full overflow-hidden relative">
             <img
               className="rounded-full h-36 w-36"
-              src={avatar} // Provide the path to the avatar image
+              src={userDetails.image} // Provide the path to the avatar image
               alt="User's avatar"
             />
             <button
