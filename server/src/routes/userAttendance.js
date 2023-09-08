@@ -8,7 +8,7 @@ const router = express.Router();
 
 // Route to send user attendance by ID
 router.post('/add', async (req, res) => {
-    const { userId } = req.body;
+  const { userId } = req.body;
 
   try {
     // Retrieve user details based on userId
@@ -26,8 +26,8 @@ router.post('/add', async (req, res) => {
     // Check if attendance data already exists for the given date
     const attendance = await attendanceModel.findOne({ userId, date: currentDate });
     if (attendance) {
-        await attendanceModel.findOneAndUpdate({userId, date: currentDate}, {outTime: currentTime});
-        return res.status(400).json({ message: 'Out Time updated successfully' });
+      await attendanceModel.findOneAndUpdate({ userId, date: currentDate }, { outTime: currentTime });
+      return res.status(400).json({ message: 'Out Time updated successfully' });
     }
 
     // Create attendance data
