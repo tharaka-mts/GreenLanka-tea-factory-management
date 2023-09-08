@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/register', async (req, res) => {
     try {
         // Extract user registration data from the request body
-        const { firstname, lastname, username, type, email, address, mobile, password } = req.body;
+        const { firstname, lastname, username, image, nic, type, email, address, mobile, password } = req.body;
 
         // Check if a user with the given mobile number already exists
         const user = await userModel.findOne({ mobile });
@@ -28,6 +28,8 @@ router.post('/register', async (req, res) => {
             firstname,
             lastname,
             username,
+            image,
+            nic,
             type,
             email,
             address,
