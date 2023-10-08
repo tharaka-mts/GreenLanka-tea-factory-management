@@ -32,13 +32,14 @@ const ViewMoreDetails = () => {
 
   // Fetch attendance data
   const fetchAttendances = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/getAttendance`);
-      setAttendances(response.data);
-    } catch (error) {
-      console.error('Error fetching Attendance:', error);
-      setAttendances([]);
-    }
+      try {
+          const response = await axios.get(`${API_URL}/getAttendance`);
+          const reversedData = response.data.reverse(); // Reverse the array
+          setAttendances(reversedData);
+      } catch (error) {
+          console.error('Error fetching Attendance:', error);
+          setAttendances([]);
+      }
   };
 
   const handleSearch = async () => {
