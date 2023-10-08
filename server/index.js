@@ -7,6 +7,7 @@ dotenv.config();
 
 import { userRouter } from "./src/routes/userRouter.js";
 import { getAttendanceRouter } from "./src/routes/getAttendance.js";
+import { getDetailsRouter } from "./src/routes/getDetails.js";
 
 const app = express();
 const port = 3005;
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/api', getAttendanceRouter);
+app.use('/api', getDetailsRouter);
 
 async function startServer() {
     try {

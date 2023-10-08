@@ -37,7 +37,6 @@ router.get('/user/:userId', async (req, res) => {
 router.get('/users', async (req, res) => {
   try {
     const usersWithoutPassword = await userModel.find({}, '-password');
-
     res.json(usersWithoutPassword);
   } catch (error) {
     console.error('Error getting user details:', error);
