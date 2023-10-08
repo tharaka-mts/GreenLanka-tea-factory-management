@@ -62,7 +62,7 @@ const ViewMoreDetails = () => {
   // Helper function to get the full name based on username
   const getFullNameByUsername = (username) => {
     const user = Users.find((user) => user.username === username);
-    return user ? user.firstname + ' ' + user.lastname : ''; // Return the first name and last name if found, otherwise an empty string
+    return user ? user.firstname + ' ' + user.lastname : 'N/A'; // Return the first name and last name if found, otherwise an empty string
   };
 
   // Helper function to get the position based on username
