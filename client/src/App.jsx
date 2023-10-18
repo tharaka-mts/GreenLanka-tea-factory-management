@@ -18,6 +18,7 @@ import {
   OutsideReport,
   FullReport,
   ViewAttendance,
+  ViewMoreDetails,
   AttendanceHistory,
   ViewProduction,
   UserProfilePage,
@@ -29,6 +30,10 @@ import {
   ChangeProfilePicture,
   AddWeight,
 } from "./pages";
+
+import TeaRate from "./pages/Manager/TeaRate";
+import AddExpenses from "./pages/Manager/AddExpenses";
+import QualityCheck from "./pages/Manager/QualityCheck";
 
 const App = () => {
 
@@ -86,6 +91,10 @@ const App = () => {
           element: <ViewAttendance />,
         },
         {
+          path: "/ViewMoreDetails",
+          element: <ViewMoreDetails />,
+        },
+        {
           path: "/AttendanceHistory",
           element: <AttendanceHistory />,
         },
@@ -104,6 +113,22 @@ const App = () => {
         {
           path: "/AddUser",
           element: <AddUser />,
+        },
+        {
+          path: "/AddSalaryDetails",
+          element: <AddSalaryDetails />,
+        },
+        {
+          path: "/Manager/TeaRate",
+          element: <TeaRate />,
+        },
+        {
+          path: "/Manager/AddExpenses",
+          element: <AddExpenses />,
+        },
+        {
+          path: "/Manager/QualityCheck",
+          element: <QualityCheck />,
         },
         {
           path: "/ChangePassword",
@@ -144,4 +169,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;

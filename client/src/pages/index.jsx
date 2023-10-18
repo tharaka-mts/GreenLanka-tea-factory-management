@@ -11,6 +11,7 @@ export { default as OutsideReport } from './OutsideReport';
 export { default as FullReport } from './FullReport';
 export { default as Area } from './Charts/Area';
 export { default as ViewAttendance } from './ViewAttendance';
+export { default as ViewMoreDetails } from './ViewMoreDetails';
 export { default as AttendanceHistory } from './AttendanceHistory';
 export { default as ViewProduction } from './ViewProduction';
 
@@ -21,6 +22,8 @@ export { default as SalaryReport } from './SalaryReport';
 export { default as ViewWeight  } from './ViewWeight';
 export { default as ChangePassword  } from './ChangePassword';
 export { default as ChangeProfilePicture } from './ChangeProfilePicture';
+
+
 
 export { default as AddWeight } from './AddWeight';
 

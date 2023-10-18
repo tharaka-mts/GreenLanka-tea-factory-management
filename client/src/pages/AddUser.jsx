@@ -26,16 +26,18 @@ const AddUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("type", type);
-    formData.append("age", age);
-    formData.append("number", number);
-    formData.append("address", address);
+    formData.append('name', name);
+    formData.append('type', type);
+    formData.append('age', age);
+    formData.append('number', number);
+    formData.append('address', address);
+    formData.append('image', selectedImage);
 
     axios
       .post("http://localhost:3001/createUser", formData)
       .then((result) => {
-        navigate("/");
+        console.log(result);
+        navigate('/');
       })
       .catch((err) => console.log("Error msg " + err));
   };
@@ -247,4 +249,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddUser;
