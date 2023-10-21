@@ -5,7 +5,6 @@ const supProductionSchema = new Schema({
     firstname: {type: String, required: true},
     lastname: {type: String, required: true},
     date: {type: Date, required: true},
-    time: {type: String, required: true},
     weight: {type: Number, required: true},
     comment: {type: String, required: true},
 });
