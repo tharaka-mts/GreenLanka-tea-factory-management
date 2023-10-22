@@ -141,6 +141,10 @@ const App = () => {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/ViewWeight",
+      element: <ViewWeight />,
+    },
   ]);
 
   return (
