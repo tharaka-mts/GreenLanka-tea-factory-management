@@ -4,7 +4,7 @@ import { GiThreeLeaves } from "react-icons/gi";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { adminLinks, supervisorLinks } from "../data/dummy";
+import { adminLinks, supervisorLinks, employeeLinks } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
@@ -17,7 +17,10 @@ const Sidebar = () => {
     }
   };
 
-  const admin = (localStorage.getItem("type") === "Admin" || localStorage.getItem("type") === "Manager") ? true : false;
+  // const admin = (localStorage.getItem("type") === "Admin" || localStorage.getItem("type") === "Manager") ? true : false;
+
+  const supervisor = (localStorage.getItem("type") === "Supervisor") ? true : false;
+  const teaPlucker = (localStorage.getItem("type") === "Tea Plucker") ? true : false;
 
   const adminSidebar = () => {
     return adminLinks.map((item) => (
@@ -46,6 +49,32 @@ const Sidebar = () => {
   const supervisorSidebar = () => {
     return (
       supervisorLinks.map((item) => (
+        <div key={item.title} className='text-xl'>
+          <p className="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
+            {/* {item.title} */}
+          </p>
+          {item.links.map((link) => (
+            <NavLink
+              to={`/${link.name.toLowerCase()}`}
+              key={link.name}
+              onClick={handleCloseSideBar}
+              style={({ isActive }) => ({
+                backgroundColor: isActive ? currentColor : '',
+              })}
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
+              {link.icon}
+              <span className="capitalize">{link.name}</span>
+            </NavLink>
+          ))}
+        </div>
+      ))
+    )
+  }
+
+  const teaPluckerSidebar = () => {
+    return (
+      employeeLinks.map((item) => (
         <div key={item.title} className='text-xl'>
           <p className="text-gray-400 dark:text-gray-400 m-3 mt-4 uppercase">
             {/* {item.title} */}
@@ -100,12 +129,13 @@ const Sidebar = () => {
           </div>
           <div className="mt-10 ">
             {/* Admin */}
-            {admin ? adminSidebar() : supervisorSidebar()}
+            {admin && adminSidebar()}
             {/* Manager */}
 
             {/* Supervisor */}
-
+            {supervisor && supervisorSidebar()}
             {/* Employee */}
+            {teaPlucker && teaPluckerSidebar()}
           </div>
         </>
       )}

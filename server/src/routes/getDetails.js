@@ -22,6 +22,8 @@ router.get('/user/:userId', async (req, res) => {
       firstname: user.firstname,
       lastname: user.lastname,
       username: user.username,
+      image: user.image,
+      nic: user.nic,
       type: user.type,
       email: user.email,
       address: user.address,

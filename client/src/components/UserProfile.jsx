@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Button } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
-import avatar from '../data/avatar.jpg';
 
 const UserProfile = () => {
 
@@ -72,7 +71,7 @@ const UserProfile = () => {
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
           className="rounded-full h-24 w-24"
-          src={avatar}
+          src={userDetails.image}
           alt="user-profile"
         />
         <div>
