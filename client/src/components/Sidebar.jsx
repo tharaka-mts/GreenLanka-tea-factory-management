@@ -17,7 +17,7 @@ const Sidebar = () => {
     }
   };
 
-  const admin = (localStorage.getItem("type") === "admin" || localStorage.getItem("type") === "manager") ? true : false;
+  const admin = (localStorage.getItem("type") === "Admin" || localStorage.getItem("type") === "Manager") ? true : false;
 
   const adminSidebar = () => {
     return adminLinks.map((item) => (

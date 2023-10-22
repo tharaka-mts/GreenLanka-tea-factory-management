@@ -9,11 +9,15 @@ const AddUser = () => {
   const { currentColor, currentMode } = useStateContext();
 
 
-  const [name, setName] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLaststName] = useState('');
+  const [username, setUserName] = useState('');
   const [address, setAddress] = useState('');
-  const [number, setNumber] = useState('');
-  const [age, setAge] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [nic, setNIC] = useState('');
   const [type, setType] = useState('');
+  const [password, setPassword] = useState('');
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
 
@@ -25,21 +29,42 @@ const AddUser = () => {
     setPreviewImage(URL.createObjectURL(file));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('type', type);
-    formData.append('age', age);
-    formData.append('number', number);
-    formData.append('address', address);
+    // const formData = new FormData();
+    // formData.append('name', name);
+    // formData.append('type', type);
+    // formData.append('age', age);
+    // formData.append('number', number);
+    // formData.append('address', address);
 
-    axios
-      .post('http://localhost:3001/createUser', formData)
-      .then((result) => {
-        navigate('/');
-      })
-      .catch((err) => console.log('Error msg ' + err));
+    // axios
+    //   .post('http://localhost:3001/createUser', formData)
+    //   .then((result) => {
+    //     navigate('/');
+    //   })
+    //   .catch((err) => console.log('Error msg ' + err));
+      const userData = {
+        firstname : firstname,
+        lastname : lastname,
+        username : username,
+        nic : nic,
+        type : type,
+        address : address,
+        mobile : mobile,
+        password: password // Assuming you have a password state
+      };
+      
+      try {
+        const response = await axios.post('/register', userData);
+        console.log(response.data.message); // Success message
+        // You can navigate the user to another page or show a success message here
+      } catch (error) {
+        console.error('Error:', error);
+        // Handle error response
+      }
+
+      
   };
 
   return (
@@ -121,7 +146,7 @@ const AddUser = () => {
                   type="number"
                   class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                   id="exampleFormControlInput2"
-                  placeholder="Age" required />
+                  placeholder="NIC" required />
 
 
 

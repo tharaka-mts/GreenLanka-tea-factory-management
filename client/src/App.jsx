@@ -120,6 +120,10 @@ const App = () => {
         path: "/ViewWeight",
         element: <ViewWeight />,
       },  
+      {
+        path: "/ViewWeight",
+        element: <ViewWeight />,
+      },
        
       
       ],
@@ -128,10 +132,7 @@ const App = () => {
       path: "/login",
       element: <Login />,
     },
-    {
-      path: "/ViewWeight",
-      element: <ViewWeight />,
-    },
+    
   ]);
 
   return (
