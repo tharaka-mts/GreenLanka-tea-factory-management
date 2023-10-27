@@ -7,25 +7,43 @@ const TeaRate = () => {
 
     const { currentColor, currentMode } = useStateContext();
 
-    const [rate, setrate] = useState('');
-
+    const [rateForRawTeaLeaves, setRateForRawTeaLeaves] = useState();
+    const [rateForGradeAProduction, setRateForGradeAProduction] = useState();
+    const [rateForGradeBProduction, setRateForGradeBProduction] = useState();
+    const [rateForGradeCProduction, setRateForGradeCProduction] = useState();
+    const [rateForGradeDProduction, setRateForGradeDProduction] = useState();
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e, isButtonRequest) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('rate', rate);
 
+        const data = {
+            rateForRawTeaLeaves: parseFloat(rateForRawTeaLeaves),
+            rateForGradeAProduction: parseFloat(rateForGradeAProduction),
+            rateForGradeBProduction: parseFloat(rateForGradeBProduction),
+            rateForGradeCProduction: parseFloat(rateForGradeCProduction),
+            rateForGradeDProduction: parseFloat(rateForGradeDProduction),
+        };
+
+        console.log('Data being sent to the server:', data);
 
         axios
-            .post('', formData)
+            .post('http://localhost:3005/api/createTeaRate', data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
             .then((result) => {
                 console.log(result);
                 navigate('/');
             })
             .catch((err) => console.log('Error msg ' + err));
     };
+
+
+
+
 
     return (
         <div className='w-full'>
@@ -50,7 +68,11 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Rate for Raw Tea Leaves (for 1KG)" required />
+                                    placeholder="Rate for Raw Tea Leaves (for 1KG)"
+                                    required
+                                    value={rateForRawTeaLeaves}
+                                    onChange={(e) => setRateForRawTeaLeaves(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -64,7 +86,11 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Rate for Grade A Production (for 1KG)" required />
+                                    placeholder="Rate for Grade A Production (for 1KG)"
+                                    required
+                                    value={rateForGradeAProduction}
+                                    onChange={(e) => setRateForGradeAProduction(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -78,7 +104,11 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Rate for Grade B Production (for 1KG)" required />
+                                    placeholder="Rate for Grade B Production (for 1KG)"
+                                    required
+                                    value={rateForGradeBProduction}
+                                    onChange={(e) => setRateForGradeBProduction(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -92,7 +122,11 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Rate for Grade C Production (for 1KG)" required />
+                                    placeholder="Rate for Grade C Production (for 1KG)"
+                                    required
+                                    value={rateForGradeCProduction}
+                                    onChange={(e) => setRateForGradeCProduction(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -106,7 +140,11 @@ const TeaRate = () => {
                                     type="number"
                                     class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Rate for Grade D Production (for 1KG)" required />
+                                    placeholder="Rate for Grade D Production (for 1KG)"
+                                    required
+                                    value={rateForGradeDProduction}
+                                    onChange={(e) => setRateForGradeDProduction(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -121,6 +159,7 @@ const TeaRate = () => {
                                     className='w-[300px] text-center inline-block rounded bg-green-500 px-6 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
                                     data-te-ripple-init
                                     data-te-ripple-color='light'
+                                    onClick={(e) => handleSubmit(e, true)}
                                 >
                                     Request
                                 </button>
