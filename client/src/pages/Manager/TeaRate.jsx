@@ -5,7 +5,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 
 const TeaRate = () => {
 
-    const { currentColor, currentMode } = useStateContext();
+    const { currentColor } = useStateContext();
 
     const [rate, setrate] = useState('');
 
