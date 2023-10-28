@@ -3,23 +3,38 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../../contexts/ContextProvider';
 
-const TeaRate = () => {
+
+const QualityCheck = () => {
 
     const { currentColor, currentMode } = useStateContext();
 
-    const [rate, setrate] = useState('');
+    const [sName, setSName] = useState('');
+    const [newWeight, setNewWeight] = useState('');
+    // const [teaWeight, setTeaWeight] = useState('');
 
+    // const getNewWeight = async (e) => {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await axios.get('http://192.168.8.101:5000/get_weights'); // weight scaler server url
+    //         const weights = response.data.weight;
+    //         setNewWeight(`${weights} KG`);
+    //     } catch (error) {
+    //         console.error('Error fetching weight:', error);
+    //     }
+    // }
 
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e, isButtonRequest) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('rate', rate);
+        const data = {
+            sName: sName,
+            newWeight: newWeight,
+        };
 
 
         axios
-            .post('', formData)
+            .post('http://localhost:3005/api/createQualityCheck', data)
             .then((result) => {
                 console.log(result);
                 navigate('/');
@@ -50,7 +65,12 @@ const TeaRate = () => {
                                     type="text"
                                     class="pt-2 appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
                                     id="exampleFormControlInput2"
-                                    placeholder="Supervisor Name" required />
+                                    placeholder="Supervisor Name"
+                                    required
+                                    name="sName"
+                                    value={sName}
+                                    onChange={(e) => setSName(e.target.value)}
+                                />
 
                                 <label
                                     for="exampleFormControlInput2"
@@ -65,7 +85,12 @@ const TeaRate = () => {
                                         type="number"
                                         class="shadow-md pt-2 w-[350px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Weight" required />
+                                        placeholder="Weight"
+                                        required
+                                        name="newWeight"
+                                        value={newWeight}
+                                        onChange={(e) => setNewWeight(e.target.value)}
+                                    />
                                     <label
                                         for="exampleFormControlInput2"
                                         class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
@@ -73,17 +98,16 @@ const TeaRate = () => {
                                     </label>
                                 </div>
                                 <div className='bg-gray-200 w-[20px]'></div>
-                                <button
+                                {/* <button
+                                    onClick={(e) => getNewWeight(e)}
                                     type='submit'
                                     className='shadow-md w-[300px] text-center inline-block rounded bg-green-500 px-6 pb-2.5 pt-2 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
                                     data-te-ripple-init
                                     data-te-ripple-color='light'
                                 >
                                     Add Weight
-                                </button>
+                                </button> */}
                             </div>
-
-                                                                      
 
                             <div className='flex'>
                                 <button
@@ -91,6 +115,7 @@ const TeaRate = () => {
                                     className='w-[300px] text-center inline-block rounded bg-green-500 px-6 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
                                     data-te-ripple-init
                                     data-te-ripple-color='light'
+                                    onClick={(e) => handleSubmit(e, true)}
                                 >
                                     Submit
                                 </button>
@@ -113,4 +138,4 @@ const TeaRate = () => {
     );
 };
 
-export default TeaRate;
+export default QualityCheck;
