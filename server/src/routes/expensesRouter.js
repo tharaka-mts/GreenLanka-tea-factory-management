@@ -5,19 +5,23 @@ import { Expenses } from '../models/expenses.js'; // Import the Expenses model
 
 const expensesRouter = express.Router();
 
+
 // Get all expenses data
 expensesRouter.get('/getExpenses', async (req, res) => {
     try {
-        const expenses = await Expenses.find(); // Use find to get all entries
-        if (expenses.length === 0) {
-            res.status(404).json({ message: 'No tea rates found' });
-        } else {
-            res.json(expenses);
+        const expenses = await Expenses
+        .findOne()  // Find a single document
+            .sort({ _id: -1 }) // Sort by updatedAt in descending order (most recent first)
+            .select('-_id month wMachine rMachine dMachine electricity fuel transport'); // Select only the desired fields
+            if (!expenses) {
+                res.status(404).json({ message: 'No expenses found' });
+            } else {
+                res.json(expenses);
+            }
+        } catch (err) {
+            res.status(500).json({ message: 'Internal server error' });
         }
-    } catch (err) {
-        res.status(500).json({ message: 'Internal server error' });
-    }
-});
+    });
 
 // Create new expenses
 expensesRouter.post('/newExpenses', async (req, res) => {
@@ -27,13 +31,9 @@ expensesRouter.post('/newExpenses', async (req, res) => {
             rMachine,
             dMachine,
             electricity,
-            fuelInside,
-            fuelOutside,
-            transportInside,
-            transportOutside,
+            fuel,
+            transport,
         } = req.body;
-
-        console.log('Received month:', month);
 
         const newExpenses = new Expenses({
             month,
@@ -41,10 +41,8 @@ expensesRouter.post('/newExpenses', async (req, res) => {
             rMachine,
             dMachine,
             electricity,
-            fuelInside,
-            fuelOutside,
-            transportInside,
-            transportOutside,
+            fuel,
+            transport,
         });
 
         const savedExpenses = await newExpenses.save();

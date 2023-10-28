@@ -13,10 +13,8 @@ const AddExpenses = () => {
     const [rMachine, setRMachine] = useState();
     const [dMachine, setDMachine] = useState();
     const [electricity, setElectricity] = useState();
-    const [fuelInside, setFuelInside] = useState();
-    const [fuelOutside, setFuelOutside] = useState();
-    const [transportInside, setTransportInside] = useState();
-    const [transportOutside, setTransportOutside] = useState();
+    const [fuel, setFuel] = useState();
+    const [transport, setTransport] = useState();
 
     const navigate = useNavigate();
 
@@ -29,10 +27,8 @@ const AddExpenses = () => {
             rMachine: parseFloat(rMachine),
             dMachine: parseFloat(dMachine),
             electricity: parseFloat(electricity),
-            fuelInside: parseFloat(fuelInside),
-            fuelOutside: parseFloat(fuelOutside),
-            transportInside: parseFloat(transportInside),
-            transportOutside: parseFloat(transportOutside),
+            fuelInside: parseFloat(fuel),
+            transportOutside: parseFloat(transport),
         };
 
         console.log('Data being sent to the server:', data);
@@ -91,11 +87,6 @@ const AddExpenses = () => {
                                     <option value='December'>December</option>
 
                                 </select>
-                                {/* <label
-                                    for="exampleFormControlInput2"
-                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                >
-                                </label> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -115,18 +106,6 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Hours Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -146,18 +125,6 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Hours Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -177,18 +144,6 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Hours Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -208,18 +163,6 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Units Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -230,8 +173,8 @@ const AddExpenses = () => {
                                         id="exampleFormControlInput2"
                                         placeholder="Fuel(for inside purpose)"
                                         required
-                                        value={fuelInside}
-                                        onChange={(e) => setFuelInside(e.target.value)}
+                                        value={fuel}
+                                        onChange={(e) => setFuel(e.target.value)}
                                     />
                                     <label
                                         for="exampleFormControlInput2"
@@ -239,49 +182,6 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Liters Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
-                            </div>
-
-                            <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
-                                <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
-                                        id="exampleFormControlInput2"
-                                        placeholder="Fuel(for outside purpose)"
-                                        required
-                                        value={fuelOutside}
-                                        onChange={(e) => setFuelOutside(e.target.value)}
-                                    />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="No of Liters Used" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
                             </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
@@ -292,8 +192,8 @@ const AddExpenses = () => {
                                         id="exampleFormControlInput2"
                                         placeholder="Transport Utilization(for inside purpose)"
                                         required
-                                        value={transportInside}
-                                        onChange={(e) => setTransportInside(e.target.value)}
+                                        value={transport}
+                                        onChange={(e) => setTransport(e.target.value)}
                                     />
                                     <label
                                         for="exampleFormControlInput2"
@@ -301,64 +201,8 @@ const AddExpenses = () => {
                                     >
                                     </label>
                                 </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="For how far" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
+
                             </div>
-
-                            <div class="bg-white shadow-md rounded relative mb-6 mt-6 flex flex-row" data-te-input-wrapper-init>
-                                <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
-                                        id="exampleFormControlInput2"
-                                        placeholder="Transport Utilization(for outside purpose)"
-                                        required
-                                        value={transportOutside}
-                                        onChange={(e) => setTransportOutside(e.target.value)}
-                                    />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div>
-                                {/* <div className='flex-col'>
-                                    <input
-                                        type="number"
-                                        class="w-[350px] appearance-none peer block min-h-[auto] rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                        id="exampleFormControlInput2"
-                                        placeholder="For how far" required />
-                                    <label
-                                        for="exampleFormControlInput2"
-                                        class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[70%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                    >
-                                    </label>
-                                </div> */}
-                            </div>
-
-
-                            {/* <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
-                                <input
-                                    type="number"
-                                    class="appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]  "
-                                    id="exampleFormControlInput2"
-                                    placeholder="Phone Number" required />
-                                <label
-                                    for="exampleFormControlInput2"
-                                    class="block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                >
-                                </label>
-                            </div> */}
 
 
 
