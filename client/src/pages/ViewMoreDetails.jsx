@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useStateContext } from '../contexts/ContextProvider';
 
 const API_URL = 'http://localhost:3005/api';
 
@@ -10,7 +9,6 @@ const ViewMoreDetails = () => {
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
   const [Users, setUsers] = useState([]);
-  const { currentColor } = useStateContext();
 
   const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
 
@@ -50,18 +48,6 @@ const ViewMoreDetails = () => {
             setAttendances([]);
         }
     };
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/getAttendance`, {
-        params: { searchTerm, selectedPosition },
-      });
-      setAttendances(response.data);
-    } catch (error) {
-      console.error('Error searching Attendance:', error);
-      setAttendances([]);
-    }
-  };
 
   const handleClear = () => {
     setSearchTerm('');
