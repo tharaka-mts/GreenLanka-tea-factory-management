@@ -8,6 +8,7 @@ const ViewMoreDetails = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
   const [Users, setUsers] = useState([]);
 
   const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
@@ -17,6 +18,8 @@ const ViewMoreDetails = () => {
     'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'
   ];
+
+  const years = ['2022', '2023', '2024'];
 
   useEffect(() => {
     fetchAttendances();
@@ -53,12 +56,18 @@ const ViewMoreDetails = () => {
     setSearchTerm('');
     setSelectedPosition('');
     setSelectedMonth('');
+    setSelectedYear('');
   }
 
   const getMonthNameFromDate = (dateString) => {
     const date = new Date(dateString);
     return monthNames[date.getMonth()];
   }
+
+  const getYearFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.getFullYear().toString();
+  };
 
   const calOTHours = (outTime, date) => {
     const diff = Date.parse(outTime) - Date.parse(date + ' 16:30:00');
@@ -82,14 +91,15 @@ const ViewMoreDetails = () => {
     const fullName = getFullNameByUsername(attendance.username).toLowerCase();
     const position = getPositionByUsername(attendance.username);
     const monthName = getMonthNameFromDate(attendance.date);
+    const year = getYearFromDate(attendance.date);
     const search = searchTerm.toLowerCase();
-    return fullName.includes(search) && (selectedPosition === '' || position === selectedPosition) && (selectedMonth === '' || monthName === selectedMonth);
+    return fullName.includes(search) && (selectedPosition === '' || position === selectedPosition) && (selectedMonth === '' || monthName === selectedMonth) && (selectedYear === '' || year === selectedYear);
   });
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
-        <div className="flex mb-4 text-lg justify-center">Daily Report</div>
+        <div className="flex mb-4 text-lg justify-center">Attendance Summary</div>
         <div className="flex mb-4">
           <input
             type="text"
@@ -129,6 +139,18 @@ const ViewMoreDetails = () => {
             {monthNames.map((month, index) => (
               <option key={index} value={month}>
                 {month}
+              </option>
+            ))}
+          </select>
+          <select
+            className="border rounded py-2 px-3 ml-2"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+          >
+            <option value="">Select Year</option>
+            {years.map((year, index) => (
+              <option key={index} value={year}>
+                {year}
               </option>
             ))}
           </select>
