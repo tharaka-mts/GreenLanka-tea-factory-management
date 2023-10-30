@@ -29,6 +29,7 @@ import {
   ChangePassword,
   ChangeProfilePicture,
   AddWeight,
+  LeaveRequest
 } from "./pages";
 
 import TeaRate from "./pages/Manager/TeaRate";
@@ -149,6 +150,10 @@ const App = () => {
         {
           path: "/addweight",
           element: <AddWeight />,
+        },
+        {
+          path: "/LeaveRequest",
+          element: <LeaveRequest />,
         },
       ],
     },
