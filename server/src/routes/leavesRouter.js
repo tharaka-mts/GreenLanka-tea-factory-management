@@ -18,13 +18,15 @@ router.get('/getLeaves', (req, res) => {
 // Create new leave
 router.post('/createLeave', async (req, res) => {
     try {
-        const { username, date, type, reason } = req.body;
+        const { username, startdate, enddate, type, reason, status } = req.body;
 
         const newLeave = new leaveModel({
             username,
-            date,
+            startdate,
+            enddate,
             type,
-            reason
+            reason,
+            status
         });
 
         const savedLeave = await newLeave.save();
