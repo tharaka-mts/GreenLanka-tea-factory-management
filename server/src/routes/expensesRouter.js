@@ -9,24 +9,23 @@ const expensesRouter = express.Router();
 // Get all expenses data
 expensesRouter.get('/getExpenses', async (req, res) => {
     try {
-        const expenses = await Expenses
-        .findOne()  // Find a single document
-            .sort({ _id: -1 }) // Sort by updatedAt in descending order (most recent first)
-            .select('-_id month wMachine rMachine dMachine electricity fuel transport'); // Select only the desired fields
-            if (!expenses) {
-                res.status(404).json({ message: 'No expenses found' });
-            } else {
-                res.json(expenses);
-            }
-        } catch (err) {
-            res.status(500).json({ message: 'Internal server error' });
+        const expenses = await Expenses.find(); // Find all expenses as an array
+        if (!expenses || expenses.length === 0) {
+            res.status(404).json({ message: 'No expenses found' });
+        } else {
+            res.json(expenses);
         }
-    });
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 // Create new expenses
 expensesRouter.post('/newExpenses', async (req, res) => {
     try {
-        const { month,
+        const { 
+            year,
+            month,
             wMachine,
             rMachine,
             dMachine,
@@ -36,6 +35,7 @@ expensesRouter.post('/newExpenses', async (req, res) => {
         } = req.body;
 
         const newExpenses = new Expenses({
+            year,
             month,
             wMachine,
             rMachine,

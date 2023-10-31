@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 
 
 const expensesSchema = new mongoose.Schema({
+    year: {
+        type: String,
+    },
     month: {
         type: String,
     },

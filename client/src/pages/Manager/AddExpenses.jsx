@@ -7,7 +7,7 @@ const AddExpenses = () => {
 
     const { currentColor, currentMode } = useStateContext();
 
-
+    const [year, setYear] = useState('');
     const [month, setMonth] = useState('');
     const [wMachine, setWMachine] = useState();
     const [rMachine, setRMachine] = useState();
@@ -22,13 +22,14 @@ const AddExpenses = () => {
         e.preventDefault();
 
         const data = {
+            year: year,
             month: month,
             wMachine: parseFloat(wMachine),
             rMachine: parseFloat(rMachine),
             dMachine: parseFloat(dMachine),
             electricity: parseFloat(electricity),
-            fuelInside: parseFloat(fuel),
-            transportOutside: parseFloat(transport),
+            fuel: parseFloat(fuel),
+            transport: parseFloat(transport),
         };
 
         console.log('Data being sent to the server:', data);
@@ -65,6 +66,20 @@ const AddExpenses = () => {
 
                             onSubmit={handleSubmit}
                         >
+
+                            <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
+                                <select className=' text-gray-500 form-control bg-light appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] ' id='type'
+                                    required
+                                    value={year}
+                                    onChange={(e) => setYear(e.target.value)}
+                                >
+                                    <option value=''>Select Year</option>
+                                    <option value='2022'>2022</option>
+                                    <option value='2023'>2023</option>
+                                    <option value='2024'>2024</option>
+                                    <option value='2025'>2025</option>
+                                </select>
+                            </div>
 
                             <div class="bg-white shadow-md rounded relative mb-6 mt-6" data-te-input-wrapper-init>
                                 <select className=' text-gray-500 form-control bg-light appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] ' id='type'
@@ -171,7 +186,7 @@ const AddExpenses = () => {
                                         type="number"
                                         class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Fuel(for inside purpose)"
+                                        placeholder="Fuel"
                                         required
                                         value={fuel}
                                         onChange={(e) => setFuel(e.target.value)}
@@ -190,7 +205,7 @@ const AddExpenses = () => {
                                         type="number"
                                         class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Transport Utilization(for inside purpose)"
+                                        placeholder="Transport Utilization"
                                         required
                                         value={transport}
                                         onChange={(e) => setTransport(e.target.value)}
@@ -203,9 +218,6 @@ const AddExpenses = () => {
                                 </div>
 
                             </div>
-
-
-
 
                             <div className='flex '>
                                 <button
