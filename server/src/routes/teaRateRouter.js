@@ -8,7 +8,7 @@ const teaRateRouter = express.Router();
 
 
 
-// Get all tea rate data
+// Get all tea rate data----------------------------------------------------
 // teaRateRouter.get('/getTeaRate', async (req, res) => {
 //     try {
 //         const teaRates = await TeaRate.find(); // Use find to get all entries
@@ -25,7 +25,7 @@ const teaRateRouter = express.Router();
 // Create new tea rate
 teaRateRouter.post('/createTeaRate', async (req, res) => {
     try {
-        const { rateForRawTeaLeaves, rateForGradeAProduction, rateForGradeBProduction, rateForGradeCProduction, rateForGradeDProduction, status } = req.body;
+        const { rateForRawTeaLeaves, rateForGradeAProduction, rateForGradeBProduction, rateForGradeCProduction, rateForGradeDProduction, status, comment } = req.body;
 
         const newTeaRate = new TeaRate({
             rateForRawTeaLeaves,
@@ -34,7 +34,7 @@ teaRateRouter.post('/createTeaRate', async (req, res) => {
             rateForGradeCProduction,
             rateForGradeDProduction,
             status,
-            
+            comment,
         });
 
         const savedTeaRate = await newTeaRate.save();

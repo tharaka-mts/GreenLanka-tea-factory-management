@@ -26,6 +26,10 @@ const teaRateSchema = new mongoose.Schema({
         type: String,
         default: "Request",
     },
+    comment: {
+        type: String,
+        default: "",
+    },
     createdAt: {
         type: Date,
         default: () => {
