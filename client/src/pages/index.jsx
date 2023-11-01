@@ -26,4 +26,5 @@ export { default as ChangeProfilePicture } from './ChangeProfilePicture';
 
 
 export { default as AddWeight } from './AddWeight';
+export { default as LeaveRequest } from './LeaveRequest';
 

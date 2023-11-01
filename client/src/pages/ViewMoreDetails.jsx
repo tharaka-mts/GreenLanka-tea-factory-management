@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useStateContext } from '../contexts/ContextProvider';
 
 const API_URL = 'http://localhost:3005/api';
 
@@ -8,8 +7,19 @@ const ViewMoreDetails = () => {
   const [Attendance, setAttendances] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
-  const [Users, setUsers] = useState([]); // State to store user data
-  const { currentColor } = useStateContext();
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+  const [Users, setUsers] = useState([]);
+
+  const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
+
+  const monthNames = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+
+  const years = ['2022', '2023', '2024'];
 
   useEffect(() => {
     fetchAttendances();
@@ -30,28 +40,33 @@ const ViewMoreDetails = () => {
     }
   };
 
-  // Fetch attendance data
-  const fetchAttendances = async () => {
-      try {
-          const response = await axios.get(`${API_URL}/getAttendance`);
-          const reversedData = response.data.reverse(); // Reverse the array
-          setAttendances(reversedData);
-      } catch (error) {
-          console.error('Error fetching Attendance:', error);
-          setAttendances([]);
-      }
-  };
+    // Fetch attendance data
+    const fetchAttendances = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/getAttendance`);
+            const reversedData = response.data.reverse(); // Reverse the array
+            setAttendances(reversedData);
+        } catch (error) {
+            console.error('Error fetching Attendance:', error);
+            setAttendances([]);
+        }
+    };
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/getAttendance`, {
-        params: { searchTerm, selectedPosition },
-      });
-      setAttendances(response.data);
-    } catch (error) {
-      console.error('Error searching Attendance:', error);
-      setAttendances([]);
-    }
+  const handleClear = () => {
+    setSearchTerm('');
+    setSelectedPosition('');
+    setSelectedMonth('');
+    setSelectedYear('');
+  }
+
+  const getMonthNameFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return monthNames[date.getMonth()];
+  }
+
+  const getYearFromDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.getFullYear().toString();
   };
 
   const calOTHours = (outTime, date) => {
@@ -75,16 +90,16 @@ const ViewMoreDetails = () => {
   const filteredAttendances = (Attendance || []).filter((attendance) => {
     const fullName = getFullNameByUsername(attendance.username).toLowerCase();
     const position = getPositionByUsername(attendance.username);
+    const monthName = getMonthNameFromDate(attendance.date);
+    const year = getYearFromDate(attendance.date);
     const search = searchTerm.toLowerCase();
-    return fullName.includes(search) && (selectedPosition === '' || position === selectedPosition);
+    return fullName.includes(search) && (selectedPosition === '' || position === selectedPosition) && (selectedMonth === '' || monthName === selectedMonth) && (selectedYear === '' || year === selectedYear);
   });
-
-  const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
-        <div className="flex mb-4 text-lg justify-center">Daily Report</div>
+        <div className="flex mb-4 text-lg justify-center">Attendance Summary</div>
         <div className="flex mb-4">
           <input
             type="text"
@@ -95,14 +110,14 @@ const ViewMoreDetails = () => {
           />
           <button
             className="ml-4 px-4 py-2 text-white rounded-md"
-            onClick={handleSearch}
-            style={{ backgroundColor: currentColor }}
+            onClick={handleClear}
+            style={{ backgroundColor: "#dc3545" }}
           >
-            Search
+            Clear
           </button>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 flex">
           <select
             className="border rounded py-2 px-3"
             value={selectedPosition}
@@ -112,6 +127,30 @@ const ViewMoreDetails = () => {
             {positions.map((position) => (
               <option key={position} value={position}>
                 {position}
+              </option>
+            ))}
+          </select>
+          <select
+            className="border rounded py-2 px-3 ml-2"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
+          >
+            <option value="">Select Month</option>
+            {monthNames.map((month, index) => (
+              <option key={index} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+          <select
+            className="border rounded py-2 px-3 ml-2"
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(e.target.value)}
+          >
+            <option value="">Select Year</option>
+            {years.map((year, index) => (
+              <option key={index} value={year}>
+                {year}
               </option>
             ))}
           </select>

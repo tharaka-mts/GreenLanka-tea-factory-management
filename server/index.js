@@ -8,6 +8,7 @@ dotenv.config();
 import { userRouter } from "./src/routes/userRouter.js";
 import { getAttendanceRouter } from "./src/routes/getAttendance.js";
 import { getDetailsRouter } from "./src/routes/getDetails.js";
+import { leavesRouter } from "./src/routes/leavesRouter.js";
 
 // Import tea rate router and model
 import { teaRateRouter } from './src/routes/teaRateRouter.js';
@@ -29,6 +30,7 @@ app.use(cors());
 
 app.use('/api', getAttendanceRouter);
 app.use('/api', getDetailsRouter);
+app.use('/api', leavesRouter);
 
 async function startServer() {
     try {
