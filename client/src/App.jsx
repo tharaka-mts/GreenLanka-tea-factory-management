@@ -34,6 +34,7 @@ import {
 import TeaRate from "./pages/Manager/TeaRate";
 import AddExpenses from "./pages/Manager/AddExpenses";
 import QualityCheck from "./pages/Manager/QualityCheck";
+import FinalProduction from "./pages/Manager/FinalProduction";
 
 const App = () => {
 
@@ -129,6 +130,10 @@ const App = () => {
         {
           path: "/Manager/QualityCheck",
           element: <QualityCheck />,
+        },
+        {
+          path: "/Manager/FinalProduction",
+          element: <FinalProduction />,
         },
         {
           path: "/ChangePassword",

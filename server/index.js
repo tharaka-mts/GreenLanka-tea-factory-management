@@ -9,6 +9,18 @@ import { userRouter } from "./src/routes/userRouter.js";
 import { getAttendanceRouter } from "./src/routes/getAttendance.js";
 import { getDetailsRouter } from "./src/routes/getDetails.js";
 
+// Import tea rate router and model
+import { teaRateRouter } from './src/routes/teaRateRouter.js';
+
+// Import expenses router and model
+import { expensesRouter } from './src/routes/expensesRouter.js';
+
+// Import qualityCheck router and model
+import { qualityCheckRouter } from './src/routes/qualityCheckRouter.js';
+
+// Import finalProduction router and model
+import { finalProductionRouter } from './src/routes/finalProductionRouter.js';
+
 const app = express();
 const port = 3005;
 
@@ -24,6 +36,18 @@ async function startServer() {
         console.log("Connected to MongoDB");
 
         app.use('/auth', userRouter);
+
+        // Define routes for Tea Rate
+        app.use('/api', teaRateRouter);
+
+        // Define routes for Expenses
+        app.use('/api', expensesRouter);
+
+        // Define routes for QualityCheck
+        app.use('/api', qualityCheckRouter);
+
+        // Define routes for FinalProduction
+        app.use('/api', finalProductionRouter);
 
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);

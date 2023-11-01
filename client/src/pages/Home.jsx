@@ -12,6 +12,8 @@ const Home = () => {
 
   const { currentColor, currentMode } = useStateContext();
 
+  
+
   return (
     <div className="my-16">
       <div className="flex flex-wrap lg:flex-nowrap justify-center ">
@@ -111,16 +113,40 @@ const Home = () => {
           <div
             className=" rounded-2xl md:w-400 p-4 m-3 bg-white text-gray-500 dark:text-gray-200 dark:bg-secondary-dark-bg"
           >
-            <div className="flex justify-between items-center ">
-              <p className="font-semibold text-2xl">Tea Value :</p>
 
+            <div className="flex justify-between items-center mt-3">
+              <p className="font-semibold text-lg">Rate for Raw Tea Leaves :</p>
               <div>
-                <p className="text-2xl font-semibold mt-8">LKR 350.50</p>
-                <p className="text-gray-400">For 1KG</p>
+                <p className="text-md font-semibold ">LKR 350.50</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center mt-3">
+              <p className="font-semibold text-lg">Rate for Grade A Production :</p>
+              <div>
+                <p className="text-md font-semibold ">LKR 3050.50</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center mt-3">
+              <p className="font-semibold text-lg">Rate for Grade B Production :</p>
+              <div>
+                <p className="text-md font-semibold ">LKR 350.50</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center mt-3">
+              <p className="font-semibold text-lg">Rate for Grade C Production :</p>
+              <div>
+                <p className="text-md font-semibold ">LKR 350.50</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center mt-3">
+              <p className="font-semibold text-lg">Rate for Grade D Production :</p>
+              <div>
+                <p className="text-md font-semibold ">LKR 350.50</p>
               </div>
             </div>
 
-            <div className="flex justify-around mt-4">
+
+            <div className="flex justify-around mt-8">
               <button className='text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]' style={{ backgroundColor: currentColor }} >Accept</button>
               <button className='text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]' style={{ backgroundColor: '#f56565' }} >Decline</button>
             </div>

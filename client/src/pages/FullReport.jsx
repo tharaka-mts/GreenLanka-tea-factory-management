@@ -1,8 +1,64 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const FullReport = () => {
   const { currentColor } = useStateContext();
+
+  const [expenses, setExpenses] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
+  const [totalByGrade, setTotalByGrade] = useState([]);
+
+
+  // Function to fetch total production by grade based on the selected year and month
+  const fetchTotalByGrade = async () => {
+    if (selectedYear && selectedMonth) {
+      try {
+        const response = await axios.get(`http://localhost:3005/api/finalProduction/totalByGrade`, {
+          params: { year: selectedYear, month: selectedMonth }
+        });
+        setTotalByGrade(response.data.totalByGrade);
+      } catch (error) {
+        console.error('Error fetching total by grade:', error);
+      }
+    }
+  };
+
+  // Function to calculate the total value for all expense types
+  const calculateTotalMachineExpenses = () => {
+    let totalAllExpenses = 0;
+    filteredExpenses.forEach((expense) => {
+      totalAllExpenses += (expense.wMachine || 0)
+                        + (expense.rMachine || 0)
+                        + (expense.dMachine || 0)
+                        + (expense.electricity || 0)
+                        + (expense.fuel || 0)
+                        + (expense.transport || 0);
+    });
+    return totalAllExpenses;
+  };
+
+  useEffect(() => {
+    fetchTotalByGrade();
+  
+
+
+    
+    // Make a GET request to retrieve expenses data
+    axios.get('http://localhost:3005/api/getExpenses')
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          setExpenses(response.data);
+        } else {
+          console.error('Expenses data is not an array:', response.data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error retrieving expenses:', error);
+      });
+      }, [selectedYear, selectedMonth]);
+
 
   const dataIncome = [
     { Title: 'Grade A', value: '1,940 kg', amount: 'LKR 950,247' },
@@ -10,27 +66,6 @@ const FullReport = () => {
     { Title: 'Grade C', value: '1,718 kg', amount: 'LKR 687,005' },
     { Title: 'Grade D', value: '1,560 kg', amount: 'LKR 546,227' },
     { Title: 'Total', value: '7,058 kg', amount: 'LKR 2,987,234' },
-    // Add more data entries as needed
-  ];
-
-  const dataEquipment = [
-    { Title: 'Withering Machine', value: '250 h', amount: 'LKR 50,000' },
-    { Title: 'Rolling Machine', value: '220 h', amount: 'LKR 44,000' },
-    { Title: 'Drying Equipments', value: '200 h', amount: 'LKR 40,000' },
-    { Title: 'Total', value: '670 h', amount: 'LKR 134,000' },
-    // Add more data entries as needed
-  ];
-
-  const dataEnergy = [
-    { Title: 'Electricity', value: '10,000 kWh', amount: 'LKR 209, 500' },
-    { Title: 'Fuel', value: '325 L', amount: 'LKR 113, 750' },
-    { Title: 'Total', value: '', amount: 'LKR 323, 250' },
-    // Add more data entries as needed
-  ];
-
-  const dataTransportation = [
-    { Title: 'Utilization', value: '10,500 km', amount: 'LKR 52,500' },
-    { Title: 'Total', value: '', amount: 'LKR 52,500' },
     // Add more data entries as needed
   ];
 
@@ -59,11 +94,60 @@ const FullReport = () => {
     // Add more data entries as needed
   ];
 
+  const filteredExpenses = 
+    (selectedMonth && selectedYear)
+      ? expenses.filter(
+          (expense) =>
+            expense.month === selectedMonth && expense.year === selectedYear
+        )
+      : [];
+
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const years = ['2022', '2023', '2024', '2025'];
+
+
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <p style={{ color: currentColor }} class="text-center mt-3 text-5xl font-black">Monthly Total Income and Expenses Report</p>
-      <p style={{ color: currentColor }} class="text-center mt-3 text-xl font-black">Reporting Period: 01 July 2023 - 31 July 2023</p>
+      <p style={{ color: currentColor }} class="text-center mt-3 text-5xl font-black mb-8">Monthly Total Income and Expenses Report</p>
+      <div className="mb-4">
+        <select
+          className="border rounded py-2 px-12 md:m-2 w-[18%] "
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
+        >
+          <option value="">All Years</option>
+          {years.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </select>
+        {/* <div className="md-3"></div> */}
+        <select
+          className="border rounded py-2 px-12 md:m-4 w-[18%] "
+          value={selectedMonth}
+          onChange={(e) => setSelectedMonth(e.target.value)}
+        >
+          <option value="no">All Months</option>
+          {months.map((month) => (
+            <option key={month} value={month}>
+              {month}
+            </option>
+          ))}
+        </select>
+      </div>
 
+      {/* Display total production by grade */}
+      <div>
+      {totalByGrade.map((item, index) => (
+        <div key={index}>
+          <p>Grade: {item._id}</p>
+          <p>Total Production: {item.total}</p>
+        </div>
+      ))}
+      </div>
+      
       <p class="text-gray-900 mt-12 text-xl font-black">Income</p>
       <p class="text-gray-900 m-4 mt-1 text-min font-black">Total Quantity Produced</p>
 
@@ -84,48 +168,50 @@ const FullReport = () => {
 
 
       <p class="text-gray-900 mt-10 text-xl font-black">Expences</p>
-      <p class="text-gray-900 m-4 mt-1 text-min font-black">Equipment & Machinery Utilization</p>
 
       <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
         <table class="min-w-full">
           <tbody>
-            {dataEquipment.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Withering Machine</td>
+                <td class="text-right">LKR {expense.wMachine}</td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-gray-900 m-4 mt-6 text-min font-black">Energy Consumption</p>
-
-      <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
-        <table class="min-w-full">
-          <tbody>
-            {dataEnergy.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2 ">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Rolling Machine</td>
+                <td class="text-right">LKR {expense.rMachine}</td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-gray-900 m-4 mt-6 text-min font-black">Transportation</p>
-
-      <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
-        <table class="min-w-full">
-          <tbody>
-            {dataTransportation.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Drying Machine</td>
+                <td class="text-right">LKR {expense.dMachine}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Electricity</td>
+                <td class="text-right">LKR {expense.electricity}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Fuel</td>
+                <td class="text-right">LKR {expense.fuel}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Transport Utilization</td>
+                <td class="text-right">LKR {expense.transport}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2 text-lg font-black">Total</td>
+                <td class="text-right  text-lg font-black">LKR {calculateTotalMachineExpenses()}</td>
               </tr>
             ))}
           </tbody>

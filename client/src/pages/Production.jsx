@@ -44,7 +44,7 @@ const Production = () => {
       </Link>
 
       <Link to='/ViewProduction'>
-        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Kumara's Team</button>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[18%] mt-8 mb-3 py-2 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Madhawa's Team</button>
       </Link>
 
       <Link to='/ViewProduction'>
