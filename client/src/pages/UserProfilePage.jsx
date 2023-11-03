@@ -32,6 +32,7 @@ const UserProfilePage = () => {
 
     fetchUserDetails();
   }, [userId]);
+  console.log(userId); // testing
 
   const TabContent = () => {
     switch (activeTab) {
@@ -154,5 +155,6 @@ const UserProfilePage = () => {
     </div>
   );
 };
+
 
 export default UserProfilePage;
