@@ -71,7 +71,7 @@ const UserProfile = () => {
       <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         <img
           className="rounded-full h-24 w-24"
-          src={userDetails.image}
+          src={`http://localhost:3005/${userDetails.image}`}
           alt="user-profile"
         />
         <div>
