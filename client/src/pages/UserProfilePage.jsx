@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import { FaEdit, FaCamera } from 'react-icons/fa';
 import ViewAttendance from './ViewAttendance';
 import ViewSalaryHistory from './ViewSalaryHistory';
+import Leaves from './Leaves';
 import ViewSalaryReport from './ViewSalaryReport';
 import { getUserDetails } from '../api/getDetails';
+import { useStateContext } from '../contexts/ContextProvider';
+
 
 
 const UserProfilePage = () => {
+  const { currentColor, currentMode } = useStateContext();
  
 
   const [activeTab, setActiveTab] = useState('attendance');
@@ -37,7 +41,9 @@ const UserProfilePage = () => {
         return <ViewSalaryHistory />;
       case 'salaryReport':
         return <ViewSalaryReport />;
-      default:
+      case 'Leave':
+        return <Leaves />;
+            default:
         return null;
     }
   };
@@ -56,7 +62,7 @@ const UserProfilePage = () => {
           <div className=" rounded-full overflow-hidden relative">
             <img
               className="rounded-full h-36 w-36"
-              src={userDetails.image} // Provide the path to the avatar image
+              src={`http://localhost:3005/${userDetails.image}`} // Provide the path to the avatar image
               alt="User's avatar"
             />
             <button
@@ -92,6 +98,19 @@ const UserProfilePage = () => {
               </Link>
             </div>
 
+            <div>
+           
+            </div>
+
+            <button
+          type="submit"
+          className="w-full  text-white p-2 rounded-md items-right "
+          style={{ backgroundColor: currentColor, transition: 'background-color 0.3s' }}
+          
+        >
+          Request a Leave
+        </button>
+
           </div>
 
 
@@ -120,6 +139,13 @@ const UserProfilePage = () => {
               onClick={() => setActiveTab('salaryReport')}
             >
               Salary Report
+            </li>
+            <li
+              className={`cursor-pointer ${activeTab === 'Leave' && 'font-semibold border-b-2 border-green-500'
+                }`}
+              onClick={() => setActiveTab('Leave')}
+            >
+              Leave
             </li>
           </ul>
         </div>
