@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 const AddUser = () => {
   const navigate = useNavigate();
 
@@ -15,6 +16,7 @@ const AddUser = () => {
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [result, setResult] = useState('');
 
@@ -22,6 +24,10 @@ const AddUser = () => {
     const file = e.target.files[0];
     setImage(file);
   };
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,10 +62,10 @@ const AddUser = () => {
     <div className='w-full'>
     <div className="bg-gray-100 p-4 flex justify-center items-center">
       <form onSubmit={handleSubmit} className="bg-white p-4 shadow-md rounded-md w-1/2">
-      <h1 className="text-2xl mb-4">Add User</h1>
+      <h1 className="text-2xl mb-4 text-green-400 text-center">Add User</h1>
       <h2 className="text-xl mb-4">{result}</h2>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">First Name</label>
           <input
             type="text"
             placeholder="First Name"
@@ -70,7 +76,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Last Name</label>
           <input
             type="text"
             placeholder="Last Name"
@@ -81,7 +87,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Userame</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Userame</label>
           <input
             type="text"
             placeholder="Username"
@@ -92,7 +98,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">NIC</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">NIC</label>
           <input
             type="text"
             placeholder="NIC"
@@ -103,7 +109,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">User Type</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">User Type</label>
            <select
            type="text"
            placeholder="User Type"
@@ -120,7 +126,7 @@ const AddUser = () => {
                 </select>
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Email</label>
           <input
             type="email"
             placeholder="Email"
@@ -131,7 +137,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Address</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Address</label>
           <input
             type="text"
             placeholder="Address"
@@ -142,7 +148,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Mobile</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Mobile</label>
           <input
             type="text"
             placeholder="Mobile"
@@ -153,7 +159,7 @@ const AddUser = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Password</label>
           <input
             type="password"
             placeholder="Password"
@@ -162,10 +168,26 @@ const AddUser = () => {
             className="w-full px-3 py-2 border rounded-md"
             required
           />
+          
         </div>
+        <div className="mb-4">
+            <input
+              type="checkbox"
+              value={showPassword}
+              id="showPassword"
+              onClick={handleShowPassword}
+            />
+            <label
+              htmlFor="showPassword"
+              className="inline-block pl-[0.15rem] hover:cursor-pointer"
+            >
+              Show Password
+            </label>
+          </div>
+
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Image</label>
+          <label className="block text-gray-700 text-m font-bold mb-2">Image</label>
           <input
             type="file"
             accept="image/*"
@@ -189,3 +211,6 @@ const AddUser = () => {
 }
 
 export default AddUser;
+
+
+
