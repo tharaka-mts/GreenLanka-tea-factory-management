@@ -16,10 +16,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
 
+    const loginapi = 'http://localhost:3005';
+
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3005/auth/login', {
+            const response = await axios.post(`${loginapi}/auth/login`, {
                 loginField,
                 password,
             });

@@ -4,7 +4,6 @@ import { IoNotificationsOutline } from 'react-icons/io5';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
-import avatar from '../data/avatar.jpg';
 import {  Notification, UserProfile } from '.';
 import { useStateContext } from '../contexts/ContextProvider';
 import { getUserDetails } from '../api/getDetails';
@@ -78,7 +77,7 @@ const Navbar = () => {
           >
             <img
               className="rounded-full w-8 h-8"
-              src={avatar}
+              src={`http://localhost:3005/${userDetails.image}`}
               alt="user-profile"
             />
             <p>
