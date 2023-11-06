@@ -28,7 +28,11 @@ import {
   ChangePassword,
   ChangeProfilePicture,
   AddWeight,
+  UpdateUser,
+  
+  
 } from "./pages";
+
 
 const App = () => {
 
@@ -120,9 +124,11 @@ const App = () => {
       {
         path: "/ViewWeight",
         element: <ViewWeight />,
-      },  
-   
-      
+      }, 
+      {
+        path: "/UpdateUser/:userId",
+        element: <UpdateUser />,
+      }, 
       ],
     },
     {
