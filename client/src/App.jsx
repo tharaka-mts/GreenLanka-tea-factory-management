@@ -28,7 +28,11 @@ import {
   ChangePassword,
   ChangeProfilePicture,
   AddWeight,
+  UpdateUser,
+  
+  
 } from "./pages";
+
 
 const App = () => {
 
