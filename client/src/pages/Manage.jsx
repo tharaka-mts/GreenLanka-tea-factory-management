@@ -143,6 +143,9 @@ const Manage = () => {
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                 Position
               </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                QRCode
+              </th>
               <th className="px-6 py-3 bg-gray-50"></th>
             </tr>
           </thead>
@@ -150,12 +153,13 @@ const Manage = () => {
             {users.map((user) => (
               <tr key={user.id}>
                 {/* Render user data */}
-                <td>{user.username}</td>
+                <td className='text-left pl-5'>{user.username}</td>
                 <td>{user.firstname}</td>
                 <td>{user.email}</td>
                 <td>{user.address}</td>
                 <td>{user.mobile}</td>
                 <td>{user.type}</td>
+                <td className='pl-6'><img src={`http://localhost:3005/public/qrcodes/${user.username}.png`} alt="any" width={40} onClick={()=> console.log('done')}/></td>
                 <td>
                   <div className="flex">
 
