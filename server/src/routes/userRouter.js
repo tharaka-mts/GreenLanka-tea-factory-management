@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import multer from 'multer';
 import path from 'path';
+// import fs from 'fs';
+import QRCode from 'qrcode';
 
 import { userModel } from '../models/user.js';
 
@@ -57,6 +59,12 @@ router.post('/register', upload.single('image'), async (req, res) => {
       });
     }
 
+    // Generate the QR code for the username
+    await QRCode.toFile(`public/qrcodes/${username}.png`, username, {
+      width: 800,
+      margin: 2,
+    });
+
     // Hash the user's password using bcrypt with a salt factor of 10
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -84,52 +92,6 @@ router.post('/register', upload.single('image'), async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
-// import { userModel } from "../models/user.js"
-
-// const router = express.Router();
-
-// // Define a route for user registration
-// router.post('/register', async (req, res) => {
-//     try {
-//         // Extract user registration data from the request body
-//         const { firstname, lastname, username, image, nic, type, email, address, mobile, password } = req.body;
-
-//         // Check if a user with the given mobile number already exists
-//         const user = await userModel.findOne({ mobile });
-
-//         // If a user with the mobile number already exists, provide an error message
-//         if (user) {
-//             return res.json({ message: `Can't use this mobile number, Already used in username: ${user.username}!` });
-//         }
-
-//         // Hash the user's password using bcrypt with a salt factor of 10
-//         const hashedPassword = await bcrypt.hash(password, 10);
-
-//         // Create a new user object with the hashed password
-//         const newUser = new userModel({
-//             firstname,
-//             lastname,
-//             username,
-//             image,
-//             nic,
-//             type,
-//             email,
-//             address,
-//             mobile,
-//             password: hashedPassword
-//         });
-
-//         // Save the new user to the database
-//         await newUser.save();
-
-//         // Respond with a success message upon successful registration
-//         res.json({ message: "User registered successfully!" });
-//     } catch (error) {
-//         console.error('Registration error:', error);
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
 
 // Define a route for user login
 router.post('/login', async (req, res) => {
