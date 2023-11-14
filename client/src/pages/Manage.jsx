@@ -128,6 +128,7 @@ const Manage = () => {
         </div>
 
         <table className="min-w-full">
+<<<<<<< HEAD
         <thead>
           <tr>
             <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
@@ -160,6 +161,45 @@ const Manage = () => {
               <td>{user.address}</td>
               <td>{user.mobile}</td>
               <td>{user.type}</td>
+=======
+          <thead>
+            <tr>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Username
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Name
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Email
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Address
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Phone Number
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Position
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                QRCode
+              </th>
+              <th className="px-6 py-3 bg-gray-50"></th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200 text-center justify-center">
+            {users.map((user) => (
+              <tr key={user.id}>
+                {/* Render user data */}
+                <td className='text-left pl-5'>{user.username}</td>
+                <td>{user.firstname}</td>
+                <td>{user.email}</td>
+                <td>{user.address}</td>
+                <td>{user.mobile}</td>
+                <td>{user.type}</td>
+                <td className='pl-6'><img src={`http://localhost:3005/public/qrcodes/${user.username}.png`} alt="any" width={40} onClick={()=> console.log('done')}/></td>
+>>>>>>> v1-tharaka
                 <td>
                   <div className="flex">
                   <Link to={`/UpdateUser/${user._id}`}>
