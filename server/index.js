@@ -11,6 +11,8 @@ import { userAttendanceRouter } from "./src/routes/userAttendance.js";
 import { empProductionRouter } from "./src/routes/empProduct.js";
 import { teamsRouter } from "./src/routes/teams.js";
 import { supProductionRouter } from "./src/routes/supProduct.js";
+import { AddSalaryDetailsRouter } from "./src/routes/addSalaryDetails.js";
+import { weightRouter } from "./src/routes/weightRouter.js";
 
 const app = express();
 const port = 3005;
@@ -32,6 +34,8 @@ async function startServer() {
         app.use('/attendance', userAttendanceRouter);
         app.use('/emp/prod', empProductionRouter);
         app.use('/sup/prod', supProductionRouter);
+        app.use('/addSalaryDetails', AddSalaryDetailsRouter);
+        app.use('/getWeight', weightRouter)
 
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);

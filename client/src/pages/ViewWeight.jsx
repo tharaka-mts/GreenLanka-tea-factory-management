@@ -1,9 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { useStateContext } from '../contexts/ContextProvider';
+import axios from 'axios';
+
 
 const ViewWeight = () => {
 
+  const[users,setUsers] = useState('');
+
+
+const fetchUsers = async () => {
+  try {
+    const response = await axios.get('http://localhost:3005/getWeight');
+
+    if (response.status === 200) {
+      console.log('Fetched users successfully:', response.data);
+      setUsers(response.data);
+    }
+  } catch (error) {
+    console.error('Fetch users error:', error);
+  }
+};
+
+useEffect(() => {
+  fetchUsers();
+}, []);
+
+
   const { currentColor, currentMode } = useStateContext();
+  
   const [pluckerData] = useState([
     { id: 1, name: 'Plucker 1', teaLeavesWeight: 5.7 },
     { id: 2, name: 'Plucker 2', teaLeavesWeight: 4.2 },

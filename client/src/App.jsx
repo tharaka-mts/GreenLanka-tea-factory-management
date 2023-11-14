@@ -29,6 +29,7 @@ import {
   ChangeProfilePicture,
   AddWeight,
   UpdateUser,
+  DeleteUser,
   
   
 } from "./pages";

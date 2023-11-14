@@ -23,4 +23,5 @@ export { default as ChangePassword  } from './ChangePassword';
 export { default as ChangeProfilePicture } from './ChangeProfilePicture';
 
 export { default as AddWeight } from './AddWeight';
-
+export { default as UpdateUser  } from './UpdateUser';
+export { default as DeleteUser  } from './DeleteUser';
