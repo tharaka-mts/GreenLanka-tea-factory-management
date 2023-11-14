@@ -162,4 +162,115 @@ router.post('/login', async (req, res) => {
     }
   });
 
+  // const { authenticateUser } = require('../middleware/auth');
+  
+  // router.post('/change-password', async (req, res) => {
+  //   try {
+  //     const { currentPassword, newPassword, userId } = req.body;
+  //     // const userId = req.user._id; // Assuming you have user information in the request object
+  
+  //     // Retrieve the user from the database
+  //     const user = await userModel.findById(userId);
+  
+  //     if (!user) {
+  //       return res.status(404).json({ message: 'User not found' });
+  //     }
+  
+  //     // Compare the current password with the stored password
+  //     const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+  
+  //     if (!isPasswordValid) {
+  //       return res.status(400).json({ message: 'Current password is incorrect' });
+  //     }
+  
+  //     // Hash the new password and update it in the database
+  //     const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+  //     user.password = hashedNewPassword;
+  //     await user.save();
+  
+  //     return res.json({ message: 'Password changed successfully' });
+  //   } catch (error) {
+  //     console.error('Password change error:', error);
+  //     return res.status(500).json({ message: 'Internal server error' });
+  //   }
+  // });
+
+  router.patch('/change-password', async (req, res) => {
+    try {
+      const { currentPassword, newPassword, userId } = req.body;
+  
+      // Retrieve the user from the database
+      const user = await userModel.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      // Compare the current password with the stored password
+      const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+  
+      if (!isPasswordValid) {
+        return res.status(400).json({ message: 'Current password is incorrect' });
+      }
+  
+      // Hash the new password and update it in the database
+      const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+      // user.password = hashedNewPassword;
+      // await user.save();
+      const task = await userModel.findByIdAndUpdate({_id:userId},{password:hashedNewPassword},{new:true,})
+  
+      return res.json({ message: 'Password changed successfully' });
+    } catch (error) {
+      console.error('Password change error:', error);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+
+//   // Example server route for updating user details without password
+// Example server route for updating user details without password
+router.patch('/edit/:id', async (req, res) => {
+  const userId = req.params.id;
+  const updatedUserData = req.body; // Fields to update
+
+  try {
+    // Find the user by ID and update their details
+    const user = await userModel.findByIdAndUpdate(userId, updatedUserData, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User details updated successfully', user });
+  } catch (error) {
+    console.error('Update user error:', error); // Log the specific error details
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Define a route for deleting a user by ID
+router.delete('/delete/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    // Find the user by ID and delete them
+    const user = await userModel.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Delete user error:', error); // Log the specific error details
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
+
+  
+  
+
 export { router as userRouter };

@@ -1,184 +1,275 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStateContext } from '../contexts/ContextProvider';
- 
 
-const AddSalaryDetails = () => {
-
-    
-
-
-  const [type, setType] = useState('');
-  const [basicSalary, setBasicSalary] = useState('');
-  const [overtimeBonus, setOvertimeBonus] = useState('');
-  const [perKgIncome, setPerKgIncome] = useState('');
-  const [userBonusPercentage, setUserBonusPercentage] = useState('');
-
+const UpdateSalaryDetails = () => {
   const navigate = useNavigate();
-  const [isTeaPlucker, setIsTeaPlucker] = useState(false);
+  const [result, setResult] = useState('');
+  const [error, setError] = useState('');
+  const [selectedRole, setSelectedRole] = useState('');
+  const [salaryDetails, setSalaryDetails] = useState({
+    role: '',
+    basic: null,
+    emDailyRate: null,
+    teaLeavesSalary: null,
+    bonusPercentage: null,
+    overtimeSalary: null,
+  });
+  // const [role, setRoles] = useState([]);
 
-  const { currentColor, currentMode } = useStateContext();
+  // useEffect(() => {
+  //   fetchRoles();
+  // }, []);
 
+  // const fetchRoles = async () => {
+  //   try {
+  //     const response = await fetch(`http://localhost:3005/addSalaryDetails/getRoles/${roles}`);
+  //     const data = await response.json();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = {
-      type,
-      basicSalary,
-      overtimeBonus,
-      perKgIncome,
-      userBonusPercentage,
-    };
+  //     if (response.ok) {
+  //       setRoles(data.roles || []);
+  //     } else {
+  //       setError('Failed to fetch roles: ' + (data.message || 'Unknown error'));
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching roles:', error);
+  //     setError('Error fetching roles: ' + error.message);
+  //   }
+  // };
 
-    axios
-      .post('http://localhost:3001/addSalaryDetails', formData)
-      .then((result) => {
-        console.log(result);
-        navigate('/');
-      })
-      .catch((err) => console.log('Error msg ' + err));
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/addSalaryDetails/getRoles/${selectedRole}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        // Update the salary details state with the fetched data
+        setSalaryDetails(data || {});
+        
+        // console.log('Salary Details added Successfully');        
+      } else {
+        setError('Failed to fetch salary details: ' + (data.message || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Error fetching salary details:', error);
+      setError('Error fetching salary details: ' + error.message);
+    }
   };
 
+  const handleButtonClick = async () => {
+    await fetchData();
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`http://localhost:3005/addSalaryDetails/addSalaryDetails/${selectedRole}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          basic: salaryDetails.basic,
+          emDailyRate: salaryDetails.emDailyRate,
+          teaLeavesSalary: salaryDetails.teaLeavesSalary,
+          bonusPercentage: salaryDetails.bonusPercentage,
+          overtimeSalary: salaryDetails.overtimeSalary,
+        }),
+        
+      });
+
+      
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log('Salary details updated successfully:', data); // Log data to the console
+        setResult(data.message);
+        alert("User Added Successfully");
+        navigate('/salary')
+
+      } else {
+        setError('Error updating salary details: ' + (data.message || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('Error updating salary details:', error);
+      setError('Error updating salary details: ' + error.message);
+    }
+  };
+  
   return (
-    <div className='w-full'>
-      <div className='w-20% flex justify-center items-center'
-       style={{ backgroundColor: currentColor }}>
-        <h1 className='flex items-center justify-center mb-5 mt-5 text-xl font-bold text-white py-3'>
-          ADD SALARY DETAILS
-        </h1>
-       
-      </div>
-
-      <div className='w-80%'>
-        <div className='flex justify-center w-full '>
-          <div className='bg-white mt-10 flex'>
-            <form
-              className='bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 '
-              onSubmit={handleSubmit}
-            >
-              <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>
-                <select
-                  className='text-gray-500 form-control bg-light appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]'
-                  id='type'
-                  onChange={(e) => {
-                    setType(e.target.value);
-                    setIsTeaPlucker(e.target.value === 'tea_plucker'); // Set isTeaPlucker to true if the user type is "Tea plucker."
-                  }}
-                  required
-                >
-                  <option value=''>Select Type</option>
-                  <option value='manager'>Manager</option>
-                  <option value='supervisor'>Supervisor</option>
-                  <option value='employee'>Employee</option>
-                  <option value='tea_plucker'>Tea plucker</option>
-                </select>
-                <label
-                  htmlFor='type'
-                  className='block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary'
-                ></label>
-              </div>
-
-              {isTeaPlucker ? (
-         <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>
-         <input
-           type='number'
-           className='appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]'
-           id='perKgIncome'
-           placeholder='Income per 1 kg'
-           value={perKgIncome}
-           onChange={(e) => setPerKgIncome(e.target.value)}
-           required
-         />
-         <label
-           htmlFor='perKgIncome'
-           className='block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary'
-         ></label>
-       </div>
-      ) : (
-        <>
-          {/* Other income and salary fields */}
-          <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>
-                <input
-                  type='number'
-                  className='appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]'
-                  id='basicSalary'
-                  placeholder='Basic Salary'
-                  value={basicSalary}
-                  onChange={(e) => setBasicSalary(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor='basicSalary'
-                  className='block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary'
-                ></label>
-              </div>
-
-              <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>
-                <input
-                  type='number'
-                  className='appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]'
-                  id='overtimeBonus'
-                  placeholder='Overtime Bonus per Hour'
-                  value={overtimeBonus}
-                  onChange={(e) => setOvertimeBonus(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor='overtimeBonus'
-                  className='block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary'
-                ></label>
-              </div>
-
-         
-        </>
-      )}
-
-              
- 
-
-              <div className='bg-white shadow-md rounded relative mb-6 mt-6' data-te-input-wrapper-init>
-                <input
-                  type='number'
-                  className='appearance-none peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem]'
-                  id='userBonusPercentage'
-                  placeholder='User Bonus Percentage'
-                  value={userBonusPercentage}
-                  onChange={(e) => setUserBonusPercentage(e.target.value)}
-                  required
-                />
-                <label
-                  htmlFor='userBonusPercentage'
-                  className='block tracking-wide pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[1.15rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary'
-                ></label>
-              </div>
-
-              <div className='flex'>
-                <button
-                  type='submit'
-                  className='w-[300px] text-center inline-block rounded bg-green-500 px-6 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-green-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
-                  data-te-ripple-init
-                  data-te-ripple-color='light'
-                >
-                  Submit
-                </button>
-
-                <button
-                  type='button'
-                  className='ml-5 align-right w-[300px] col-2 inline-block rounded bg-red-500 px-6 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-red-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
-                  data-te-ripple-init
-                  data-te-ripple-color='light'
-                  onClick={() => navigate('/')}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+    <div className="w-full">
+      <div className="bg-gray-100 p-4 flex justify-center items-center">
+        <div>
         </div>
+          <select
+            value={selectedRole}
+            onChange={(e) => setSelectedRole(e.target.value)}
+            className="bg-white border rounded-md px-4 py-2"
+          >
+            <option value="" >
+              Select Role
+            </option>
+            <option value="manager" >
+              Manager
+            </option>
+            <option value="supervisor" >
+             Supervisor
+            </option>
+            <option value="employee" >
+              Employee
+            </option>
+            <option value="tea plucker" >
+              Tea Plucker
+            </option>
+            
+          </select>
+          <button type="button" onClick={handleButtonClick} className="bg-blue-500 text-white px-4 py-2">
+            Show Details
+          </button>
+      
+        <form className="bg-white p-4 shadow-md rounded-md w-1/2 m-5">
+          <h1 className="text-2xl mb-4 text-green-400 text-center">Update Salary Details</h1>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2">Role</label>
+            <input
+              type="text"
+              name="role"
+              value={selectedRole}
+              className="w-full px-3 py-2 border rounded-md"
+              readOnly
+            />
+          </div>
+
+        
+          {selectedRole === 'manager' && (
+            <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2">Basic Salary</label>
+            <input
+              type="number"
+              name="basic"
+              value={salaryDetails.basic || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, basic: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+              <label className="block text-gray-700 text-md font-bold mb-2">OT Salary per Hour</label>
+              <input
+                type="number"
+                name="overtimeSalary"
+                value={salaryDetails.overtimeSalary || ''}
+                onChange={(e) => setSalaryDetails({ ...salaryDetails, overtimeSalary: e.target.value })}
+                className="w-full px-3 py-2 border rounded-md"
+              />
+
+          <label className="block text-gray-700 text-md font-bold mb-2">Bonus percentage</label>
+            <input
+              type="number"
+              name="bonusPercentage"
+              value={salaryDetails.bonusPercentage || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, bonusPercentage: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+            </div>
+          )}
+
+          {selectedRole === 'supervisor' && (
+            <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2">Basic Salary</label>
+            <input
+              type="number"
+              name="basic"
+              value={salaryDetails.basic || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, basic: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+              <label className="block text-gray-700 text-md font-bold mb-2">OT Salary per Hour</label>
+              <input
+                type="number"
+                name="overtimeSalary"
+                value={salaryDetails.overtimeSalary || ''}
+                onChange={(e) => setSalaryDetails({ ...salaryDetails, overtimeSalary: e.target.value })}
+                className="w-full px-3 py-2 border rounded-md"
+              />
+
+          <label className="block text-gray-700 text-md font-bold mb-2">Bonus percentage</label>
+            <input
+              type="number"
+              name="bonusPercentage"
+              value={salaryDetails.bonusPercentage || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, bonusPercentage: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+            </div>
+          )}
+
+          {selectedRole === 'employee' && (
+            <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2">Daily Salary</label>
+            <input
+              type="number"
+              name="emDailyRate"
+              value={salaryDetails.emDailyRate || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, emDailyRate: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+          <label className="block text-gray-700 text-md font-bold mb-2">Bonus percentage</label>
+            <input
+              type="number"
+              name="bonusPercentage"
+              value={salaryDetails.bonusPercentage || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, bonusPercentage: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+            </div>
+          )}
+
+          {selectedRole === 'tea plucker' && (
+            <div className="mb-4">
+            <label className="block text-gray-700 text-md font-bold mb-2">Tea weight Salary</label>
+            <input
+              type="number"
+              name="teaLeavesSalary"
+              value={salaryDetails.teaLeavesSalary || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, teaLeavesSalary: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+          <label className="block text-gray-700 text-md font-bold mb-2">Bonus percentage</label>
+            <input
+              type="number"
+              name="bonusPercentage"
+              value={salaryDetails.bonusPercentage || ''}
+              onChange={(e) => setSalaryDetails({ ...salaryDetails, bonusPercentage: e.target.value })}
+              className="w-full px-3 py-2 border rounded-md"
+            />
+
+            </div>
+          )}
+
+          
+        
+          {/* Add other fields here */}
+          <div className="flex justify-between">
+            <button type="button" onClick={handleSubmit} className="bg-green-400 text-white px-4 py-2 rounded-md">
+              Update Salary
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/manage')}
+              className="bg-red-500 text-white px-4 py-2 rounded-md"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
 };
 
-export default AddSalaryDetails;
+export default UpdateSalaryDetails;

@@ -29,6 +29,7 @@ import {
   ChangeProfilePicture,
   AddWeight,
   UpdateUser,
+  DeleteUser,
   
   
 } from "./pages";
@@ -128,6 +129,10 @@ const App = () => {
       {
         path: "/UpdateUser/:userId",
         element: <UpdateUser />,
+      }, 
+      {
+        path: "/DeleteUser/:userId",
+        element: <DeleteUser />,
       }, 
       ],
     },

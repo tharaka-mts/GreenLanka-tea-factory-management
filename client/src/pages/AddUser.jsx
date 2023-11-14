@@ -197,10 +197,10 @@ const AddUser = () => {
           />
         </div>
         <div className="flex justify-between">
-          <button type="submit" className="bg-green-400 text-white py-2 px-4 rounded-md">
+          <button type="submit" className="bg-green-400 text-white hover:bg-green-600 py-2 px-4 rounded-md">
             Register
           </button>
-          <button type="button" className="bg-red-500 text-white py-2 px-4 rounded-md" onClick={() => navigate('/manage')}>
+          <button type="button" className="bg-red-500 text-white py-2 hover:bg-red-600 px-4 rounded-md" onClick={() => navigate('/manage')}>
             Cancel
           </button>
         </div>

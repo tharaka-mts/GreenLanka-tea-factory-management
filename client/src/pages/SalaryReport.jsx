@@ -35,7 +35,7 @@ const SalaryReport = () => {
     <div className="mb-4">
           <Link to="/addsalarydetails">
             <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
-             Add Salary Details
+             Edit Salary Details
             </button>
           </Link>
         </div>
