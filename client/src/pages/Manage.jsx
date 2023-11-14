@@ -90,9 +90,9 @@ const Manage = () => {
       <div className="container mx-auto p-4">
         <div className="mb-4">
           <Link to="/adduser">
-            <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
-              Add User
-            </button>
+          <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
+                   Add User
+               </button>
           </Link>
         </div>
 
