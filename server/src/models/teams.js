@@ -6,7 +6,7 @@ const teamsSchema = new Schema({
     supLastname: { type: String, required: true },
     team: [
         {
-            userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
+            user: { type: Object, ref: 'users', required: true },
             firstname: { type: String, required: true },
             lastname: { type: String, required: true },
             nic: { type: String, required: true },
