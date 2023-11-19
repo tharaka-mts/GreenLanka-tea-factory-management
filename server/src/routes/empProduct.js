@@ -12,7 +12,7 @@ router.post("/add", async (req, res) => {
     try {
         const { username, weight } = req.body;
         const user = await userModel.findOne({ username });
-        const supervisor = await teamsModel.findOne({ 'team.userId': user._id });
+        // const supervisor = await teamsModel.findOne({ 'team.userId': user._id });
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
@@ -29,10 +29,10 @@ router.post("/add", async (req, res) => {
             userId: user._id,
             firstname: user.firstname,
             lastname: user.lastname,
-            supervisor: supervisor.supFirstname + " " + supervisor.supLastname,
+            supervisor: " ",
             date: currentDate,
             time: currentTime,
-            weight,
+            weight: weight,
         });
 
         await newEmpProduction.save();
