@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import QrScanner from 'react-qr-scanner';
+
+import { getUser } from '../api/getDetails';
 
 const AddWeight = () => {
 
     const [weight, setWeight] = useState('');
     const [teaWeight, setTeaWeight] = useState('');
-    const [scannedData, setScannedData] = useState('');
+
+    const [username, setUsername] = useState('');
+
     const [scanQR, setScanQR] = useState('');
+    const [userDetails, setUserDetails] = useState({});
 
     const getWeight = async (e) => {
         e.preventDefault();
@@ -21,10 +26,36 @@ const AddWeight = () => {
         }
     };
 
+    useEffect(() => {
+        async function fetchUserDetails() {
+          const userDetailsData = await getUser(username);
+    
+          if (userDetailsData) {
+            setUserDetails(userDetailsData);
+          }
+        }
+    
+        fetchUserDetails();
+      }, [username]);
+
     const handleScan = (data) => {
         if (data) {
-            setScannedData(data.text); // Update the scanned data state
+            setUsername(data.text); // Update the scanned data state
             //document.getElementsByName('username')[0].value = data.text;
+        }
+    };
+
+    const submitData = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3005/emp/prod/add', {
+                username: username,
+                weight: teaWeight,
+            });
+            console.log(response.data.message);
+            alert("Weight Added Successfully");
+        } catch (error) {
+            console.error('Weight adding error:', error);
         }
     };
 
@@ -51,7 +82,8 @@ const AddWeight = () => {
                                 className="border p-2 w-full"
                                 placeholder="Enter username"
                                 name="username"
-                                value={scannedData}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                             <button onClick={(e) => handleScanQR(e)} className="bg-green-500 text-white h-10 rounded-md ml-2 w-[150px]">
                                 Scan QR
@@ -87,6 +119,7 @@ const AddWeight = () => {
                         <button
                             type="submit"
                             className="bg-green-500 text-white px-4 py-2 rounded-md"
+                            onClick={submitData}
                         >
                             Confirm
                         </button>

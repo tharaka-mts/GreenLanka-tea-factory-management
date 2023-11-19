@@ -127,6 +127,10 @@ const App = () => {
         element: <ViewWeight />,
       }, 
       {
+        path: "/addweight",
+        element: <AddWeight />,
+      }, 
+      {
         path: "/UpdateUser/:userId",
         element: <UpdateUser />,
       }, 

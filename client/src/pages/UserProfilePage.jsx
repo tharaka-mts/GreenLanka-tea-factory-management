@@ -82,7 +82,7 @@ const UserProfilePage = () => {
             </div>
 
             <div className="mt-2">
-              <Link to={`/update-details/${userDetails._id}`} className="flex">
+              <Link to={`/UpdateUser/${userDetails._id}`} className="flex">
                 <FaEdit className="text-green-500 text-2xl cursor-pointer" />
 
                 <h3 className="ml-2">Edit Pofile</h3>
