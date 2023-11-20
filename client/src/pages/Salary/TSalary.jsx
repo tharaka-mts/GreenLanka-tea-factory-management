@@ -3,8 +3,12 @@ import { useStateContext } from '../../contexts/ContextProvider';
 
 const TSalary = () => {
   const initialUsers = [
-    { id: 12, name: 'John Doe', date: '2023-05-06', basic: 30000, ot: 70000 },
-    { id: 13, name: 'Jane Smith', date: '2023-05-06', basic: 30000, ot: 70000 },
+    { id: 22, name: 'Raja Kumara', date: '2023-11-06', basic: 0, ot: 17500 },
+    { id: 23, name: 'Thanushayn Vijay', date: '2023-11-06', basic: 0, ot: 19000 },
+    { id: 24, name: 'Raj Kumar', date: '2023-11-06', basic: 0, ot: 16000 },
+    { id: 25, name: 'Sharmila Kumari', date: '2023-11-06', basic: 0, ot: 21000 },
+    { id: 26, name: 'Raju Thanujan', date: '2023-11-06', basic: 0, ot: 16500 },
+    { id: 26, name: 'Yogeshwara Vije', date: '2023-11-06', basic: 0, ot: 17500 },
   ];
 
   const [users, setUsers] = useState(initialUsers);
