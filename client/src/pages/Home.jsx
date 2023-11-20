@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { GoDot } from 'react-icons/go';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +12,36 @@ import viewWeight from './ViewWeight.jsx';
 
 const Home = () => {
 
-  const { currentColor, currentMode } = useStateContext();
+  const { currentColor, currentMode, totalWeight, setTotalWeight } = useStateContext();
+
+  const[users,setUsers] = useState('');
+
+
+const fetchUsers = async () => {
+  try {
+    const response = await axios.get('http://localhost:3005/emp/prod/get');
+
+    if (response.status === 200) {
+      // console.log('Fetched users successfully:', response.data);
+      setUsers(response.data);
+    }
+  } catch (error) {
+    console.error('Fetch users error:', error);
+  }
+};
+
+useEffect(() => {
+  fetchUsers();
+}, [users]);
+
+  const totalTeaWeight = () => {
+    let total = 0;
+    (users) && users.forEach((plucker) => {
+      total += plucker.weight;
+      setTotalWeight(total);
+    });
+    return total;
+  };
 
   return (
     <div className="my-16">
@@ -19,7 +50,7 @@ const Home = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Today's Production</p>
-              <p className="text-3xl">1,027 KG</p>
+              <p className="text-3xl">{totalTeaWeight()} KG</p>
             </div>
           </div>
           <div className="mt-6">
