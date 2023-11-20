@@ -11,10 +11,10 @@ const ViewWeight = () => {
 
 const fetchUsers = async () => {
   try {
-    const response = await axios.get('http://localhost:3005/getWeight');
+    const response = await axios.get('http://localhost:3005/emp/prod/get');
 
     if (response.status === 200) {
-      console.log('Fetched users successfully:', response.data);
+      // console.log('Fetched users successfully:', response.data);
       setUsers(response.data);
     }
   } catch (error) {
@@ -24,7 +24,7 @@ const fetchUsers = async () => {
 
 useEffect(() => {
   fetchUsers();
-}, []);
+}, [users]);
 
 
   const[users,setUsers] = useState('');
