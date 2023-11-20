@@ -7,7 +7,7 @@ export default function App() {
       <View>
         <Text className="text-[5vh] text-green-600">Welcome to</Text>
       </View>
-      <Text className="text-[5vh] text-green-600">This is Business Bro!</Text>
+      <Text className="text-[5vh] text-green-600">Green Lanka!</Text>
       <StatusBar style="auto" />
     </View>
   );
