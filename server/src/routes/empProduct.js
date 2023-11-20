@@ -43,4 +43,14 @@ router.post("/add", async (req, res) => {
     }
 });
 
+// Route for getting employee production data
+router.get("/get", async (req, res) => {
+    try {
+        const empProduction = await empProductionModel.find({});
+        res.json(empProduction);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
 export { router as empProductionRouter };
