@@ -51,7 +51,7 @@ const Login = () => {
         <>
             {isLoggedIn && navigate('/')}
             <section class="h-screen w-full bg-gradient-to-r from-green-500 from-10% via-green-700 via-30% to-emerald-500 to-90% ...">
-                <div className="z-10">
+                <div className="z-10 pt-[180px]">
                     <h1 className=" text-center text-4xl pt-5 text-white font-bold uppercase  ">
                         Welcome to Green Lanka Tea Factory
                     </h1>

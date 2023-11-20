@@ -3,8 +3,8 @@ import { useStateContext } from '../../contexts/ContextProvider';
 
 const SSalary = () => {
   const initialUsers = [
-    { id: 12, name: 'John Doe', date: '2023-05-06', basic: 30000, ot: 70000 },
-    { id: 13, name: 'Jane Smith', date: '2023-05-06', basic: 30000, ot: 70000 },
+    { id: 8, name: 'Lalitha Nilmini', date: '2023-11-06', basic: 45000, ot: 0 },
+    // { id: 13, name: 'Jane Smith', date: '2023-05-06', basic: 30000, ot: 70000 },
   ];
 
   const [users, setUsers] = useState(initialUsers);
