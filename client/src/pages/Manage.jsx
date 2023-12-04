@@ -7,7 +7,7 @@ import { useStateContext } from '../contexts/ContextProvider';
 const API_URL = 'http://localhost:3005/get';
 
 const Manage = () => {
- 
+
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPosition, setSelectedPosition] = useState('');
@@ -19,7 +19,7 @@ const Manage = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:3005/get/users');
-  
+
       if (response.status === 200) {
         console.log('Fetched users successfully:', response.data);
         setUsers(response.data);
@@ -28,11 +28,11 @@ const Manage = () => {
       console.error('Fetch users error:', error);
     }
   };
-  
+
   useEffect(() => {
     fetchUsers();
   }, []);
-  
+
 
   const handleSearch = async () => {
     try {
@@ -46,23 +46,23 @@ const Manage = () => {
       setUsers([]);
     }
   };
-  
+
 
   const handleDelete = async ({ userId }) => {
     const confirmed = window.confirm('Are you sure you want to delete this user?');
-  
+
     if (confirmed) {
       try {
         await axios.delete(`http://localhost:3005/auth/delete/${userId}`);
-        // Filter out the deleted user from the state
-        setUsers(users.filter(user => user._id !== userId));
+          // Filter out the deleted user from the state
+          setUsers(users.filter(user => user._id !== userId));
         console.log('Deleted Successfully')
       } catch (error) {
         console.error('Error deleting user:', error);
       }
     }
   };
-  
+
 
   const handleEdit = (user) => {
     setEditingUser(user);
@@ -90,9 +90,9 @@ const Manage = () => {
       <div className="container mx-auto p-4">
         <div className="mb-4">
           <Link to="/adduser">
-          <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
-                   Add User
-               </button>
+            <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
+              Add User
+            </button>
           </Link>
         </div>
 
@@ -105,7 +105,7 @@ const Manage = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button
-            className="ml-4 px-4 py-2 text-white rounded-md"
+            className="ml-4 px-4 py-2 text-white bg-green-500 rounded-md"
             onClick={handleSearch}
           >
             Search
@@ -126,7 +126,6 @@ const Manage = () => {
             ))}
           </select>
         </div>
-
         <table className="min-w-full">
           <thead>
             <tr>
@@ -148,49 +147,44 @@ const Manage = () => {
               <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                 Position
               </th>
-              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                QRCode
-              </th>
               <th className="px-6 py-3 bg-gray-50"></th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 text-center justify-center">
-            {users.map((user) => (
-              <tr key={user.id}>
-                {/* Render user data */}
-                <td className='text-left pl-5'>{user.username}</td>
+            {filteredUsers.map((user) => (
+              <tr key={user._id}>
+                <td>{user.username}</td>
                 <td>{user.firstname}</td>
                 <td>{user.email}</td>
                 <td>{user.address}</td>
                 <td>{user.mobile}</td>
                 <td>{user.type}</td>
-                <td className='pl-6'><img src={`http://localhost:3005/public/qrcodes/${user.username}.png`} alt="any" width={40} onClick={()=> console.log('done')}/></td>
                 <td>
                   <div className="flex">
-                  <Link to={`/UpdateUser/${user._id}`}>
-          <button
-      className="bg-blue-500 ml-5 text-sm p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]"
-           >
-    Edit
-  </button>
-</Link>
-
-<button
-                      className="bg-red-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-red-800 rounded-[10px]"
-                      onClick={() => handleDelete({ userId: user._id })}
+                    <Link to={`/UpdateUser/${user._id}`}>
+                    <button
+                      className="bg-blue-500 ml-5 text-sm p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]"
                     >
-                      Delete
+                      Edit
                     </button>
+                  </Link>
 
-                    
-                  </div>
-                </td>
+                  <button
+                    className="bg-red-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-red-800 rounded-[10px]"
+                    onClick={() => handleDelete({ userId: user._id })}
+                  >
+                    Delete
+                  </button>
+
+
+                </div>
+              </td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </div>
+    </div >
   );
 };
 
