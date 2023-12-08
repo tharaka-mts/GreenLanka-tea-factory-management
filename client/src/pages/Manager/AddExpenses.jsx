@@ -110,7 +110,7 @@ const AddExpenses = () => {
                                         type="number"
                                         class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Withering Machine"
+                                        placeholder="Withering Machine Utilization"
                                         required
                                         value={wMachine}
                                         onChange={(e) => setWMachine(e.target.value)}
@@ -129,7 +129,7 @@ const AddExpenses = () => {
                                         type="number"
                                         class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Rolling Machine"
+                                        placeholder="Rolling Machine Utilization"
                                         required
                                         value={rMachine}
                                         onChange={(e) => setRMachine(e.target.value)}
@@ -148,7 +148,7 @@ const AddExpenses = () => {
                                         type="number"
                                         class="w-[400px] appearance-none peer block min-h-[auto]  rounded border-0 bg-transparent px-2 py-[0.32rem] "
                                         id="exampleFormControlInput2"
-                                        placeholder="Drying Equipments"
+                                        placeholder="Drying Equipments Utilization"
                                         required
                                         value={dMachine}
                                         onChange={(e) => setDMachine(e.target.value)}

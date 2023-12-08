@@ -171,20 +171,12 @@ const FullReport = () => {
       <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
         <table class="min-w-full">
           <tbody>
-
-            
-            {/* =============================== */}
-
             {/* {totalByGrade.map((item, index) => (
               <tr key={index} className="border-t">
                 <td className="py-2">{item._id}</td>
                 <td className="text-right">{item.total}</td>
               </tr>
             ))} */}
-
-            {/* ================================== */}
-
-
 
             {dataSalary.map((item, index) => (
               <tr key={index} className=' border-t'>
