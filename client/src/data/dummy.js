@@ -2461,9 +2461,9 @@ export const ecomPieChartDataProduction3 = [
 export const groupedCustomSeries = [
   {
     dataSource: [
-      { x: 'May', y: 1000 },
-      { x: 'June', y: 1595 },
-      { x: 'July', y: 1900 },
+      { x: 'August', y: 1000 },
+      { x: 'September', y: 1595 },
+      { x: 'October', y: 1900 },
     ],
     xName: 'x',
     yName: 'y',
@@ -2473,9 +2473,9 @@ export const groupedCustomSeries = [
   },
   {
     dataSource: [
-      { x: 'May', y: 1650 },
-      { x: 'June', y: 995 },
-      { x: 'July', y: 1300 },
+      { x: 'August', y: 1650 },
+      { x: 'September', y: 995 },
+      { x: 'October', y: 1300 },
     ],
     xName: 'x',
     yName: 'y',
@@ -2485,9 +2485,9 @@ export const groupedCustomSeries = [
   },
   {
     dataSource: [
-      { x: 'May', y: 1850 },
-      { x: 'June', y: 1300 },
-      { x: 'July', y: 1000 },
+      { x: 'August', y: 1850 },
+      { x: 'September', y: 1300 },
+      { x: 'October', y: 1000 },
     ],
     xName: 'x',
     yName: 'y',
@@ -2497,9 +2497,9 @@ export const groupedCustomSeries = [
   },
   {
     dataSource: [
-      { x: 'May', y: 2200 },
-      { x: 'June', y: 1800 },
-      { x: 'July', y: 1500 },
+      { x: 'August', y: 2200 },
+      { x: 'September', y: 1800 },
+      { x: 'October', y: 1500 },
     ],
     xName: 'x',
     yName: 'y',

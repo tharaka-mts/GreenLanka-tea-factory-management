@@ -52,9 +52,8 @@ const GreenLankaReport = () => {
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <p style={{ color: currentColor }} class="text-center  text-5xl font-black">Green Lanka Tea Factory</p>
-      <p style={{ color: currentColor }} class="text-center mt-3 text-3xl font-black">Monthly Income and Expenses Report</p>
-      <p style={{ color: currentColor }} class="text-center mt-3 text-xl font-black">Reporting Period: 01 July 2023 - 31 July 2023</p>
+      <p style={{ color: currentColor }} class="text-center xl:text-5xl lg:text-4xl md:text-3xl sm:text-3xl text-3xl font-black">Green Lanka Tea Factory</p>
+      <p style={{ color: currentColor }} class="text-center mt-3 xl:text-xl lg:text-xl md:text-lg sm:text-lg text-md font-black">Reporting Month: 2023 October</p>
 
       <p class="text-gray-900 mt-12 text-xl font-black">Income</p>
       <p class="text-gray-900 m-4 mt-1 text-min font-black">Total Quantity Produced</p>

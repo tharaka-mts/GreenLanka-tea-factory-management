@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { useStateContext } from '../contexts/ContextProvider';
 
 const FullReport = () => {
@@ -66,27 +67,6 @@ const FullReport = () => {
     { Title: 'Grade C', value: '1,718 kg', amount: 'LKR 687,005' },
     { Title: 'Grade D', value: '1,560 kg', amount: 'LKR 546,227' },
     { Title: 'Total', value: '7,058 kg', amount: 'LKR 2,987,234' },
-    // Add more data entries as needed
-  ];
-
-  const dataEquipment = [
-    { Title: 'Withering Machine', value: '250 h', amount: 'LKR 50,000' },
-    { Title: 'Rolling Machine', value: '220 h', amount: 'LKR 44,000' },
-    { Title: 'Drying Equipments', value: '200 h', amount: 'LKR 40,000' },
-    { Title: 'Total', value: '670 h', amount: 'LKR 134,000' },
-    // Add more data entries as needed
-  ];
-
-  const dataEnergy = [
-    { Title: 'Electricity', value: '10,000 kWh', amount: 'LKR 209, 500' },
-    { Title: 'Fuel', value: '325 L', amount: 'LKR 113, 750' },
-    { Title: 'Total', value: '', amount: 'LKR 323, 250' },
-    // Add more data entries as needed
-  ];
-
-  const dataTransportation = [
-    { Title: 'Utilization', value: '10,500 km', amount: 'LKR 52,500' },
-    { Title: 'Total', value: '', amount: 'LKR 52,500' },
     // Add more data entries as needed
   ];
 
@@ -191,20 +171,12 @@ const FullReport = () => {
       <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
         <table class="min-w-full">
           <tbody>
-
-            
-            {/* =============================== */}
-
             {/* {totalByGrade.map((item, index) => (
               <tr key={index} className="border-t">
                 <td className="py-2">{item._id}</td>
                 <td className="text-right">{item.total}</td>
               </tr>
             ))} */}
-
-            {/* ================================== */}
-
-
 
             {dataSalary.map((item, index) => (
               <tr key={index} className=' border-t'>
@@ -219,48 +191,50 @@ const FullReport = () => {
 
 
       <p class="text-gray-900 mt-10 text-xl font-black">Expences</p>
-      <p class="text-gray-900 m-4 mt-1 text-min font-black">Equipment & Machinery Utilization</p>
 
       <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
         <table class="min-w-full">
           <tbody>
-            {dataEquipment.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Withering Machine</td>
+                <td class="text-right">LKR {expense.wMachine}</td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-gray-900 m-4 mt-6 text-min font-black">Energy Consumption</p>
-
-      <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
-        <table class="min-w-full">
-          <tbody>
-            {dataEnergy.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2 ">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Rolling Machine</td>
+                <td class="text-right">LKR {expense.rMachine}</td>
               </tr>
             ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p class="text-gray-900 m-4 mt-6 text-min font-black">Transportation</p>
-
-      <div class="flex flex-col overflow-x-auto sm:mx-0.5 lg:mx-0.5 min-w-full py-2 inline-block sm:px-6 lg:px-8 overflow-hidden">
-        <table class="min-w-full">
-          <tbody>
-            {dataTransportation.map((item, index) => (
+            {filteredExpenses.map((expense, index) => (
               <tr key={index} className=' border-t'>
-                <td class="py-2">{item.Title}</td>
-                <td class="text-right">{item.value}</td>
-                <td class="text-right">{item.amount}</td>
+                <td class="py-2">Drying Machine</td>
+                <td class="text-right">LKR {expense.dMachine}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Electricity</td>
+                <td class="text-right">LKR {expense.electricity}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Fuel</td>
+                <td class="text-right">LKR {expense.fuel}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2">Transport Utilization</td>
+                <td class="text-right">LKR {expense.transport}</td>
+              </tr>
+            ))}
+            {filteredExpenses.map((expense, index) => (
+              <tr key={index} className=' border-t'>
+                <td class="py-2 text-lg font-black">Total</td>
+                <td class="text-right  text-lg font-black">LKR {calculateTotalMachineExpenses()}</td>
               </tr>
             ))}
           </tbody>
