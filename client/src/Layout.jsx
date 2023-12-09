@@ -71,7 +71,7 @@ const Layout = () => {
             <div>
               {themeSettings && <ThemeSettings />}
 
-              { (cookies.access_token) ? <Outlet /> : navigate('/login')}
+              { (cookies.access_token) ? <Outlet /> : navigate('/login') }
             </div>
             {/*  */}
           </div>
