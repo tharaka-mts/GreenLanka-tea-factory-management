@@ -6,19 +6,50 @@ const ChangePassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPasswords, setShowPasswords] = useState(false);
+  const [error, setError] = useState(null);
 
   const { currentColor, currentMode } = useStateContext();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add password change logic here
-  };
 
+    if (newPassword === confirmPassword) {
+      try {
+        const response = await fetch('/api/changePassword', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // Include any other headers needed (e.g., authentication token)
+          },
+          body: JSON.stringify({
+            currentPassword,
+            newPassword,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
+        }
+
+        // Reset the form
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        setError(null);
+
+        console.log('Password changed successfully');
+      } catch (error) {
+        setError(error.message);
+      }
+    } else {
+      setError('New password and confirm password must match');
+    }
+  };
 
   const toggleShowPasswords = () => {
     setShowPasswords(!showPasswords);
   };
-
  
 
   return (

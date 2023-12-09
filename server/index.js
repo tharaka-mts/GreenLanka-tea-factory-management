@@ -13,6 +13,7 @@ import { teamsRouter } from "./src/routes/teams.js";
 import { supProductionRouter } from "./src/routes/supProduct.js";
 import { AddSalaryDetailsRouter } from "./src/routes/addSalaryDetails.js";
 import { weightRouter } from "./src/routes/weightRouter.js";
+import { leavesRouter } from "./src/routes/leavesRouter.js";
 
 const app = express();
 const port = 3005;
@@ -36,6 +37,7 @@ async function startServer() {
         app.use('/sup/prod', supProductionRouter);
         app.use('/addSalaryDetails', AddSalaryDetailsRouter);
         app.use('/getWeight', weightRouter)
+        app.use('/leave' , leavesRouter)
 
         app.listen(port, () => {
             console.log(`Listening on port ${port}`);
