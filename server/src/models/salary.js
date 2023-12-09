@@ -1,4 +1,4 @@
-impo{rt  Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const salarySchema = new Schema({
     userId: {type: Schema.Types.ObjectId, ref:'users', required: true},
