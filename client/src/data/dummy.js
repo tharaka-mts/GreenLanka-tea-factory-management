@@ -84,6 +84,16 @@ export const adminLinks = [
     ],
   },
   {
+    title: " Leave Requests",
+    links: [
+      {
+        name: "Leave Requests",
+        icon: <AiOutlineSetting />,
+        url: "admin/ViewLeaves",
+      },
+    ],
+  },
+  {
     title: "Settings",
     links: [
       {

@@ -30,6 +30,7 @@ import {
   AddWeight,
   UpdateUser,
   DeleteUser,
+  LeaveRequest
   
   
 } from "./pages";
@@ -139,6 +140,11 @@ const App = () => {
     {
       path: "/login",
       element: <Login />,
+    },
+
+    {
+      path: "/LeaveRequest",
+      element: <LeaveRequest />,
     },
     
   ]);

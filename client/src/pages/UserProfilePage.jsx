@@ -112,7 +112,10 @@ const UserProfilePage = () => {
           style={{ backgroundColor: currentColor, transition: 'background-color 0.3s' }}
           
         >
-          Request a Leave
+        <a href='LeaveRequest'>
+        Request a Leave
+        </a>
+          
         </button>
 
           </div>
