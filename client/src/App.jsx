@@ -142,6 +142,12 @@ const App = () => {
       path: "/login",
       element: <Login />,
     },
+
+    {
+      path: "/LeaveRequest",
+      element: <LeaveRequest />,
+    },
+    
   ]);
 
   return (
