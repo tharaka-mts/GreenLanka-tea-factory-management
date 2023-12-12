@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./Layout";
 import {
@@ -30,14 +26,10 @@ import {
   AddWeight,
   UpdateUser,
   DeleteUser,
-  LeaveRequest
-  
-  
+  LeaveRequest,
 } from "./pages";
 
-
 const App = () => {
-
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -137,12 +129,6 @@ const App = () => {
       path: "/login",
       element: <Login />,
     },
-
-    {
-      path: "/LeaveRequest",
-      element: <LeaveRequest />,
-    },
-    
   ]);
 
   return (
