@@ -29,7 +29,6 @@ import {
   LeaveRequest,
 } from "./pages";
 
-
 const App = () => {
   const routes = createBrowserRouter([
     {
@@ -142,12 +141,6 @@ const App = () => {
       path: "/login",
       element: <Login />,
     },
-
-    {
-      path: "/LeaveRequest",
-      element: <LeaveRequest />,
-    },
-    
   ]);
 
   return (
