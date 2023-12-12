@@ -146,7 +146,9 @@ const UpdateUser = () => {
             <button type="submit" className="bg-green-400 text-white hover:bg-green-600 py-2 px-4 rounded-md">
               Update User
             </button>
-            <button type="button" className="bg-red-500 text-white hover:bg-red-600 py-2 px-4 rounded-md">
+            <button type="button" className="bg-red-500 text-white hover:bg-red-600 py-2 px-4 rounded-md"
+              onClick={() => navigate('/manage')}
+            >
               Cancel
             </button>
           </div>

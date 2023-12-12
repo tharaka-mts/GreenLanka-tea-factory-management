@@ -83,7 +83,7 @@ const UpdateSalaryDetails = () => {
       if (response.ok) {
         console.log('Salary details updated successfully:', data); // Log data to the console
         setResult(data.message);
-        alert("User Added Successfully");
+        alert("Salary updated Successfully");
         navigate('/salary')
 
       } else {
@@ -260,7 +260,7 @@ const UpdateSalaryDetails = () => {
             </button>
             <button
               type="button"
-              onClick={() => navigate('/manage')}
+              onClick={() => navigate('/salary')}
               className="bg-red-500 text-white px-4 py-2 rounded-md"
             >
               Cancel
