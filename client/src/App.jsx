@@ -109,7 +109,7 @@ const App = () => {
         },
         {
           path: "/ChangeProfilePicture",
-          element: <  ChangeProfilePicture />,
+          element: <ChangeProfilePicture />,
         },
         {
           path: "/AddSalaryDetails",
@@ -122,6 +122,18 @@ const App = () => {
         {
           path: "/addweight",
           element: <AddWeight />,
+        },
+        {
+          path: "/UpdateUser/:userId",
+          element: <UpdateUser />,
+        },
+        {
+          path: "/DeleteUser/:userId",
+          element: <DeleteUser />,
+        },
+        {
+          path: "/LeaveRequest",
+          element: <LeaveRequest />,
         },
       ],
     },
