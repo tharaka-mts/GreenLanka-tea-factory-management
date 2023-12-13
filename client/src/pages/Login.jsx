@@ -36,11 +36,11 @@ const Login = () => {
           ? navigate("/UserProfilePage")
           : navigate("/");
       } else {
-        setMessage(response.data.message);
+        setMessage("Success");
       }
     } catch (error) {
       console.error("Login error:", error);
-      setMessage("An error occurred while logging in.");
+      setMessage("Wrong Password or Username");
     }
   };
 
@@ -87,8 +87,12 @@ const Login = () => {
                                          font-weight-700 uppercase  pt-5 text-green-500"
                       >
                         Login
+                        <br />
                       </h3>
                     </div>
+                    <span className="text-red-500 font-semibold">
+                      {message}
+                    </span>
 
                     <div
                       class="bg-white shadow-md rounded relative mb-6 mt-6"
