@@ -47,6 +47,8 @@ router.post('/user', async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
     
+
+    
     // Exclude sensitive information like password from the response
     const userWithoutPassword = {
       _id: user._id,

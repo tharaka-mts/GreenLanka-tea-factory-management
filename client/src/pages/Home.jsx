@@ -1,61 +1,98 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { GoDot } from 'react-icons/go';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { GoDot } from "react-icons/go";
+import { Link } from "react-router-dom";
 
-import { Stacked, Pie, LineChart, SparkLine } from '../components';
-import { earningData, SparklineAreaData, ecomPieChartData, recentTea } from '../data/dummy';
-import { useStateContext } from '../contexts/ContextProvider';
-import viewWeight from './ViewWeight.jsx';
+import { Stacked, Pie, LineChart, SparkLine } from "../components";
+import {
+  earningData,
+  SparklineAreaData,
+  ecomPieChartData,
+  recentTea,
+} from "../data/dummy";
+import { useStateContext } from "../contexts/ContextProvider";
+import viewWeight from "./ViewWeight.jsx";
 
-
+//=======================================================================================================================
 
 const Home = () => {
+  const { currentColor, currentMode } = useStateContext();
+  const [teaRates, setTeaRates] = useState({});
+  const [acceptedOrDeclined, setAcceptedOrDeclined] = useState(false);
+  const [showAcceptModal, setShowAcceptModal] = useState(false);
+  const [showDeclineModal, setShowDeclineModal] = useState(false);
+  const [comment, setComment] = useState("");
+  const [declinedMessage, setDeclinedMessage] = useState(false);
+  const [isRatesAccepted, setIsRatesAccepted] = useState(false);
 
-  const { currentColor, currentMode, totalWeight, setTotalWeight } = useStateContext();
+  useEffect(() => {
+    // Fetch the latest tea rate and its acceptance/decline status
+    axios
+      .get("http://localhost:3005/api/getTeaRate")
+      .then((response) => {
+        setTeaRates(response.data.teaRate);
+        setAcceptedOrDeclined(response.data.acceptedOrDeclined);
+        // setDeclinedMessage(response.data.declinedMessage);
+      })
+      .catch((error) => {
+        console.error("Error fetching tea rates:", error);
+      });
+  }, []);
 
-  const[users,setUsers] = useState('');
+  const handleAccept = () => {
+    setShowAcceptModal(true);
+  };
 
+  const handleAcceptConfirmation = () => {
+    // Add logic to update the tea rate status to "Accepted" in the database
+    axios
+      .put("http://localhost:3005/api/acceptTeaRate")
+      .then((response) => {
+        alert(response.data.message);
+        setAcceptedOrDeclined(true);
+        setShowAcceptModal(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-const fetchUsers = async () => {
-  try {
-    const response = await axios.get('http://localhost:3005/emp/prod/get');
+  const handleDecline = () => {
+    setShowDeclineModal(true);
+  };
 
-    if (response.status === 200) {
-      // console.log('Fetched users successfully:', response.data);
-      setUsers(response.data);
+  const handleDeclineConfirmation = () => {
+    // Check if the comment is provided
+    if (!comment) {
+      alert("Please provide a reason for declining.");
+      return;
     }
-  } catch (error) {
-    console.error('Fetch users error:', error);
-  }
-};
-
-useEffect(() => {
-  fetchUsers();
-}, [users]);
-
-  const totalTeaWeight = () => {
-    let total = 0;
-    (users) && users.forEach((plucker) => {
-      total += plucker.weight;
-      setTotalWeight(total);
-    });
-    return total;
+    // Add logic to update the tea rate status to "Declined" in the database
+    axios
+      .put("http://localhost:3005/api/declineTeaRate", { comment })
+      .then((response) => {
+        alert(response.data.message);
+        setAcceptedOrDeclined(true);
+        setShowDeclineModal(false);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <div className="my-16">
       <div className="flex flex-wrap lg:flex-nowrap justify-center ">
-        <div  className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center">
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg h-44 rounded-xl w-full lg:w-80 p-8 pt-9 m-3 bg-no-repeat bg-cover bg-center">
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Today's Production</p>
-              <p className="text-3xl">{totalTeaWeight()} KG</p>
+              <p className="text-3xl">{'52.2'} KG</p>
             </div>
           </div>
           <div className="mt-6">
             <Link
-              to='/viewWeight'
+              to="/viewWeight"
               style={{ backgroundColor: currentColor }}
               className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
             >
@@ -65,20 +102,30 @@ useEffect(() => {
         </div>
         <div className="flex m-3 flex-wrap justify-center gap-1 items-center">
           {earningData.map((item) => (
-            <div key={item.title} className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl ">
-              <Link to='/attendance'>
-              <button
-                type="button"
-                style={{ color: item.iconColor, backgroundColor: item.iconBg }}
-                className="text-lg opacity-0.9 rounded-[15px]  p-4 hover:drop-shadow-xl"
-              >
-                {item.title}
-              </button>
+            <div
+              key={item.title}
+              className="bg-white h-44 dark:text-gray-200 dark:bg-secondary-dark-bg md:w-56  p-4 pt-9 rounded-2xl "
+            >
+              <Link to="/attendance">
+                <button
+                  type="button"
+                  style={{
+                    color: item.iconColor,
+                    backgroundColor: item.iconBg,
+                  }}
+                  className="text-lg opacity-0.9 rounded-[15px]  p-4 hover:drop-shadow-xl"
+                >
+                  {item.title}
+                </button>
               </Link>
               <p className="mt-3">
-                <span className="text-lg text-gray-500 font-semibold">Total : {item.total}</span>
+                <span className="text-lg text-gray-500 font-semibold">
+                  Total : {item.total}
+                </span>
               </p>
-              <p className="text-lg text-gray-400  mt-1">Present : {item.present}</p>
+              <p className="text-lg text-gray-400  mt-1">
+                Present : {item.present}
+              </p>
             </div>
           ))}
         </div>
@@ -121,16 +168,24 @@ useEffect(() => {
               </div>
 
               <div className="mt-5">
-                <SparkLine currentColor={currentColor} id="line-sparkLine" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor} />
+                <SparkLine
+                  currentColor={currentColor}
+                  id="line-sparkLine"
+                  type="Line"
+                  height="80px"
+                  width="250px"
+                  data={SparklineAreaData}
+                  color={currentColor}
+                />
               </div>
               <div className="mt-10">
-              <Link
-              to='/reports'
-              style={{ backgroundColor: currentColor }}
-              className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
-            >
-              Show More
-            </Link>
+                <Link
+                  to="/reports"
+                  style={{ backgroundColor: currentColor }}
+                  className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
+                >
+                  Show More
+                </Link>
               </div>
             </div>
             <div>
@@ -139,22 +194,171 @@ useEffect(() => {
           </div>
         </div>
         <div>
-          <div
-            className=" rounded-2xl md:w-400 p-4 m-3 bg-white text-gray-500 dark:text-gray-200 dark:bg-secondary-dark-bg"
-          >
-            <div className="flex justify-between items-center ">
-              <p className="font-semibold text-2xl">Tea Value :</p>
+          <div className=" rounded-2xl md:w-400 p-4 m-3 bg-white text-gray-500 dark:text-gray-200 dark:bg-secondary-dark-bg">
+            {/* Pop-up modal confirmation */}
+            {/* {showConfirmation && (
+              <div className="modal">
+                <div className="modal-content">
+                  <p>Are you sure you want to accept these rates?</p>
+                  <button onClick={handleAcceptTeaRate}>Yes</button>
+                  <button onClick={() => setShowConfirmation(false)}>No</button>
+                </div>
+              </div>
+            )} */}
 
-              <div>
-                <p className="text-2xl font-semibold mt-8">LKR 350.50</p>
-                <p className="text-gray-400">For 1KG</p>
+            <div className="rounded-2xl md:w-400 p-2 m-2 bg-white text-gray-500 dark:text-gray-200 dark:bg-secondary-dark-bg">
+              {/* {isRatesAccepted && (
+                <div>
+                  <p className="font-semibold text-lg " style={{ color: currentColor }}>Tea rates were Accepted...</p>
+                </div>
+              )} */}
+
+              {/* Decline Modal */}
+              {/* {showDeclineModal && (
+                <div className="modal">
+                  <div className="modal-content">
+                    <p>Please provide a reason for declining:</p>
+                    <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Add your reason here" />
+                    <button onClick={handleDecline}>Submit</button>
+                    <button onClick={() => setShowDeclineModal(false)}>Cancel</button>
+                  </div>
+                </div>
+              )} */}
+
+              {/* {declinedMessage && (
+                <div>
+                  <p className="font-semibold text-lg" style={{ color: currentColor }}>
+                    Tea rates were Declined...
+                  </p>
+                </div>
+              )} */}
+
+              <div className="flex justify-between items-center mt-3">
+                <p className="font-semibold text-lg">
+                  Rate for Raw Tea Leaves :
+                </p>
+                <div>
+                  <p className="text-md font-semibold">
+                    LKR {teaRates.rateForRawTeaLeaves || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3">
+                <p className="font-semibold text-lg">
+                  Rate for Grade A Production :
+                </p>
+                <div>
+                  <p className="text-md font-semibold">
+                    LKR {teaRates.rateForGradeAProduction || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3">
+                <p className="font-semibold text-lg">
+                  Rate for Grade B Production :
+                </p>
+                <div>
+                  <p className="text-md font-semibold">
+                    LKR {teaRates.rateForGradeBProduction || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3">
+                <p className="font-semibold text-lg">
+                  Rate for Grade C Production :
+                </p>
+                <div>
+                  <p className="text-md font-semibold">
+                    LKR {teaRates.rateForGradeCProduction || "N/A"}
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-3">
+                <p className="font-semibold text-lg">
+                  Rate for Grade D Production :
+                </p>
+                <div>
+                  <p className="text-md font-semibold">
+                    LKR {teaRates.rateForGradeDProduction || "N/A"}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex justify-around mt-8">
+                {/* If rates were accepted, show the message and the link to the home page */}
+                <button
+                  className="text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]"
+                  style={{ backgroundColor: currentColor }}
+                  onClick={handleAccept}
+                  disabled={acceptedOrDeclined}
+                  // disabled={buttonsDisabled || declinedMessage} // Disable all two buttons when accepted
+                >
+                  Accept
+                </button>
+
+                {/* If rates were accepted, show the message and the link to the home page */}
+                <button
+                  className="text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]"
+                  style={{ backgroundColor: "#f56565" }}
+                  onClick={handleDecline}
+                  // disabled={declinedMessage}
+                  disabled={acceptedOrDeclined}
+                  // disabled={buttonsDisabled || isRatesAccepted} // Disable all two buttons when Declined
+                >
+                  Decline
+                </button>
               </div>
             </div>
 
-            <div className="flex justify-around mt-4">
-              <button className='text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]' style={{ backgroundColor: currentColor }} >Accept</button>
-              <button className='text-lg p-3 w-auto hover:drop-shadow-xl text-white hover:bg-gray-200 rounded-[10px]' style={{ backgroundColor: '#f56565' }} >Decline</button>
-            </div>
+            {showAcceptModal && (
+              <div className="modal">
+                <div className="modal-content">
+                  <p>Are you sure you want to accept these rates?</p>
+                  <button onClick={handleAcceptConfirmation}>Yes</button>
+                  <button onClick={() => setShowAcceptModal(false)}>No</button>
+                </div>
+              </div>
+            )}
+
+            {acceptedOrDeclined && (
+              <div>
+                <p
+                  className="font-semibold text-lg"
+                  style={{ color: currentColor }}
+                >
+                  {teaRates.status === "Accepted"
+                    ? "Tea rates were already Accepted..."
+                    : teaRates.status === "Declined"
+                    ? "Tea rates were already Declined..."
+                    : ""}
+                </p>
+              </div>
+            )}
+
+            {/* {declinedMessage && (
+              // <div>
+              //   <p className="font-semibold text-lg" style={{ color: currentColor }}>
+              //     Tea rates were already Declined...
+              //   </p>
+              // </div>
+            )} */}
+
+            {showDeclineModal && (
+              <div className="modal">
+                <div className="modal-content">
+                  <p>Please provide a reason for declining:</p>
+                  <textarea
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder="Add your reason here"
+                  />
+                  <button onClick={handleDeclineConfirmation}>Submit</button>
+                  <button onClick={() => setShowDeclineModal(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">
@@ -164,7 +368,12 @@ useEffect(() => {
             </div>
 
             <div className="w-40">
-              <Pie id="pie-chart" data={ecomPieChartData} legendVisiblity={false} height="160px" />
+              <Pie
+                id="pie-chart"
+                data={ecomPieChartData}
+                legendVisiblity={false}
+                height="160px"
+              />
             </div>
           </div>
         </div>
@@ -189,7 +398,7 @@ useEffect(() => {
                   >
                     {item.icon}
                   </button>
-                  <div className='mt-3'>
+                  <div className="mt-3">
                     <p className="text-md font-semibold">{item.title}</p>
                   </div>
                 </div>
@@ -199,13 +408,13 @@ useEffect(() => {
           </div>
           <div className="flex justify-between items-center mt-5 border-t-1 border-color">
             <div className="mt-5">
-            <Link
-              to='/production'
-              style={{ backgroundColor: currentColor }}
-              className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
-            >
-              Show More
-            </Link>
+              <Link
+                to="/production"
+                style={{ backgroundColor: currentColor }}
+                className=" text-lg text-white p-3 w-auto hover:drop-shadow-xl hover:bg-gray-200 rounded-[10px]"
+              >
+                Show More
+              </Link>
             </div>
           </div>
         </div>
