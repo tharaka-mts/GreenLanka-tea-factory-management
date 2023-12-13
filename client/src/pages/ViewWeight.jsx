@@ -21,24 +21,24 @@ const ViewWeight = () => {
   //   fetchUsers();
   // }, []);
 
-  const [users, setUsers] = useState("");
+  // const [users, setUsers] = useState("");
 
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:3005/emp/prod/get");
+  // const fetchUsers = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:3005/emp/prod/get");
 
-      if (response.status === 200) {
-        // console.log('Fetched users successfully:', response.data);
-        setUsers(response.data);
-      }
-    } catch (error) {
-      console.error("Fetch users error:", error);
-    }
-  };
+  //     if (response.status === 200) {
+  //       // console.log('Fetched users successfully:', response.data);
+  //       setUsers(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error("Fetch users error:", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchUsers();
-  }, [users]);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, [users]);
 
   const[users,setUsers] = useState('');
 
