@@ -87,7 +87,7 @@ const Home = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="font-bold text-gray-400">Today's Production</p>
-              <p className="text-3xl">{'totalTeaWeight()'} KG</p>
+              <p className="text-3xl">{'52.2'} KG</p>
             </div>
           </div>
           <div className="mt-6">
