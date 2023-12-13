@@ -9,7 +9,7 @@ import { BiHomeAlt } from "react-icons/bi";
 import { TbReport } from "react-icons/tb";
 import { PiUsers } from "react-icons/pi";
 import { RiFolderSettingsLine } from "react-icons/ri";
-import { AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineSetting, AiOutlineSolution } from "react-icons/ai";
 import { GiTakeMyMoney, GiWeightScale } from 'react-icons/gi';
 
 import { GiSummits, GiThreeLeaves, GiAbstract034 } from 'react-icons/gi';
@@ -87,8 +87,8 @@ export const adminLinks = [
     title: " Leave Requests",
     links: [
       {
-        name: "Leave Requests",
-        icon: <AiOutlineSetting />,
+        name: "LeaveRequests",
+        icon: <AiOutlineSolution />,
         url: "admin/ViewLeaves",
       },
     ],
