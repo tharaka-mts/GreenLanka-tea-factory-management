@@ -1,98 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import DeleteUser from './DeleteUser'
-import { useStateContext } from '../contexts/ContextProvider';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import DeleteUser from "./DeleteUser";
+import { useStateContext } from "../contexts/ContextProvider";
 
-const API_URL = 'http://localhost:3005/get';
+const API_URL = "http://localhost:3005/";
 
 const Manage = () => {
- 
   const [users, setUsers] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedPosition, setSelectedPosition] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedPosition, setSelectedPosition] = useState("");
   const [editingUser, setEditingUser] = useState(null);
   const { currentColor } = useStateContext();
 
-  const userId = window.localStorage.getItem('userID');
+  const userId = window.localStorage.getItem("userID");
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3005/get/users');
-  
+      const response = await axios.get("http://localhost:3005/leave/getleaves");
+
       if (response.status === 200) {
-        console.log('Fetched users successfully:', response.data);
+        console.log("Fetched users successfully:", response.data);
         setUsers(response.data);
       }
     } catch (error) {
-      console.error('Fetch users error:', error);
+      console.error("Fetch users error:", error);
     }
   };
-  
+
   useEffect(() => {
     fetchUsers();
   }, []);
-  
 
   const handleSearch = async () => {
     try {
       const response = await axios.get(`${API_URL}/users/search`, {
         params: { searchTerm, selectedPosition },
       });
-      console.log('Search results:', response.data);
+      console.log("Search results:", response.data);
       setUsers(response.data);
     } catch (error) {
-      console.error('Error searching users:', error);
+      console.error("Error searching users:", error);
       setUsers([]);
     }
-  };
-  
-
-  const handleDelete = async ({ userId }) => {
-    const confirmed = window.confirm('Are you sure you want to delete this user?');
-  
-    if (confirmed) {
-      try {
-        await axios.delete(`http://localhost:3005/auth/delete/${userId}`);
-        // Filter out the deleted user from the state
-        setUsers(users.filter(user => user._id !== userId));
-        console.log('Deleted Successfully')
-      } catch (error) {
-        console.error('Error deleting user:', error);
-      }
-    }
-  };
-  
-
-  const handleEdit = (user) => {
-    setEditingUser(user);
-  };
-
-  const handleUpdate = async () => {
-    setEditingUser(null);
-  };
-
-  const handleCancelEdit = () => {
-    setEditingUser(null);
   };
 
   const filteredUsers = users.filter((user) => {
     return (
-      user.firstname.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedPosition === '' || user.type === selectedPosition)
+      user.username.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedPosition === "" || user.type === selectedPosition)
     );
   });
 
-  const positions = ['Manager', 'Supervisor', 'Employee', 'Tea Plucker'];
+  const positions = ["Manager", "Supervisor", "Employee", "Tea Plucker"];
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
         <div className="mb-4">
           <Link to="/adduser">
-          <button className="text-white py-2 px-4 rounded hover:bg-green-800" style={{ backgroundColor: currentColor }}>
-                   Add User
-               </button>
+            <button
+              className="text-white py-2 px-4 rounded hover:bg-green-800"
+              style={{ backgroundColor: currentColor }}
+            >
+              Add User
+            </button>
           </Link>
         </div>
 
@@ -128,56 +100,52 @@ const Manage = () => {
         </div>
 
         <table className="min-w-full">
-        <thead>
-          <tr>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Username
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Name
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Email
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Address
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Phone Number
-            </th>
-            <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Position
-            </th>
-            <th className="px-6 py-3 bg-gray-50"></th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200 text-center justify-center">
-          {filteredUsers.map((user) => (
-            <tr key={user._id}>
-              <td>{user.username}</td>
-              <td>{user.firstname}</td>
-              <td>{user.email}</td>
-              <td>{user.address}</td>
-              <td>{user.mobile}</td>
-              <td>{user.type}</td>
+          <thead>
+            <tr>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Username
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Reason
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Start Date
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                End Date
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Type
+              </th>
+              <th className="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th className="px-6 py-3 bg-gray-50"></th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200 text-start justify-center">
+            {filteredUsers.map((user) => (
+              <tr key={user._id}>
+                <td className="ps-3">{user.username}</td>
+                <td className="ps-5">{user.reason}</td>
+                <td className="ps-5">{user.startdate}</td>
+                <td className="ps-4">{user.enddate}</td>
+                <td className="ps-4">{user.type}</td>
+                <td className="ps-4">{user.status}</td>
                 <td>
                   <div className="flex">
-                  <Link to={`/UpdateUser/${user._id}`}>
-          <button
-      className="bg-blue-500 ml-5 text-sm p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]"
-           >
-    Edit
-  </button>
-</Link>
+                    <Link to={() => console.log("Approved")}>
+                      <button className="bg-blue-500 ml-5 text-sm p-3 w-auto hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]">
+                        Approve
+                      </button>
+                    </Link>
 
-<button
+                    <button
                       className="bg-red-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-red-800 rounded-[10px]"
-                      onClick={() => handleDelete({ userId: user._id })}
+                      onClick={() => console.log("Delete user")}
                     >
-                      Delete
+                      Deny
                     </button>
-
-                    
                   </div>
                 </td>
               </tr>

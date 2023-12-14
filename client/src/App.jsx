@@ -27,6 +27,7 @@ import {
   UpdateUser,
   DeleteUser,
   LeaveRequest,
+  ViewLeaves,
 } from "./pages";
 
 const App = () => {
@@ -134,6 +135,10 @@ const App = () => {
         {
           path: "/LeaveRequest",
           element: <LeaveRequest />,
+        },
+        {
+          path: "/leaverequests",
+          element: <ViewLeaves />,
         },
       ],
     },
