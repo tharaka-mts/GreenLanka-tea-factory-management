@@ -228,11 +228,23 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
+// Define a route for generate QR code
 
+router.post('/generateQR', async (req, res) => {
+  const { username } = req.body;
 
+  try {
+    // Generate the QR code for the username
+    await QRCode.toFile(`public/qrcodes/${username}.png`, username, {
+      width: 800,
+      margin: 2,
+    });
 
-
-  
-  
+    res.json({ message: 'QR code generated successfully' });
+  } catch (error) {
+    console.error('QR code generation error:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 export { router as userRouter };
