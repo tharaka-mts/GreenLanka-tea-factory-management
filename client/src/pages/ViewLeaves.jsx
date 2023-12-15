@@ -58,14 +58,14 @@ const Manage = () => {
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
         <div className="mb-4">
-          <Link to="/adduser">
+          {/* <Link to="/adduser">
             <button
               className="text-white py-2 px-4 rounded hover:bg-green-800"
               style={{ backgroundColor: currentColor }}
             >
               Add User
             </button>
-          </Link>
+          </Link> */}
         </div>
 
         <div className="flex mb-4">
