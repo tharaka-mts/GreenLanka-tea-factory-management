@@ -15,6 +15,7 @@ import { AddSalaryDetailsRouter } from "./src/routes/addSalaryDetails.js";
 import { weightRouter } from "./src/routes/weightRouter.js";
 import { leavesRouter } from "./src/routes/leavesRouter.js";
 import { teaRateRouter } from "./src/routes/teaRateRouter.js";
+import { salaryRouter } from "./src/routes/salaryRouter.js";
 
 const app = express();
 const port = 3005;
@@ -40,6 +41,7 @@ async function startServer() {
     app.use("/getWeight", weightRouter);
     app.use("/leave", leavesRouter);
     app.use("/api", teaRateRouter);
+    app.use("/salary", salaryRouter);
 
     app.listen(port, () => {
       console.log(`Listening on port ${port}`);
