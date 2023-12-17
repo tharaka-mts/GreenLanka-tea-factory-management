@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
+import { successMessage } from "../components/Popup";
 
 const API_URL = "http://localhost:3005/";
 
@@ -37,9 +38,10 @@ const Manage = () => {
         status: status,
       });
       // Filter out the deleted user from the state
-      console.log("Deleted Successfully");
-      alert(`Successfully ${status}`);
-      navigate(0);
+      successMessage();
+      setTimeout(() => {
+        navigate(0);
+      }, 1800);
     } catch (error) {
       console.error("Error deleting user:", error);
     }
