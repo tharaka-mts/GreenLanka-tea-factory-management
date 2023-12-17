@@ -4,6 +4,12 @@ import { useStateContext } from "../../contexts/ContextProvider";
 const SalaryTable = ({ users }) => {
   const { currentColor } = useStateContext();
 
+  // Parse the backend date string
+  const formatDate = (date) => {
+    const backendDate = new Date(date);
+    return backendDate.toISOString().split("T")[0];
+  };
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full table-auto">
@@ -40,7 +46,7 @@ const SalaryTable = ({ users }) => {
               <td className="px-6 py-4">
                 {user.firstname + " " + user.lastname}
               </td>
-              <td className="px-6 py-4">{user.date}</td>
+              <td className="px-6 py-4">{formatDate(user.date)}</td>
               <td className="px-6 py-4">{user.basic}</td>
               <td className="px-6 py-4">{user.bonus}</td>
               <td className="px-6 py-4">{user.finalSalary}</td>

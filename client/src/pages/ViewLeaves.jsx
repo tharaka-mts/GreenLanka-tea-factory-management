@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import DeleteUser from "./DeleteUser";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const API_URL = "http://localhost:3005/";
@@ -14,13 +13,13 @@ const Manage = () => {
   const { currentColor } = useStateContext();
 
   const userId = window.localStorage.getItem("userID");
+  const navigate = useNavigate();
 
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:3005/leave/getleaves");
 
       if (response.status === 200) {
-        console.log("Fetched users successfully:", response.data);
         setUsers(response.data);
       }
     } catch (error) {
@@ -30,7 +29,21 @@ const Manage = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [""]);
+
+  const handleStatus = async (Id, status) => {
+    try {
+      await axios.put(`http://localhost:3005/leave/updateLeave/${Id}`, {
+        status: status,
+      });
+      // Filter out the deleted user from the state
+      console.log("Deleted Successfully");
+      alert(`Successfully ${status}`);
+      navigate(0);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   const handleSearch = async () => {
     try {
@@ -134,15 +147,26 @@ const Manage = () => {
                 <td className="ps-4">{user.status}</td>
                 <td>
                   <div className="flex">
-                    <Link to={() => console.log("Approved")}>
-                      <button className="bg-blue-500 ml-5 text-sm p-3 w-auto hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]">
-                        Approve
-                      </button>
-                    </Link>
+                    <button
+                      onClick={() => handleStatus(user._id, "Approved")}
+                      className={
+                        user.status === "Approved"
+                          ? `bg-blue-300 ml-5 text-sm p-3 w-auto text-white rounded-[10px]`
+                          : `bg-blue-500 ml-5 text-sm p-3 w-auto hover:drop-shadow-xl text-white hover:bg-blue-800 rounded-[10px]`
+                      }
+                      disabled={user.status === "Approved"}
+                    >
+                      Approve
+                    </button>
 
                     <button
-                      className="bg-red-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-red-800 rounded-[10px]"
-                      onClick={() => console.log("Delete user")}
+                      className={
+                        user.status === "Denied"
+                          ? "bg-red-300 ml-5 text-m p-3 w-[70px] text-white rounded-[10px]"
+                          : "bg-red-500 ml-5 text-m p-3 w-[70px] hover:drop-shadow-xl text-white hover:bg-red-800 rounded-[10px]"
+                      }
+                      onClick={() => handleStatus(user._id, "Denied")}
+                      disabled={user.status === "Denied"}
                     >
                       Deny
                     </button>

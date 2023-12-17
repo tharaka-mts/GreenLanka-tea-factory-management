@@ -10,7 +10,7 @@ const SSalary = () => {
     // { id: 13, name: 'Jane Smith', date: '2023-05-06', basic: 30000, ot: 70000 },
   ];
 
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState([]);
   const { currentColor, currentMode } = useStateContext();
   const [searchTerm, setSearchTerm] = useState("");
 
