@@ -7,7 +7,6 @@ const UserSchema = new Schema({
   nic: {type: String, required: true, unique: true},
   image: {type: String, required: true},
   type: {type: String, required: true},
-  // nic: {type: number, required: true},
   email: {type: String, required: true},
   address: {type: String, required: true},
   mobile: {type: String, required: true},

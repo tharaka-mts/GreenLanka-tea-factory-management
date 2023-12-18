@@ -15,10 +15,44 @@ teaRateRouter.get('/getTeaRate', async (req, res) => {
         if (teaRates.length === 0) {
             res.status(404).json({ message: 'No tea rates found' });
         } else {
-            res.json({
-                teaRate: teaRates[0],
-                acceptedOrDeclined: acceptedOrDeclined
-            });
+            res.json(teaRates);
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+teaRateRouter.get('/getLatestTeaRates', async (req, res) => {
+    try {
+        // Retrieve all tea rates sorted by _id in descending order
+        const allTeaRates = await TeaRate.find().sort({ _id: -1 });
+
+        if (allTeaRates.length === 0) {
+            res.status(404).json({ message: 'No tea rates found' });
+        } else {
+            // Find the latest accepted or request tea rate
+            const latestTeaRate = allTeaRates.find(teaRate => teaRate.status === 'Accepted' || teaRate.status === 'Request');
+
+            // If no accepted or request tea rate is found, return an empty array
+            const responseArray = latestTeaRate ? [latestTeaRate] : [];
+
+            res.json(responseArray);
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+// Get all tea rate data
+teaRateRouter.get('/getLatestAcceptedTeaRate', async (req, res) => {
+    try {
+        const latestAcceptedTeaRates = await TeaRate.find({ status: "Accepted" }).sort({ _id: -1 }).limit(1);
+
+        if (latestAcceptedTeaRates.length === 0) {
+            res.status(404).json({ message: 'No latest accepted tea rate found' });
+        } else {
+            res.json(latestAcceptedTeaRates);
         }
     } catch (err) {
         res.status(500).json({ message: 'Internal server error' });

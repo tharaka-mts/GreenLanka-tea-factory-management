@@ -14,6 +14,7 @@ import {
   OutsideReport,
   FullReport,
   ViewAttendance,
+  ViewMoreDetails,
   AttendanceHistory,
   ViewProduction,
   UserProfilePage,
@@ -29,6 +30,11 @@ import {
   LeaveRequest,
   ViewLeaves,
 } from "./pages";
+import AddExpenses from "./pages/Manager/AddExpenses";
+import FinalProduction from "./pages/Manager/FinalProduction";
+import QualityCheck from "./pages/Manager/QualityCheck";
+import TeaRate from "./pages/Manager/TeaRate";
+
 
 const App = () => {
   const routes = createBrowserRouter([
@@ -85,6 +91,10 @@ const App = () => {
           element: <ViewAttendance />,
         },
         {
+          path: "/ViewMoreDetails",
+          element: <ViewMoreDetails />,
+        },
+        {
           path: "/AttendanceHistory",
           element: <AttendanceHistory />,
         },
@@ -135,6 +145,22 @@ const App = () => {
         {
           path: "/LeaveRequest",
           element: <LeaveRequest />,
+        },
+        {
+          path: "/addexpenses",
+          element: <AddExpenses />,
+        },
+        {
+          path: "/TeaRate",
+          element: <TeaRate />,
+        },
+        {
+          path: "/finalproduction",
+          element: <FinalProduction />,
+        },
+        {
+          path: "/QualityCheck",
+          element: <QualityCheck />,
         },
         {
           path: "/leaverequests",

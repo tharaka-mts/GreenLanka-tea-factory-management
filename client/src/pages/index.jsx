@@ -11,6 +11,7 @@ export { default as OutsideReport } from './OutsideReport';
 export { default as FullReport } from './FullReport';
 export { default as Area } from './Charts/Area';
 export { default as ViewAttendance } from './ViewAttendance';
+export { default as ViewMoreDetails } from './ViewMoreDetails';
 export { default as AttendanceHistory } from './AttendanceHistory';
 export { default as ViewProduction } from './ViewProduction';
 
@@ -27,3 +28,8 @@ export { default as UpdateUser } from './UpdateUser';
 export { default as DeleteUser } from './DeleteUser';
 export { default as LeaveRequest } from './LeaveRequest';
 export { default as ViewLeaves } from './ViewLeaves';
+
+export { default as AddExpenses } from './Manager/AddExpenses';
+export { default as FinalProduction } from './Manager/FinalProduction';
+export { default as QualityCheck } from './Manager/QualityCheck';
+export { default as TaeRate } from './Manager/TeaRate';

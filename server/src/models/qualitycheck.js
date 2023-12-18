@@ -1,11 +1,11 @@
 import mongoose from 'mongoose';
 import moment from 'moment-timezone';
 
-const finalProductionSchema = new mongoose.Schema({
-    grade: {
+const qualityCheckSchema = new mongoose.Schema({
+    sName: {
         type: String,
     },
-    finalWeight: {
+    newWeight: {
         type: Number,
         default: 0,
     },
@@ -19,4 +19,4 @@ const finalProductionSchema = new mongoose.Schema({
     },
 });
 
-export const FinalProduction = mongoose.model('FinalProduction', finalProductionSchema);
+export const QualityCheck = mongoose.model('QualityCheck', qualityCheckSchema);

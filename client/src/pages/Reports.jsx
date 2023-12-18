@@ -6,6 +6,23 @@ const Reports = () => {
   const { currentColor} = useStateContext();
   return (
     <div>
+      
+      <Link to='/QualityCheck'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-8 w-[22%] mt-8 mb-3 py-8 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Check Quality</button>
+      </Link>
+
+      <Link to='/FinalProduction'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[22%] mt-8 mb-3 py-8 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Add Production</button>
+      </Link>
+
+      <Link to='/TeaRate'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[22%] mt-8 mb-3 py-8 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Add Tea Rates</button>
+      </Link>
+
+      <Link to='/AddExpenses'>
+        <button style={{ color: currentColor, fontWeight: 'bold' }} class="md:m-2 w-[22%] mt-8 mb-3 py-8 font-semibold text-xl bg-gray-200 hover:shadow-xl duration-200 hover:bg-gray-100">Add Expenses</button>
+      </Link>
+
 
       <div class="min-h-screen  flex flex-wrap items-center  justify-center  ">
 

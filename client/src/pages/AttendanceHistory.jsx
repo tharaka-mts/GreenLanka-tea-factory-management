@@ -1,40 +1,30 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const API_URL = "http://localhost:3005";
+const API_URL = 'http://localhost:3005/api';
 
 const AttendanceHistory = () => {
   const [Attendance, setAttendances] = useState([]);
   const [Leave, setLeaves] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedPosition, setSelectedPosition] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedPosition, setSelectedPosition] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedYear, setSelectedYear] = useState('');
   const [Users, setUsers] = useState([]);
 
-  const positions = ["Manager", "Supervisor", "Employee", "Tea Plucker"];
+  const positions = ['Manager', 'Supervisor', 'Employee'];
 
   const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
   ];
 
-  const years = ["2022", "2023", "2024"];
+  const years = ['2022', '2023', '2024'];
 
   const currentYear = new Date().getFullYear();
 
-  const getSelectedYear =
-    selectedYear === "" ? currentYear : new Date(selectedYear).getFullYear();
+  const getSelectedYear = selectedYear === '' ? currentYear : new Date(selectedYear).getFullYear();
 
   useEffect(() => {
     fetchAttendances();
@@ -51,56 +41,54 @@ const AttendanceHistory = () => {
   // Fetch attendance data
   const fetchAttendances = async () => {
     try {
-      const response = await axios.get(`${API_URL}/attendance/getAttendance`);
-      const reversedData = response.data.reverse(); // Reverse the array
-      setAttendances(reversedData);
-      console.log("Attendance data:", reversedData);
+        const response = await axios.get(`${API_URL}/getAttendance`);
+        const reversedData = response.data.reverse(); // Reverse the array
+        setAttendances(reversedData);
     } catch (error) {
-      console.error("Error fetching Attendance:", error);
-      setAttendances([]);
+        console.error('Error fetching Attendance:', error);
+        setAttendances([]);
     }
   };
-
+  
   // Fetch user data based on usernames
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(`${API_URL}/get/users`);
-
+      const response = await axios.get(`${API_URL}/users`);
+      
       // Filter out entries with the position "Admin"
-      const filteredUsers = response.data.filter(
-        (user) => user.type !== "Admin"
-      );
+      const filteredUsers = response.data.filter(user => user.type !== "Admin" && user.type !== "Tea Plucker");
 
       setUsers(filteredUsers);
+
     } catch (error) {
-      console.error("Error fetching User data:", error);
+      console.error('Error fetching User data:', error);
       setUsers([]);
     }
   };
 
   // Fetch leave data
   const fetchLeaves = async () => {
-    try {
-      const response = await axios.get(`${API_URL}/leave/getLeaves`);
-      const reversedData = response.data.reverse(); // Reverse the array
-      setLeaves(reversedData);
-    } catch (error) {
-      console.error("Error fetching Leave:", error);
-      setLeaves([]);
-    }
+      try {
+          const response = await axios.get(`${API_URL}/getLeaves`);
+          const reversedData = response.data.reverse(); // Reverse the array
+          setLeaves(reversedData);
+      } catch (error) {
+          console.error('Error fetching Leave:', error);
+          setLeaves([]);
+      }
   };
 
   const handleClear = () => {
-    setSearchTerm("");
-    setSelectedPosition("");
-    setSelectedMonth("");
-    setSelectedYear("");
-  };
+    setSearchTerm('');
+    setSelectedPosition('');
+    setSelectedMonth('');
+    setSelectedYear('');
+  }
 
   const getMonthNameFromDate = (dateString) => {
     const date = new Date(dateString);
     return monthNames[date.getMonth()];
-  };
+  }
 
   const getYearFromDate = (dateString) => {
     const date = new Date(dateString);
@@ -110,16 +98,17 @@ const AttendanceHistory = () => {
   // Helper function to get the full name based on username
   const getFullNameByUsername = (username) => {
     const user = Users.find((user) => user.username === username);
-    return user ? user.firstname + " " + user.lastname : "N/A"; // Return the first name and last name if found, otherwise an empty string
+    return user ? user.firstname + ' ' + user.lastname : 'N/A'; // Return the first name and last name if found, otherwise an empty string
   };
 
   // Helper function to get the position based on username
   const getPositionByUsername = (username) => {
     const user = Users.find((user) => user.username === username);
-    return user ? user.type : "N/A"; // Return the position if found, otherwise an empty string
+    return user ? user.type : 'N/A'; // Return the position if found, otherwise an empty string
   };
-
+ 
   const calculateWorkingDaysByUsername = (username) => {
+  
     // Filter attendance records for the specified username and the current year
     const userAttendanceInCurrentYear = filteredAttendances.filter((record) => {
       return (
@@ -127,29 +116,27 @@ const AttendanceHistory = () => {
         new Date(record.date).getFullYear() === getSelectedYear
       );
     });
-
+  
     // Calculate the working days
-    const workingDays = userAttendanceInCurrentYear.reduce(
-      (totalDays, record) => {
-        // Convert inTime and outTime to Date objects
-        const inTime = new Date(record.inTime);
-        const outTime = new Date(record.outTime);
-
-        // Check if the inTime and outTime are on the same day
-        if (inTime.toDateString() === outTime.toDateString()) {
-          // If inTime and outTime are on the same day, count it as a working day
-          return totalDays + 1;
-        }
-
-        return totalDays;
-      },
-      0
-    );
-
+    const workingDays = userAttendanceInCurrentYear.reduce((totalDays, record) => {
+      // Convert inTime and outTime to Date objects
+      const inTime = new Date(record.inTime);
+      const outTime = new Date(record.outTime);
+  
+      // Check if the inTime and outTime are on the same day
+      if (inTime.toDateString() === outTime.toDateString()) {
+        // If inTime and outTime are on the same day, count it as a working day
+        return totalDays + 1;
+      }
+  
+      return totalDays;
+    }, 0);
+  
     return workingDays;
   };
-
+  
   const calculateOTHoursByUsername = (username) => {
+  
     // Filter attendance records for the specified username and the current year
     const userAttendanceInCurrentYear = filteredAttendances.filter((record) => {
       return (
@@ -157,66 +144,65 @@ const AttendanceHistory = () => {
         new Date(record.date).getFullYear() === getSelectedYear
       );
     });
-
+  
     // Calculate the total OT hours
-    const totalOTHours = userAttendanceInCurrentYear.reduce(
-      (totalHours, record) => {
-        // Convert outTime to a Date object
-        const outTime = new Date(record.outTime);
-
-        // Check if the outTime is after 16:30:00
-        if (
-          outTime.getHours() > 16 ||
-          (outTime.getHours() === 16 && outTime.getMinutes() >= 30)
-        ) {
-          // Calculate the OT hours for this record
-          const overtimeMinutes =
-            (outTime.getHours() - 16) * 60 + outTime.getMinutes() - 30;
-
-          // Round to the nearest half hour
-          const roundedOvertimeMinutes = Math.round(overtimeMinutes / 30) * 30;
-
-          // Convert the rounded minutes to hours and add to the total
-          return totalHours + roundedOvertimeMinutes / 60;
-        }
-
-        return totalHours;
-      },
-      0
-    );
-
+    const totalOTHours = userAttendanceInCurrentYear.reduce((totalHours, record) => {
+      // Convert outTime to a Date object
+      const outTime = new Date(record.outTime);
+      
+      // Check if the outTime is after 16:30:00
+      if (outTime.getHours() > 16 || (outTime.getHours() === 16 && outTime.getMinutes() >= 30)) {
+        // Calculate the OT hours for this record
+        const overtimeMinutes = (outTime.getHours() - 16) * 60 + outTime.getMinutes() - 30;
+        
+        // Round to the nearest half hour
+        const roundedOvertimeMinutes = Math.round(overtimeMinutes / 30) * 30;
+        
+        // Convert the rounded minutes to hours and add to the total
+        return totalHours + (roundedOvertimeMinutes / 60);
+      }
+  
+      return totalHours;
+    }, 0);
+  
     return totalOTHours;
   };
-
+  
   const calculateTotalLeavesByUsername = (username) => {
-    // Filter attendance records for the specified username and the current year
+  
+    // Filter leave records for the specified username and the selected year
     const userLeavesInCurrentYear = Leave.filter((record) => {
+      const recordYear = new Date(record.startdate).getFullYear();
       return (
-        record.username === username &&
-        new Date(record.date).getFullYear() === getSelectedYear
-      );
+        record.username === username && 
+        recordYear === getSelectedYear &&
+        record.status === 'Approved'
+        );
     });
+    
+    // Calculate the total leave days
+    let totalLeaves = 0;
 
-    // Filter leaves data for the specified username
-    const userLeaves = userLeavesInCurrentYear.filter((leave) => {
-      const monthName = getMonthNameFromDate(leave.date);
-      return (
-        leave.username === username &&
-        (selectedMonth === "" || monthName === selectedMonth)
-      );
+    userLeavesInCurrentYear.forEach((leave) => {
+
+      const startDate = new Date(leave.startdate);
+      const endDate = new Date(leave.enddate);
+  
+      // Calculate the difference in days between start and end dates
+      const timeDiff = endDate - startDate;
+      const leaveDays = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1; // Add 1 to include both start and end days
+  
+      totalLeaves += leaveDays;
     });
-
-    // Calculate the total leaves taken
-    const totalLeaves = userLeaves.length;
-
+  
     return totalLeaves;
   };
-
+    
   const calculateRemainingLeavesByUsername = (username) => {
+    
     const TotalAnnualLeaves = 21;
-    const remainingLeaves =
-      TotalAnnualLeaves - calculateTotalLeavesByUsername(username);
-
+    const remainingLeaves = TotalAnnualLeaves - calculateTotalLeavesByUsername(username);
+    
     return remainingLeaves;
   };
 
@@ -224,27 +210,19 @@ const AttendanceHistory = () => {
     const fullName = getFullNameByUsername(user.username).toLowerCase();
     const position = getPositionByUsername(user.username);
     const search = searchTerm.toLowerCase();
-    return (
-      fullName.includes(search) &&
-      (selectedPosition === "" || position === selectedPosition)
-    );
+    return fullName.includes(search) && (selectedPosition === '' || position === selectedPosition);
   });
 
   const filteredAttendances = (Attendance || []).filter((attendance) => {
     const monthName = getMonthNameFromDate(attendance.date);
     const year = getYearFromDate(attendance.date);
-    return (
-      (selectedMonth === "" || monthName === selectedMonth) &&
-      (selectedYear === "" || year === selectedYear)
-    );
+    return (selectedMonth === '' || monthName === selectedMonth) && (selectedYear === '' || year === selectedYear);
   });
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
-        <div className="flex mb-4 text-lg justify-center">
-          User Summary Report : {getSelectedYear}{" "}
-        </div>
+        <div className="flex mb-4 text-lg justify-center">User Summary Report : {getSelectedYear} </div>
         <div className="flex mb-4">
           <input
             type="text"

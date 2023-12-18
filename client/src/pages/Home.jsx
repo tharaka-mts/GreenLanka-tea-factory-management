@@ -44,6 +44,10 @@ const Home = () => {
     fetchUsers();
   }, [users]);
 
+  useEffect(() => {
+    fetchTeaRate();
+  }, []);
+
   const totalTeaWeight = () => {
     let total = 0;
     users &&
@@ -54,23 +58,64 @@ const Home = () => {
     return total;
   };
 
-  useEffect(() => {
-    // Fetch the latest tea rate and its acceptance/decline status
-    axios
-      .get("http://localhost:3005/api/getTeaRate")
-      .then((response) => {
-        setTeaRates(response.data.teaRate);
-        setAcceptedOrDeclined(response.data.acceptedOrDeclined);
-        // setDeclinedMessage(response.data.declinedMessage);
-      })
-      .catch((error) => {
-        console.error("Error fetching tea rates:", error);
-      });
-  }, []);
+  const fetchTeaRate = async () => {
+    try {
+      const response = await axios.get('http://localhost:3005/api/getTeaRate');
+      if (Array.isArray(response.data)) {
+        setTeaRates(response.data);
+        if (response.data[0].status === "Accepted" || response.data[0].status === "Declined") {
+          setAcceptedOrDeclined(true);
+        }
+      } else {
+        console.error('TeaRate data is not an array:', response.data);
+        setTeaRates([]);
+      }
+    } catch (error) {
+      console.error('Error fetching TeaRate:', error);
+      setTeaRates([]);
+    }
+  };
 
   const handleAccept = () => {
     setShowAcceptModal(true);
   };
+
+
+  const teaRateValue = (grade) => {
+
+    let rate = 0;
+  
+    switch (grade) {
+      case "Raw":
+        rate = teaRates[0].rateForRawTeaLeaves;
+        break;
+        case "Grade A":
+          rate = teaRates[0].rateForGradeAProduction;
+          break;
+      case "Grade B":
+        rate = teaRates[0].rateForGradeBProduction;
+        break;
+      case "Grade C":
+        rate = teaRates[0].rateForGradeCProduction;
+        break;
+      case "Grade D":
+        rate = teaRates[0].rateForGradeDProduction;
+        break;
+      default:
+        break;
+    }
+    
+    return formatAsCurrency(rate);
+  };
+
+  const formatAsCurrency = (value) => {
+    return value.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'LKR',
+    });
+  };
+
+ 
 
   const handleAcceptConfirmation = () => {
     // Add logic to update the tea rate status to "Accepted" in the database
@@ -273,7 +318,7 @@ const Home = () => {
                 </p>
                 <div>
                   <p className="text-md font-semibold">
-                    LKR {teaRates.rateForRawTeaLeaves || "N/A"}
+                    {teaRates.length > 0 ? teaRateValue('Raw') : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -283,7 +328,7 @@ const Home = () => {
                 </p>
                 <div>
                   <p className="text-md font-semibold">
-                    LKR {teaRates.rateForGradeAProduction || "N/A"}
+                    {teaRates.length > 0 ? teaRateValue('Grade A') : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -293,7 +338,7 @@ const Home = () => {
                 </p>
                 <div>
                   <p className="text-md font-semibold">
-                    LKR {teaRates.rateForGradeBProduction || "N/A"}
+                    {teaRates.length > 0 ? teaRateValue('Grade B') : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -303,7 +348,7 @@ const Home = () => {
                 </p>
                 <div>
                   <p className="text-md font-semibold">
-                    LKR {teaRates.rateForGradeCProduction || "N/A"}
+                    {teaRates.length > 0 ? teaRateValue('Grade C') : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -313,7 +358,7 @@ const Home = () => {
                 </p>
                 <div>
                   <p className="text-md font-semibold">
-                    LKR {teaRates.rateForGradeDProduction || "N/A"}
+                    {teaRates.length > 0 ? teaRateValue('Grade D') : 'Loading...'}
                   </p>
                 </div>
               </div>
@@ -360,11 +405,12 @@ const Home = () => {
                   className="font-semibold text-lg"
                   style={{ color: currentColor }}
                 >
-                  {teaRates.status === "Accepted"
+                  {teaRates[0].status === "Accepted"
                     ? "Tea rates were already Accepted..."
-                    : teaRates.status === "Declined"
+                    : teaRates[0].status === "Declined"
                     ? "Tea rates were already Declined..."
-                    : ""}
+                    : ""
+                  }
                 </p>
               </div>
             )}
