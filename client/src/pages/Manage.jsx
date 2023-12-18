@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import DeleteUser from "./DeleteUser";
 import { useStateContext } from "../contexts/ContextProvider";
+import { confirmMessage } from "../components/Popup";
 
 const API_URL = "http://localhost:3005/get";
 
@@ -20,7 +21,7 @@ const Manage = () => {
       const response = await axios.get("http://localhost:3005/get/users");
 
       if (response.status === 200) {
-        console.log("Fetched users successfully:", response.data);
+        // console.log("Fetched users successfully:", response.data);
         setUsers(response.data);
       }
     } catch (error) {
@@ -46,11 +47,15 @@ const Manage = () => {
   };
 
   const handleDelete = async ({ userId }) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this user?"
-    );
+    // const confirmed = window.confirm(
+    //   "Are you sure you want to delete this user?"
+    // );
 
-    if (confirmed) {
+    const msg = confirmMessage();
+
+    console.log(msg);
+
+    if (msg === "yes") {
       try {
         await axios.delete(`http://localhost:3005/auth/delete/${userId}`);
         // Filter out the deleted user from the state
