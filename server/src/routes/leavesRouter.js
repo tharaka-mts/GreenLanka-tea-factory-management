@@ -36,4 +36,16 @@ router.post('/createLeave', async (req, res) => {
     }
 });
 
+router.put("/updateLeave/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { status } = req.body;
+  
+      const update = await leaveModel.findByIdAndUpdate(id, { status: status });
+      res.json(update);
+    } catch (err) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
+
 export { router as leavesRouter };
